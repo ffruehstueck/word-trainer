@@ -3,9 +3,15 @@
 import { useState, useEffect } from "react";
 import WordCard from "@/components/WordCard";
 import SessionComplete from "@/components/SessionComplete";
+import StatsModal from "@/components/StatsModal";
 import { Word, WordProgress, SessionStats } from "@/types";
 
-const BATCH_SIZE = 10; // Suggested batch size
+const BATCH_SIZE = 20; // Suggested batch size
+
+interface FileOption {
+  value: string;
+  label: string;
+}
 
 export default function Home() {
   const [words, setWords] = useState<Word[]>([]);
@@ -17,27 +23,85 @@ export default function Home() {
   const [batchNumber, setBatchNumber] = useState(1);
   const [allBatches, setAllBatches] = useState<Word[][]>([]);
   const [allProgress, setAllProgress] = useState<Map<number, WordProgress>>(new Map());
+  const [showStats, setShowStats] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<string>("words.json");
+  const [isLoading, setIsLoading] = useState(false);
+  const [availableFiles, setAvailableFiles] = useState<FileOption[]>([]);
 
   useEffect(() => {
-    // Load words from JSON file(s)
-    fetch("/data/words.json")
+    // Load available files list
+    fetch("/data/files.json")
       .then((res) => res.json())
-      .then((data: Word[]) => {
-        setWords(data);
-        // Split into batches
-        const batches: Word[][] = [];
-        for (let i = 0; i < data.length; i += BATCH_SIZE) {
-          batches.push(data.slice(i, i + BATCH_SIZE));
-        }
-        setAllBatches(batches);
-        if (batches.length > 0) {
-          initializeBatch(batches[0]);
+      .then((files: FileOption[]) => {
+        setAvailableFiles(files);
+        if (files.length > 0 && !selectedFile) {
+          setSelectedFile(files[0].value);
         }
       })
       .catch((err) => {
-        console.error("Error loading words:", err);
+        console.error("Error loading files list:", err);
+        // Fallback to default files if manifest doesn't exist
+        setAvailableFiles([
+          { value: "words.json", label: "Words" },
+        ]);
       });
   }, []);
+
+  const loadWords = async (fileSelection: string) => {
+    if (availableFiles.length === 0) return; // Wait for files list to load
+    
+    setIsLoading(true);
+    try {
+      let allWords: Word[] = [];
+      
+      if (fileSelection === "all") {
+        // Load all files and combine them
+        const filePromises = availableFiles.map((file) =>
+          fetch(`/data/${file.value}`)
+            .then((res) => res.json())
+            .catch(() => []) // Skip files that don't exist
+        );
+        const fileResults = await Promise.all(filePromises);
+        allWords = fileResults.flat();
+      } else {
+        // Load single file
+        const response = await fetch(`/data/${fileSelection}`);
+        if (!response.ok) {
+          throw new Error(`Failed to load ${fileSelection}`);
+        }
+        allWords = await response.json();
+      }
+
+      // Ensure unique IDs across all words (renumber sequentially to avoid conflicts)
+      allWords = allWords.map((word, index) => ({
+        ...word,
+        id: index + 1,
+      }));
+
+      setWords(allWords);
+      // Split into batches
+      const batches: Word[][] = [];
+      for (let i = 0; i < allWords.length; i += BATCH_SIZE) {
+        batches.push(allWords.slice(i, i + BATCH_SIZE));
+      }
+      setAllBatches(batches);
+      setBatchNumber(1);
+      setAllProgress(new Map());
+      if (batches.length > 0) {
+        initializeBatch(batches[0]);
+      }
+    } catch (err) {
+      console.error("Error loading words:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (availableFiles.length > 0 && selectedFile) {
+      loadWords(selectedFile);
+    }
+  }, [selectedFile, availableFiles.length]);
 
   // Reset revealed state whenever the word index changes
   useEffect(() => {
@@ -143,7 +207,7 @@ export default function Home() {
     }
   };
 
-  const calculateFinalStats = () => {
+  const calculateCurrentStats = (): SessionStats => {
     // Build complete progress map from allProgress and currentBatch
     const progressMap = new Map(allProgress);
     currentBatch.forEach((wp) => {
@@ -151,7 +215,23 @@ export default function Home() {
       progressMap.set(wp.word.id, wp);
     });
     
-    const progressArray: WordProgress[] = Array.from(progressMap.values());
+    // Get all words from batches processed so far (including current batch)
+    const allWordsProcessed: Word[] = [];
+    for (let i = 0; i < batchNumber; i++) {
+      if (i < allBatches.length) {
+        allWordsProcessed.push(...allBatches[i]);
+      }
+    }
+    
+    const progressArray: WordProgress[] = allWordsProcessed.map((word) => {
+      const progress = progressMap.get(word.id);
+      return progress || {
+        word,
+        isCorrect: false,
+        attempts: 0,
+      };
+    });
+    
     const correctWords = progressArray.filter((wp) => wp.isCorrect);
     const unknownWords = progressArray.filter((wp) => !wp.isCorrect).map((wp) => wp.word);
     
@@ -160,20 +240,25 @@ export default function Home() {
     const incorrectCount = unknownWords.length;
     const accuracy = totalWords > 0 ? (correctCount / totalWords) * 100 : 0;
 
-    setStats({
+    return {
       totalWords,
       correctWords: correctCount,
       incorrectWords: incorrectCount,
       accuracy,
       unknownWords,
-    });
+    };
+  };
+
+  const calculateFinalStats = () => {
+    const currentStats = calculateCurrentStats();
+    setStats(currentStats);
   };
 
   if (sessionComplete && stats) {
     return <SessionComplete stats={stats} onRestart={() => window.location.reload()} />;
   }
 
-  if (currentBatch.length === 0) {
+  if (isLoading || currentBatch.length === 0) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
@@ -186,19 +271,53 @@ export default function Home() {
 
   const currentWordProgress = currentBatch[currentIndex];
   const remainingInBatch = currentBatch.filter((wp) => !wp.isCorrect).length;
+  const currentStats = calculateCurrentStats();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
-      <div className="max-w-2xl mx-auto">
-        {/* Header */}
-        <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">Word Trainer</h1>
-          <div className="flex justify-center items-center gap-4 text-sm text-gray-600">
-            <span>Batch {batchNumber} of {allBatches.length}</span>
-            <span>•</span>
-            <span>{remainingInBatch} remaining in batch</span>
+    <>
+      {showStats && (
+        <StatsModal
+          stats={currentStats}
+          onClose={() => setShowStats(false)}
+          isComplete={false}
+        />
+      )}
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
+        <div className="max-w-2xl mx-auto">
+          {/* Header */}
+          <div className="mb-8 text-center">
+            <h1 className="text-4xl font-bold text-gray-800 mb-4">Word Trainer</h1>
+            <div className="flex justify-between items-center mb-4">
+              <div className="w-32">
+                <select
+                  value={selectedFile}
+                  onChange={(e) => setSelectedFile(e.target.value)}
+                  className="bg-white border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer"
+                  disabled={isLoading || availableFiles.length === 0}
+                >
+                  {availableFiles.map((file) => (
+                    <option key={file.value} value={file.value}>
+                      {file.label}
+                    </option>
+                  ))}
+                  <option value="all">All Files</option>
+                </select>
+              </div>
+              <button
+                onClick={() => setShowStats(true)}
+                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2 shadow-md"
+                title="Show Stats"
+              >
+                <span>📊</span>
+                <span className="hidden sm:inline">Stats</span>
+              </button>
+            </div>
+            <div className="flex justify-center items-center gap-4 text-sm text-gray-600">
+              <span>Batch {batchNumber} of {allBatches.length}</span>
+              <span>•</span>
+              <span>{remainingInBatch} remaining in batch</span>
+            </div>
           </div>
-        </div>
 
         {/* Progress Bar */}
         <div className="mb-8 bg-white rounded-full h-3 shadow-sm">
@@ -220,6 +339,7 @@ export default function Home() {
         />
       </div>
     </div>
+    </>
   );
 }
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { Word } from "@/types";
-import { useState, useEffect } from "react";
 
 interface WordCardProps {
   word: Word;
@@ -11,23 +10,6 @@ interface WordCardProps {
 }
 
 export default function WordCard({ word, isRevealed, onReveal, onAnswer }: WordCardProps) {
-  const [lastScrollY, setLastScrollY] = useState(0);
-
-  useEffect(() => {
-    setLastScrollY(window.scrollY);
-    
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      // Auto-reveal when user scrolls up (scroll position decreases by more than 100px)
-      if (lastScrollY > 0 && currentScrollY < lastScrollY - 100 && !isRevealed) {
-        onReveal();
-      }
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isRevealed, onReveal, lastScrollY]);
 
   return (
     <div className="bg-white rounded-2xl shadow-xl p-8 mb-6">
@@ -69,7 +51,6 @@ export default function WordCard({ word, isRevealed, onReveal, onAnswer }: WordC
           >
             Show Translation
           </button>
-          <p className="text-xs text-gray-500 mt-2">or scroll up to reveal</p>
         </div>
       )}
 

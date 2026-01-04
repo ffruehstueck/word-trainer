@@ -1,0 +1,35 @@
+[
+    { "id": 1, "source": "to do the shopping", "target": "einkaufen gehen", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 2, "source": "to stay at a friend’s house", "target": "bei einem Freund / einer Freundin übernachten", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 3, "source": "to do nothing", "target": "nichts tun", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 4, "source": "to do your homework", "target": "deine Hausaufgaben machen", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 5, "source": "to tidy your room", "target": "dein Zimmer aufräumen", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 6, "source": "to play basketball", "target": "Basketball spielen", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 7, "source": "to watch a film", "target": "einen Film ansehen", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 8, "source": "to have a party", "target": "eine Party machen / feiern", "sourceLanguage": "English", "targetLanguage": "German" },
+  
+    { "id": 9, "source": "Honestly, that was only a joke!", "target": "Ehrlich, das war nur ein Scherz!", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 10, "source": "I don’t want to tidy my room. I’m going to do nothing.", "target": "Ich will mein Zimmer nicht aufräumen. Ich werde nichts tun.", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 11, "source": "I’m very tired. I’m going to take it easy this afternoon.", "target": "Ich bin sehr müde. Ich werde es heute Nachmittag ruhig angehen.", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 12, "source": "I was very ashamed.", "target": "Ich habe mich sehr geschämt.", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 13, "source": "She isn’t going to come over today.", "target": "Sie wird heute nicht vorbeikommen.", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 14, "source": "There are many types of communication.", "target": "Es gibt viele Arten der Kommunikation.", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 15, "source": "There’s no excuse.", "target": "Es gibt keine Entschuldigung.", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 16, "source": "My friends and I have a group chat.", "target": "Meine Freunde und ich haben einen Gruppenchat.", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 17, "source": "I’m writing a social media post.", "target": "Ich schreibe einen Beitrag für soziale Medien.", "sourceLanguage": "English", "targetLanguage": "German" },
+  
+    { "id": 18, "source": "Don’t tell me a lie. I know it was you!", "target": "Erzähl mir keine Lüge. Ich weiß, dass du es warst!", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 19, "source": "I didn’t tell her the truth.", "target": "Ich habe ihr nicht die Wahrheit gesagt.", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 20, "source": "William is always worried.", "target": "William macht sich immer Sorgen.", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 21, "source": "Be careful or you might crash.", "target": "Sei vorsichtig, sonst könntest du einen Unfall haben.", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 22, "source": "I might get into trouble if I do that.", "target": "Ich könnte in Schwierigkeiten geraten, wenn ich das mache.", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 23, "source": "My friend invited me to a fancy-dress party.", "target": "Mein Freund hat mich zu einer Kostümparty eingeladen.", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 24, "source": "She showed her disappointment.", "target": "Sie zeigte ihre Enttäuschung.", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 25, "source": "How do you say this in German?", "target": "Wie sagt man das auf Deutsch?", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 26, "source": "Can we have tickets for row 12, please?", "target": "Können wir Tickets für die Reihe 12 haben, bitte?", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 27, "source": "The concert is sold out.", "target": "Das Konzert ist ausverkauft.", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 28, "source": "That’s a pity.", "target": "Das ist schade!", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 29, "source": "There’s only one ticket for the 5 o’clock showing.", "target": "Es gibt nur ein Ticket für die Vorstellung um 5 Uhr.", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 30, "source": "The concert is sold out. What a shame!", "target": "Das Konzert ist ausverkauft. Wie schade!", "sourceLanguage": "English", "targetLanguage": "German" }
+  ]
+  

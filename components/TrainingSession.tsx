@@ -242,7 +242,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     return shuffled;
   }, []);
 
-  const loadWords = useCallback(async (fileSelection: string, resetProgress = false) => {
+  const loadWords = useCallback(async (fileSelection: string, resetProgress = false, targetMode?: "exam" | "training" | null) => {
     if (availableFiles.length === 0) return;
     
     setIsLoading(true);
@@ -254,8 +254,11 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
       }
       let allWords: Word[] = await response.json();
 
+      // Use targetMode if provided, otherwise fall back to current mode state
+      const modeToUse = targetMode !== undefined ? targetMode : mode;
+      
       // Shuffle words only in exam mode
-      if (mode === "exam") {
+      if (modeToUse === "exam") {
         allWords = shuffleArray(allWords);
       }
 
@@ -298,10 +301,10 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
   }, [availableFiles, mode, shuffleArray]);
 
   useEffect(() => {
-    if (availableFiles.length > 0 && selectedFile) {
+    if (availableFiles.length > 0 && selectedFile && !sessionStarted) {
       loadWords(selectedFile, false);
     }
-  }, [selectedFile, availableFiles.length, mode, loadWords]);
+  }, [selectedFile, availableFiles.length, sessionStarted, loadWords]);
 
   // Reset revealed state whenever the word index changes (exam mode only)
   useEffect(() => {
@@ -340,6 +343,11 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     setSessionStartTime(now);
     setLastInteractionTime(now);
     setShowInactivityModal(false);
+    // Reload words for the current selected file to ensure we have the latest data
+    // Pass the target mode to ensure words are shuffled correctly for exam mode
+    if (selectedFile && availableFiles.length > 0) {
+      loadWords(selectedFile, true, selectedMode);
+    }
   };
 
   const handleResumeFromInactivity = () => {

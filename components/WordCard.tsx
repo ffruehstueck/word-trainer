@@ -59,7 +59,7 @@ export default function WordCard({ word, isRevealed, onReveal, onAnswer, reverse
           <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
             {displaySourceLanguage}
           </div>
-              <div className="text-4xl font-bold text-gray-800 text-center py-8 hyphens-auto break-words" style={{ overflowWrap: 'break-word' }}>
+              <div className="text-4xl font-bold text-gray-800 text-center py-8 hyphens-auto break-words">
                 {displaySource}
               </div>
         </div>
@@ -85,16 +85,16 @@ export default function WordCard({ word, isRevealed, onReveal, onAnswer, reverse
           <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
             {displayTargetLanguage}
           </div>
-        <div
-          className={`text-4xl font-bold text-center py-8 hyphens-auto break-words overflow-wrap-anywhere ${
-            isRevealed
-              ? "text-indigo-600 opacity-100 transition-colors duration-200"
-              : "text-gray-300 opacity-50 blur-sm"
-          }`}
-          style={{ wordBreak: 'break-all', overflowWrap: 'anywhere' }}
-        >
-          {isRevealed ? displayTarget : scrambledTarget}
-        </div>
+              <div
+                className={`text-4xl font-bold text-center py-8 hyphens-auto ${
+                  isRevealed
+                    ? "text-indigo-600 opacity-100 transition-colors duration-200 break-words"
+                    : "text-gray-300 opacity-50 blur-sm break-all"
+                }`}
+                style={isRevealed ? { overflowWrap: 'break-word' } : { wordBreak: 'break-all', overflowWrap: 'anywhere' }}
+              >
+                {isRevealed ? displayTarget : scrambledTarget}
+              </div>
         </div>
       </div>
 

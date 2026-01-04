@@ -68,11 +68,6 @@ export default function WordCard({ word, isRevealed, onReveal, onAnswer, reverse
             </div>
           </div>
 
-          {/* Divider */}
-          <div className="relative my-6">
-            <div className="border-t border-gray-200"></div>
-          </div>
-
           {/* Target Language */}
           <div>
             <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
@@ -112,7 +107,7 @@ export default function WordCard({ word, isRevealed, onReveal, onAnswer, reverse
 
           {/* Right half - Correct (clickable) */}
           <div 
-            className="absolute right-0 top-0 bottom-0 w-1/2 cursor-pointer group z-20 border-l border-gray-200"
+            className="absolute right-0 top-0 bottom-0 w-1/2 cursor-pointer group z-20"
             onClick={(e) => {
               // Don't trigger if clicking on the reverse button
               const target = e.target as HTMLElement;
@@ -136,11 +131,6 @@ export default function WordCard({ word, isRevealed, onReveal, onAnswer, reverse
               <div className="text-4xl font-bold text-gray-800 text-center py-8 hyphens-auto break-words">
                 {displaySource}
               </div>
-            </div>
-
-            {/* Divider */}
-            <div className="relative my-6">
-              <div className="border-t border-gray-200"></div>
             </div>
 
             {/* Target Language */}

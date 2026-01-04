@@ -27,6 +27,7 @@ export default function Home() {
   const [selectedFile, setSelectedFile] = useState<string>("words.json");
   const [isLoading, setIsLoading] = useState(false);
   const [availableFiles, setAvailableFiles] = useState<FileOption[]>([]);
+  const [reverseDirection, setReverseDirection] = useState(false);
 
   useEffect(() => {
     // Load available files list
@@ -46,6 +47,16 @@ export default function Home() {
         ]);
       });
   }, []);
+
+  // Fisher-Yates shuffle algorithm
+  const shuffleArray = <T,>(array: T[]): T[] => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
 
   const loadWords = async (fileSelection: string) => {
     if (availableFiles.length === 0) return; // Wait for files list to load
@@ -71,6 +82,9 @@ export default function Home() {
         }
         allWords = await response.json();
       }
+
+      // Shuffle words for random order
+      allWords = shuffleArray(allWords);
 
       // Ensure unique IDs across all words (renumber sequentially to avoid conflicts)
       allWords = allWords.map((word, index) => ({
@@ -288,21 +302,19 @@ export default function Home() {
           <div className="mb-8 text-center">
             <h1 className="text-4xl font-bold text-gray-800 mb-4">Word Trainer</h1>
             <div className="flex justify-between items-center mb-4">
-              <div className="w-32">
-                <select
-                  value={selectedFile}
-                  onChange={(e) => setSelectedFile(e.target.value)}
-                  className="bg-white border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer"
-                  disabled={isLoading || availableFiles.length === 0}
-                >
-                  {availableFiles.map((file) => (
-                    <option key={file.value} value={file.value}>
-                      {file.label}
-                    </option>
-                  ))}
-                  <option value="all">All Files</option>
-                </select>
-              </div>
+              <select
+                value={selectedFile}
+                onChange={(e) => setSelectedFile(e.target.value)}
+                className="bg-white border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer w-32"
+                disabled={isLoading || availableFiles.length === 0}
+              >
+                {availableFiles.map((file) => (
+                  <option key={file.value} value={file.value}>
+                    {file.label}
+                  </option>
+                ))}
+                <option value="all">All Files</option>
+              </select>
               <button
                 onClick={() => setShowStats(true)}
                 className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2 shadow-md"
@@ -331,11 +343,13 @@ export default function Home() {
 
         {/* Word Card */}
         <WordCard
-          key={currentWordProgress.word.id}
+          key={`${currentWordProgress.word.id}-${reverseDirection}`}
           word={currentWordProgress.word}
           isRevealed={isRevealed}
           onReveal={handleReveal}
           onAnswer={handleAnswer}
+          reverseDirection={reverseDirection}
+          onReverseDirection={() => setReverseDirection(!reverseDirection)}
         />
       </div>
     </div>

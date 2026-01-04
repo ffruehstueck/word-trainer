@@ -7,29 +7,48 @@ interface WordCardProps {
   isRevealed: boolean;
   onReveal: () => void;
   onAnswer: (isCorrect: boolean) => void;
+  reverseDirection?: boolean;
+  onReverseDirection?: () => void;
 }
 
-export default function WordCard({ word, isRevealed, onReveal, onAnswer }: WordCardProps) {
+export default function WordCard({ word, isRevealed, onReveal, onAnswer, reverseDirection = false, onReverseDirection }: WordCardProps) {
+  const displaySource = reverseDirection ? word.target : word.source;
+  const displayTarget = reverseDirection ? word.source : word.target;
+  const displaySourceLanguage = reverseDirection ? word.targetLanguage : word.sourceLanguage;
+  const displayTargetLanguage = reverseDirection ? word.sourceLanguage : word.targetLanguage;
 
   return (
     <div className="bg-white rounded-2xl shadow-xl p-8 mb-6">
       {/* Source Language */}
       <div className="mb-6">
         <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-          {word.sourceLanguage}
+          {displaySourceLanguage}
         </div>
         <div className="text-4xl font-bold text-gray-800 text-center py-8">
-          {word.source}
+          {displaySource}
         </div>
       </div>
 
       {/* Divider */}
-      <div className="border-t border-gray-200 my-6"></div>
+      <div className="relative my-6">
+        <div className="border-t border-gray-200"></div>
+        {isRevealed && onReverseDirection && (
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-2">
+            <button
+              onClick={onReverseDirection}
+              className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-1.5 px-3 rounded-lg transition-colors duration-200 flex items-center gap-2 text-lg transform rotate-90 text-center"
+              title="Reverse translation direction"
+            >
+              ⇄
+            </button>
+          </div>
+        )}
+      </div>
 
       {/* Target Language */}
       <div>
         <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-          {word.targetLanguage}
+          {displayTargetLanguage}
         </div>
         <div
           className={`text-4xl font-bold text-center py-8 ${
@@ -38,7 +57,7 @@ export default function WordCard({ word, isRevealed, onReveal, onAnswer }: WordC
               : "text-gray-300 opacity-50 blur-sm"
           }`}
         >
-          {word.target}
+          {displayTarget}
         </div>
       </div>
 

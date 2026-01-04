@@ -5,10 +5,12 @@ import { SessionStats } from "@/types";
 interface StatsModalProps {
   stats: SessionStats;
   onClose: () => void;
+  onResume?: () => void;
+  onStop?: () => void;
   isComplete?: boolean;
 }
 
-export default function StatsModal({ stats, onClose, isComplete = false }: StatsModalProps) {
+export default function StatsModal({ stats, onClose, onResume, onStop, isComplete = false }: StatsModalProps) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[100] p-4">
       <div className="bg-white rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
@@ -125,15 +127,35 @@ export default function StatsModal({ stats, onClose, isComplete = false }: Stats
             </div>
           )}
 
-          {/* Close Button */}
+          {/* Action Buttons */}
           {!isComplete && (
-            <div className="text-center">
-              <button
-                onClick={onClose}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
-              >
-                Continue Training
-              </button>
+            <div className="flex gap-3 justify-center flex-wrap">
+              {onResume && (
+                <button
+                  onClick={onResume}
+                  className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg flex items-center gap-2"
+                >
+                  <span>▶</span>
+                  <span>Resume</span>
+                </button>
+              )}
+              {!onResume && (
+                <button
+                  onClick={onClose}
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+                >
+                  Continue Training
+                </button>
+              )}
+              {onStop && (
+                <button
+                  onClick={onStop}
+                  className="bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg flex items-center gap-2"
+                >
+                  <span>⏹</span>
+                  <span>Stop</span>
+                </button>
+              )}
             </div>
           )}
         </div>

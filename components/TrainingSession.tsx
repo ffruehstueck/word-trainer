@@ -495,6 +495,35 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     setStats(currentStats);
   };
 
+  const handleStop = () => {
+    // Show stats modal when stopping
+    if (mode === "exam") {
+      const currentStats = calculateCurrentStats();
+      setStats(currentStats);
+      setShowStats(true);
+    }
+  };
+
+  const handleResume = () => {
+    // Resume the session from stats modal
+    setShowStats(false);
+    // Timer will continue from where it left off if sessionStartTime is still set
+  };
+
+  const handleStopFromModal = () => {
+    // Actually stop the session and return to start screen (keep progress)
+    setSessionStartTime(null);
+    setSessionTime(0);
+    setLastInteractionTime(null);
+    setIsOnBreak(false);
+    setBreakEndTime(null);
+    setMode(null);
+    setSessionStarted(false);
+    setIsRevealed(false);
+    setShowStats(false);
+    setShowInactivityModal(false);
+  };
+
   const handleRestart = () => {
     clearProgress(selectedFile, mode || "exam");
     setSessionComplete(false);
@@ -662,10 +691,12 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
           onRestart={handleRestartFromInactivity}
         />
       )}
-      {showStats && currentStats && (
+      {showStats && (currentStats || stats) && (
         <StatsModal
-          stats={currentStats}
+          stats={currentStats || stats!}
           onClose={() => setShowStats(false)}
+          onResume={mode && sessionStarted ? handleResume : undefined}
+          onStop={handleStopFromModal}
           isComplete={false}
         />
       )}
@@ -681,7 +712,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
           <div className="mb-8 text-center notranslate">
             <h1 className="text-4xl font-bold text-gray-800 mb-4">Word Trainer</h1>
             {sessionStartTime && !isOnBreak && (
-              <div className="mb-4 flex justify-center items-center gap-4">
+              <div className="mb-4 flex justify-center items-center gap-4 flex-wrap">
                 <div className="bg-white rounded-lg px-4 py-2 shadow-sm border border-gray-200">
                   <span className="text-sm text-gray-600 mr-2">⏱️ Learning time:</span>
                   <span className="text-lg font-bold text-indigo-600">{formatTime(sessionTime)}</span>
@@ -691,6 +722,16 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
                     <span className="text-sm text-gray-600 mr-2">🏆 Best:</span>
                     <span className="text-lg font-bold text-gray-700">{formatTime(highScore)}</span>
                   </div>
+                )}
+                {mode === "exam" && (
+                  <button
+                    onClick={handleStop}
+                    className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2 shadow-md"
+                    title="Stop Session"
+                  >
+                    <span>⏹</span>
+                    <span className="hidden sm:inline">Stop</span>
+                  </button>
                 )}
               </div>
             )}

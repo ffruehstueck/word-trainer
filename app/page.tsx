@@ -7,8 +7,6 @@ import SessionComplete from "@/components/SessionComplete";
 import StatsModal from "@/components/StatsModal";
 import { Word, WordProgress, SessionStats } from "@/types";
 
-const BATCH_SIZE = 20; // Suggested batch size
-
 interface FileOption {
   value: string;
   label: string;
@@ -16,9 +14,7 @@ interface FileOption {
 
 interface PersistedProgress {
   allProgress: Array<[number, WordProgress]>;
-  currentBatch: WordProgress[];
   currentIndex: number;
-  batchNumber: number;
   selectedFile: string;
   mode: "exam" | "training";
   reverseDirection: boolean;
@@ -36,13 +32,11 @@ const formatTime = (seconds: number): string => {
 
 export default function Home() {
   const [words, setWords] = useState<Word[]>([]);
-  const [currentBatch, setCurrentBatch] = useState<WordProgress[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isRevealed, setIsRevealed] = useState(false);
+  const [revealStartTime, setRevealStartTime] = useState<number | null>(null); // Track when translation was revealed
   const [sessionComplete, setSessionComplete] = useState(false);
   const [stats, setStats] = useState<SessionStats | null>(null);
-  const [batchNumber, setBatchNumber] = useState(1);
-  const [allBatches, setAllBatches] = useState<Word[][]>([]);
   const [allProgress, setAllProgress] = useState<Map<number, WordProgress>>(new Map());
   const [showStats, setShowStats] = useState(false);
   const [selectedFile, setSelectedFile] = useState<string>("unit-8.json");
@@ -86,9 +80,7 @@ export default function Home() {
       const key = getStorageKey(file, currentMode);
       const data: PersistedProgress = {
         allProgress: Array.from(allProgress.entries()),
-        currentBatch,
         currentIndex,
-        batchNumber,
         selectedFile: file,
         mode: currentMode,
         reverseDirection,
@@ -240,49 +232,25 @@ export default function Home() {
 
   // Load saved progress when file/mode changes (but only after words are loaded and session has started)
   useEffect(() => {
-    if (words.length === 0 || allBatches.length === 0) return;
+    if (words.length === 0) return;
     if (!mode || !sessionStarted) return; // Don't restore if session hasn't started
     
     const saved = loadProgress(selectedFile, mode);
     if (saved && saved.selectedFile === selectedFile && saved.mode === mode) {
       // Restore progress
       setAllProgress(new Map(saved.allProgress));
-      setBatchNumber(saved.batchNumber);
       setReverseDirection(saved.reverseDirection);
-      
-      if (mode === "exam") {
-        // Reconstruct the current batch from saved progress
-        const currentBatchNum = saved.batchNumber - 1;
-        if (currentBatchNum >= 0 && currentBatchNum < allBatches.length) {
-          const currentBatchWords = allBatches[currentBatchNum];
-          const progressMap = new Map(saved.allProgress);
-          const restoredBatch = currentBatchWords.map((word) => {
-            const progress = progressMap.get(word.id);
-            if (progress) {
-              return progress;
-            }
-            return {
-              word,
-              isCorrect: false,
-              attempts: 0,
-            };
-          });
-          setCurrentBatch(restoredBatch);
-          setCurrentIndex(Math.min(saved.currentIndex, restoredBatch.length - 1));
-        }
-      } else if (mode === "training") {
-        setCurrentIndex(Math.min(saved.currentIndex, words.length - 1));
-      }
+      setCurrentIndex(Math.min(saved.currentIndex, words.length - 1));
     }
-  }, [selectedFile, mode, sessionStarted, words.length, allBatches.length]);
+  }, [selectedFile, mode, sessionStarted, words.length]);
 
   // Save progress whenever it changes
   useEffect(() => {
-    if (words.length === 0 || allBatches.length === 0) return;
+    if (words.length === 0) return;
     if (mode) {
       saveProgress(selectedFile, mode);
     }
-  }, [allProgress, currentBatch, currentIndex, batchNumber, selectedFile, mode, reverseDirection, words.length, allBatches.length]);
+  }, [allProgress, currentIndex, selectedFile, mode, reverseDirection, words.length, saveProgress]);
 
   // Fisher-Yates shuffle algorithm
   const shuffleArray = useCallback(<T,>(array: T[]): T[] => {
@@ -331,26 +299,30 @@ export default function Home() {
       }));
 
       setWords(allWords);
-      // Split into batches
-      const batches: Word[][] = [];
-      for (let i = 0; i < allWords.length; i += BATCH_SIZE) {
-        batches.push(allWords.slice(i, i + BATCH_SIZE));
-      }
-      setAllBatches(batches);
       
       // Only reset progress if explicitly requested (new session)
       if (resetProgress) {
-        // Don't clear progress here since mode might be null - will be cleared on restart
-        setBatchNumber(1);
         setAllProgress(new Map());
-        if (batches.length > 0) {
-          initializeBatch(batches[0]);
-        }
-      } else {
-        // Always initialize batch first - progress will be restored by useEffect if it exists
-        if (batches.length > 0) {
-          initializeBatch(batches[0]);
-        }
+        setCurrentIndex(0);
+        setIsRevealed(false);
+      }
+      
+      // Initialize progress for all words if not already in allProgress
+      if (allWords.length > 0) {
+        setAllProgress((prev) => {
+          const newMap = new Map(prev);
+          allWords.forEach((word) => {
+            if (!newMap.has(word.id)) {
+              newMap.set(word.id, {
+                word,
+                isCorrect: false,
+                attempts: 0,
+                durations: [],
+              });
+            }
+          });
+          return newMap;
+        });
       }
     } catch (err) {
       console.error("Error loading words:", err);
@@ -381,20 +353,11 @@ export default function Home() {
     }
   }, [mode]);
 
-  const initializeBatch = (batchWords: Word[]) => {
-    const batchProgress: WordProgress[] = batchWords.map((word) => ({
-      word,
-      isCorrect: false,
-      attempts: 0,
-    }));
-    setCurrentBatch(batchProgress);
-    setCurrentIndex(0);
-    setIsRevealed(false);
-  };
 
   const handleReveal = () => {
     const now = Date.now();
     setIsRevealed(true);
+    setRevealStartTime(now); // Start tracking duration for this translation
     
     // Update last interaction time
     setLastInteractionTime(now);
@@ -412,52 +375,78 @@ export default function Home() {
   const handleAnswer = (isCorrect: boolean) => {
     if (!isRevealed) return;
 
+    const now = Date.now();
     // Update last interaction time
-    setLastInteractionTime(Date.now());
+    setLastInteractionTime(now);
+
+    // Calculate duration if we have a start time
+    const duration = revealStartTime ? now - revealStartTime : null;
 
     // Reset revealed state immediately to prevent showing next word's answer
     setIsRevealed(false);
+    setRevealStartTime(null);
 
-    const updatedBatch = [...currentBatch];
-    const currentWordProgress = updatedBatch[currentIndex];
+    const currentWord = words[currentIndex];
+    if (!currentWord) return;
     
-    currentWordProgress.attempts += 1;
-    
-    if (isCorrect) {
-      currentWordProgress.isCorrect = true;
-    } else {
-      currentWordProgress.isCorrect = false;
-    }
-    
-    updatedBatch[currentIndex] = currentWordProgress;
-    setCurrentBatch(updatedBatch);
-    
-    // Update global progress tracking
+    // Update progress for current word
     setAllProgress((prev) => {
       const newMap = new Map(prev);
-      newMap.set(currentWordProgress.word.id, currentWordProgress);
+      const existingProgress = newMap.get(currentWord.id) || {
+        word: currentWord,
+        isCorrect: false,
+        attempts: 0,
+        durations: [],
+      };
+      
+      // Add duration to the durations array if available
+      const updatedDurations = existingProgress.durations ? [...existingProgress.durations] : [];
+      if (duration !== null) {
+        updatedDurations.push(duration);
+      }
+      
+      const updatedProgress: WordProgress = {
+        ...existingProgress,
+        attempts: existingProgress.attempts + 1,
+        isCorrect: isCorrect,
+        durations: updatedDurations,
+      };
+      
+      newMap.set(currentWord.id, updatedProgress);
       return newMap;
     });
     
-    // Move to next word or check if batch is complete
-    moveToNextWord(updatedBatch);
+    // Move to next word or check if all words are complete
+    moveToNextWord();
   };
 
-  const moveToNextWord = (batch: WordProgress[]) => {
+  const moveToNextWord = () => {
+    // Get all words with their progress
+    const progressArray: WordProgress[] = words.map((word) => {
+      return allProgress.get(word.id) || {
+        word,
+        isCorrect: false,
+        attempts: 0,
+        durations: [],
+      };
+    });
+    
     // Find next word that hasn't been answered correctly
-    const remainingWords = batch.filter((wp) => !wp.isCorrect);
+    const remainingWords = progressArray.filter((wp) => !wp.isCorrect);
     
     if (remainingWords.length === 0) {
-      // All words in current batch are correct
-      handleBatchComplete();
+      // All words are correct - session complete
+      calculateFinalStats();
+      setSessionComplete(true);
     } else {
       // Find next incorrect word (cycling through)
-      const currentWordId = batch[currentIndex].word.id;
+      const currentWordId = words[currentIndex]?.id;
       let nextIndex = -1;
       
       // Try to find next incorrect word after current index
-      for (let i = currentIndex + 1; i < batch.length; i++) {
-        if (!batch[i].isCorrect) {
+      for (let i = currentIndex + 1; i < words.length; i++) {
+        const progress = progressArray[i];
+        if (!progress.isCorrect) {
           nextIndex = i;
           break;
         }
@@ -466,7 +455,8 @@ export default function Home() {
       // If not found, wrap around
       if (nextIndex === -1) {
         for (let i = 0; i < currentIndex; i++) {
-          if (!batch[i].isCorrect) {
+          const progress = progressArray[i];
+          if (!progress.isCorrect) {
             nextIndex = i;
             break;
           }
@@ -475,49 +465,23 @@ export default function Home() {
       
       // If still not found, take first incorrect word
       if (nextIndex === -1) {
-        nextIndex = batch.findIndex((wp) => !wp.isCorrect);
+        nextIndex = progressArray.findIndex((wp) => !wp.isCorrect);
       }
       
-      setCurrentIndex(nextIndex);
-    }
-  };
-
-  const handleBatchComplete = () => {
-    // Check if there are more batches
-    if (batchNumber < allBatches.length) {
-      // Move to next batch
-      const nextBatch = allBatches[batchNumber];
-      setBatchNumber(batchNumber + 1);
-      initializeBatch(nextBatch);
-    } else {
-      // All batches complete - calculate stats
-      calculateFinalStats();
-      setSessionComplete(true);
+      if (nextIndex !== -1) {
+        setCurrentIndex(nextIndex);
+      }
     }
   };
 
   const calculateCurrentStats = (): SessionStats => {
-    // Build complete progress map from allProgress and currentBatch
-    const progressMap = new Map(allProgress);
-    currentBatch.forEach((wp) => {
-      // Current batch progress takes precedence (most recent)
-      progressMap.set(wp.word.id, wp);
-    });
-    
-    // Get all words from batches processed so far (including current batch)
-    const allWordsProcessed: Word[] = [];
-    for (let i = 0; i < batchNumber; i++) {
-      if (i < allBatches.length) {
-        allWordsProcessed.push(...allBatches[i]);
-      }
-    }
-    
-    const progressArray: WordProgress[] = allWordsProcessed.map((word) => {
-      const progress = progressMap.get(word.id);
-      return progress || {
+    // Get progress for all words
+    const progressArray: WordProgress[] = words.map((word) => {
+      return allProgress.get(word.id) || {
         word,
         isCorrect: false,
         attempts: 0,
+        durations: [],
       };
     });
     
@@ -529,12 +493,33 @@ export default function Home() {
     const incorrectCount = unknownWords.length;
     const accuracy = totalWords > 0 ? (correctCount / totalWords) * 100 : 0;
 
+    // Calculate duration statistics
+    const allDurations: number[] = [];
+    progressArray.forEach((wp) => {
+      if (wp.durations && wp.durations.length > 0) {
+        allDurations.push(...wp.durations);
+      }
+    });
+
+    let quickestDuration: number | undefined;
+    let slowestDuration: number | undefined;
+    let averageDuration: number | undefined;
+
+    if (allDurations.length > 0) {
+      quickestDuration = Math.min(...allDurations);
+      slowestDuration = Math.max(...allDurations);
+      averageDuration = allDurations.reduce((sum, d) => sum + d, 0) / allDurations.length;
+    }
+
     return {
       totalWords,
       correctWords: correctCount,
       incorrectWords: incorrectCount,
       accuracy,
       unknownWords,
+      quickestDuration,
+      slowestDuration,
+      averageDuration,
     };
   };
 
@@ -547,7 +532,6 @@ export default function Home() {
     clearProgress(selectedFile, mode || "exam");
     setSessionComplete(false);
     setStats(null);
-    setBatchNumber(1);
     setAllProgress(new Map());
     setCurrentIndex(0);
     setIsRevealed(false);
@@ -688,9 +672,16 @@ export default function Home() {
     );
   }
 
-  const currentWordProgress = mode === "exam" && currentBatch.length > 0 ? currentBatch[currentIndex] : null;
-  const remainingInBatch = mode === "exam" ? currentBatch.filter((wp) => !wp.isCorrect).length : 0;
+  // Get current word progress for exam mode
+  const currentWord = words[currentIndex] || null;
+  const currentWordProgress = mode === "exam" && currentWord ? 
+    (allProgress.get(currentWord.id) || { word: currentWord, isCorrect: false, attempts: 0 }) : null;
+  
+  // Calculate stats and remaining words for exam mode
   const currentStats = mode === "exam" ? calculateCurrentStats() : null;
+  const totalWords = words.length;
+  const correctWordsCount = currentStats ? currentStats.correctWords : 0;
+  const remainingWords = totalWords - correctWordsCount;
 
   return (
     <>
@@ -758,25 +749,35 @@ export default function Home() {
             </div>
           </div>
 
-        {/* Progress Bar - Only in exam mode */}
+        {/* Progress Bar - Shows progress across all words */}
         {mode === "exam" && (
-          <div className="mb-8 bg-white rounded-full h-3 shadow-sm">
-            <div
-              className="bg-blue-600 h-3 rounded-full transition-all duration-300"
-              style={{
-                width: `${((currentBatch.length - remainingInBatch) / currentBatch.length) * 100}%`,
-              }}
-            />
+          <div className="mb-8">
+            <div className="text-xs text-gray-600 text-center mb-2">
+              {correctWordsCount} / {totalWords}
+            </div>
+            <div className="bg-white rounded-full h-3 shadow-sm">
+              <div
+                className="bg-blue-600 h-3 rounded-full transition-all duration-300"
+                style={{
+                  width: `${totalWords > 0 ? (correctWordsCount / totalWords) * 100 : 0}%`,
+                }}
+              />
+            </div>
           </div>
         )}
         {mode === "training" && (
-          <div className="mb-8 bg-white rounded-full h-3 shadow-sm">
-            <div
-              className="bg-blue-600 h-3 rounded-full transition-all duration-300"
-              style={{
-                width: `${((currentIndex + 1) / words.length) * 100}%`,
-              }}
-            />
+          <div className="mb-8">
+            <div className="text-xs text-gray-600 text-center mb-2">
+              {currentIndex + 1} / {words.length}
+            </div>
+            <div className="bg-white rounded-full h-3 shadow-sm">
+              <div
+                className="bg-blue-600 h-3 rounded-full transition-all duration-300"
+                style={{
+                  width: `${((currentIndex + 1) / words.length) * 100}%`,
+                }}
+              />
+            </div>
           </div>
         )}
 

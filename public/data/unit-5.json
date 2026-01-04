@@ -1,54 +1,345 @@
 [
-    { "id": 1, "source": "cinema", "target": "Kino", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 2, "source": "bank", "target": "Bank", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 3, "source": "hospital", "target": "Krankenhaus", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 4, "source": "church", "target": "Kirche", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 5, "source": "restaurant", "target": "Restaurant / Gaststätte", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 6, "source": "post office", "target": "Post / Postamt", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 7, "source": "police station", "target": "Polizeiwache", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 8, "source": "supermarket", "target": "Supermarkt", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 9, "source": "tourist office", "target": "Touristeninformation", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 10, "source": "music shop", "target": "Musikgeschäft", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 11, "source": "chemist's", "target": "Apotheke", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 12, "source": "railway station / train station", "target": "Bahnhof", "sourceLanguage": "English", "targetLanguage": "German" },
-  
-    { "id": 13, "source": "round the corner", "target": "um die Ecke", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 14, "source": "as far as", "target": "bis (zu)", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 15, "source": "opposite", "target": "gegenüber", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 16, "source": "next to", "target": "neben", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 17, "source": "to go past", "target": "vorbeigehen / vorbeifahren", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 18, "source": "to go straight ahead", "target": "geradeaus gehen / fahren", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 19, "source": "to cross the street", "target": "die Straße überqueren", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 20, "source": "to turn left", "target": "links abbiegen", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 21, "source": "to take the second right", "target": "die zweite Straße rechts nehmen", "sourceLanguage": "English", "targetLanguage": "German" },
-  
-    { "id": 22, "source": "We have to cross the street.", "target": "Wir müssen die Straße überqueren.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 23, "source": "You can see where you are on the map.", "target": "Du kannst auf der Karte sehen, wo du bist.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 24, "source": "Take the second right.", "target": "Nimm die zweite Straße rechts.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 25, "source": "Go straight on, then turn left.", "target": "Geh geradeaus und biege dann links ab.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 26, "source": "His son picked him up from the airport.", "target": "Sein Sohn holte ihn vom Flughafen ab.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 27, "source": "We have to change trains at Waterloo Station.", "target": "Wir müssen am Bahnhof Waterloo umsteigen.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 28, "source": "In Ireland, it rains most of the time.", "target": "In Irland regnet es die meiste Zeit.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 29, "source": "He put his ticket into his coat pocket.", "target": "Er steckte sein Ticket in die Manteltasche.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 30, "source": "Tortoises are slow animals.", "target": "Schildkröten sind langsame Tiere.", "sourceLanguage": "English", "targetLanguage": "German" },
-  
-    { "id": 31, "source": "He hoped to see his son somewhere.", "target": "Er hoffte, seinen Sohn irgendwo zu sehen.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 32, "source": "They went into London by underground.", "target": "Sie fuhren mit der U-Bahn nach London.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 33, "source": "We can meet on market square.", "target": "Wir können uns auf dem Marktplatz treffen.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 34, "source": "Then simply go ahead.", "target": "Dann geh einfach weiter.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 35, "source": "Who wrote the positive comment?", "target": "Wer hat den positiven Kommentar geschrieben?", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 36, "source": "You can comment on the postings.", "target": "Du kannst die Beiträge kommentieren.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 37, "source": "You can give positive and negative feedback.", "target": "Du kannst positives und negatives Feedback geben.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 38, "source": "She invited ten guests to dinner.", "target": "Sie lud zehn Gäste zum Abendessen ein.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 39, "source": "We offer you three nights for the price of two.", "target": "Wir bieten dir drei Nächte zum Preis von zwei an.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 40, "source": "There is a new shopping centre opening.", "target": "Ein neues Einkaufszentrum eröffnet.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 41, "source": "Write a positive comment.", "target": "Schreibe einen positiven Kommentar.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 42, "source": "The restaurant got a bad review online.", "target": "Das Restaurant bekam eine schlechte Online-Bewertung.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 43, "source": "Luigi's pizza is the worst pizza ever!", "target": "Luigis Pizza ist die schlechteste Pizza überhaupt!", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 44, "source": "I'm sorry to bother you.", "target": "Entschuldigung, dass ich störe.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 45, "source": "I saw her standing at the bus stop waiting for the bus to arrive.", "target": "Ich sah sie an der Bushaltestelle stehen und auf den Bus warten.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 46, "source": "There's a big fountain at market square.", "target": "Auf dem Marktplatz gibt es einen großen Brunnen.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 47, "source": "You can interrupt politely.", "target": "Du kannst höflich unterbrechen.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 48, "source": "You should always ask politely and say please.", "target": "Du solltest immer höflich fragen und bitte sagen.", "sourceLanguage": "English", "targetLanguage": "German" },
-    { "id": 49, "source": "Turn left at the traffic lights.", "target": "Biege an der Ampel links ab.", "sourceLanguage": "English", "targetLanguage": "German" }
-  ]
+    {
+        "id": 1,
+        "source": "cinema",
+        "target": "Kino",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 2,
+        "source": "bank",
+        "target": "Bank",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 3,
+        "source": "hospital",
+        "target": "Krankenhaus",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 4,
+        "source": "church",
+        "target": "Kirche",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 5,
+        "source": "restaurant",
+        "target": "Restaurant / Gaststätte",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 6,
+        "source": "post office",
+        "target": "Post / Postamt",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 7,
+        "source": "police station",
+        "target": "Polizeiwache",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 8,
+        "source": "supermarket",
+        "target": "Supermarkt",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 9,
+        "source": "tourist office",
+        "target": "Touristeninformation",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 10,
+        "source": "music shop",
+        "target": "Musikgeschäft",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 11,
+        "source": "chemist's",
+        "target": "Apotheke",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 12,
+        "source": "railway station / train station",
+        "target": "Bahnhof",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 13,
+        "source": "round the corner",
+        "target": "um die Ecke",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 14,
+        "source": "as far as",
+        "target": "bis (zu)",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 15,
+        "source": "opposite",
+        "target": "gegenüber",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 16,
+        "source": "next to",
+        "target": "neben",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 17,
+        "source": "to go past",
+        "target": "vorbeigehen / vorbeifahren",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 18,
+        "source": "to go straight ahead",
+        "target": "geradeaus gehen / fahren",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 19,
+        "source": "to cross the street",
+        "target": "die Straße überqueren",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 20,
+        "source": "to turn left",
+        "target": "links abbiegen",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 21,
+        "source": "to take the second right",
+        "target": "die zweite Straße rechts nehmen",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 22,
+        "source": "We have to cross the street.",
+        "target": "Wir müssen die Straße überqueren.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 23,
+        "source": "You can see where you are on the map.",
+        "target": "Du kannst auf der Karte sehen, wo du bist.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 24,
+        "source": "Take the second right.",
+        "target": "Nimm die zweite Straße rechts.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 25,
+        "source": "Go straight on, then turn left.",
+        "target": "Geh geradeaus und biege dann links ab.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 26,
+        "source": "His son picked him up from the airport.",
+        "target": "Sein Sohn holte ihn vom Flughafen ab.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 27,
+        "source": "We have to change trains at Waterloo Station.",
+        "target": "Wir müssen am Bahnhof Waterloo umsteigen.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 28,
+        "source": "In Ireland, it rains most of the time.",
+        "target": "In Irland regnet es die meiste Zeit.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 29,
+        "source": "He put his ticket into his coat pocket.",
+        "target": "Er steckte sein Ticket in die Manteltasche.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 30,
+        "source": "Tortoises are slow animals.",
+        "target": "Schildkröten sind langsame Tiere.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 31,
+        "source": "He hoped to see his son somewhere.",
+        "target": "Er hoffte, seinen Sohn irgendwo zu sehen.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 32,
+        "source": "They went into London by underground.",
+        "target": "Sie fuhren mit der U-Bahn nach London.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 33,
+        "source": "We can meet on market square.",
+        "target": "Wir können uns auf dem Marktplatz treffen.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 34,
+        "source": "Then simply go ahead.",
+        "target": "Dann geh einfach weiter.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 35,
+        "source": "Who wrote the positive comment?",
+        "target": "Wer hat den positiven Kommentar geschrieben?",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 36,
+        "source": "You can comment on the postings.",
+        "target": "Du kannst die Beiträge kommentieren.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 37,
+        "source": "You can give positive and negative feedback.",
+        "target": "Du kannst positives und negatives Feedback geben.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 38,
+        "source": "She invited ten guests to dinner.",
+        "target": "Sie lud zehn Gäste zum Abendessen ein.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 39,
+        "source": "We offer you three nights for the price of two.",
+        "target": "Wir bieten dir drei Nächte zum Preis von zwei an.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 40,
+        "source": "There is a new shopping centre opening.",
+        "target": "Ein neues Einkaufszentrum eröffnet.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 41,
+        "source": "Write a positive comment.",
+        "target": "Schreibe einen positiven Kommentar.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 42,
+        "source": "The restaurant got a bad review online.",
+        "target": "Das Restaurant bekam eine schlechte Online-Bewertung.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 43,
+        "source": "Luigi's pizza is the worst pizza ever!",
+        "target": "Luigis Pizza ist die schlechteste Pizza überhaupt!",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 44,
+        "source": "I'm sorry to bother you.",
+        "target": "Entschuldigung, dass ich störe.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 45,
+        "source": "I saw her standing at the bus stop waiting for the bus to arrive.",
+        "target": "Ich sah sie an der Bushaltestelle stehen und auf den Bus warten.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 46,
+        "source": "There's a big fountain at market square.",
+        "target": "Auf dem Marktplatz gibt es einen großen Brunnen.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 47,
+        "source": "You can interrupt politely.",
+        "target": "Du kannst höflich unterbrechen.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 48,
+        "source": "You should always ask politely and say please.",
+        "target": "Du solltest immer höflich fragen und bitte sagen.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 49,
+        "source": "Turn left at the traffic lights.",
+        "target": "Biege an der Ampel links ab.",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    }
+]

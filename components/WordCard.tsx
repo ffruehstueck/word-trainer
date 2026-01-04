@@ -59,9 +59,9 @@ export default function WordCard({ word, isRevealed, onReveal, onAnswer, reverse
           <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
             {displaySourceLanguage}
           </div>
-          <div className="text-4xl font-bold text-gray-800 text-center py-8">
-            {displaySource}
-          </div>
+              <div className="text-4xl font-bold text-gray-800 text-center py-8 hyphens-auto break-words" style={{ overflowWrap: 'break-word' }}>
+                {displaySource}
+              </div>
         </div>
 
         {/* Divider */}
@@ -86,11 +86,12 @@ export default function WordCard({ word, isRevealed, onReveal, onAnswer, reverse
             {displayTargetLanguage}
           </div>
         <div
-          className={`text-4xl font-bold text-center py-8 ${
+          className={`text-4xl font-bold text-center py-8 hyphens-auto break-words overflow-wrap-anywhere ${
             isRevealed
               ? "text-indigo-600 opacity-100 transition-colors duration-200"
               : "text-gray-300 opacity-50 blur-sm"
           }`}
+          style={{ wordBreak: 'break-all', overflowWrap: 'anywhere' }}
         >
           {isRevealed ? displayTarget : scrambledTarget}
         </div>

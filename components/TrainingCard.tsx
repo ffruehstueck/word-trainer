@@ -34,9 +34,9 @@ export default function TrainingCard({
           <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
             {displaySourceLanguage}
           </div>
-          <div className="text-4xl font-bold text-gray-800 text-center py-8">
-            {displaySource}
-          </div>
+              <div className="text-4xl font-bold text-gray-800 text-center py-8 hyphens-auto break-words" style={{ overflowWrap: 'break-word' }}>
+                {displaySource}
+              </div>
         </div>
 
         {/* Divider */}
@@ -60,9 +60,9 @@ export default function TrainingCard({
           <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
             {displayTargetLanguage}
           </div>
-          <div className="text-4xl font-bold text-indigo-600 text-center py-8">
-            {displayTarget}
-          </div>
+              <div className="text-4xl font-bold text-indigo-600 text-center py-8 hyphens-auto break-words" style={{ overflowWrap: 'break-word' }}>
+                {displayTarget}
+              </div>
         </div>
       </div>
 

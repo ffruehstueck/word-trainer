@@ -10,7 +10,7 @@ interface StatsModalProps {
 
 export default function StatsModal({ stats, onClose, isComplete = false }: StatsModalProps) {
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[100] p-4">
       <div className="bg-white rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
         <div className="p-6">
           {/* Header */}
@@ -70,6 +70,33 @@ export default function StatsModal({ stats, onClose, isComplete = false }: Stats
               />
             </div>
           </div>
+
+          {/* Translation Duration Stats */}
+          {stats.averageDuration !== undefined && (
+            <div className="bg-gray-50 rounded-xl p-6 mb-6">
+              <h3 className="text-xl font-bold text-gray-800 mb-4">Translation Speed</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="bg-white rounded-lg p-4 text-center border border-gray-200">
+                  <div className="text-sm text-gray-600 mb-1">Quickest</div>
+                  <div className="text-2xl font-bold text-green-600">
+                    {(stats.quickestDuration! / 1000).toFixed(1)}s
+                  </div>
+                </div>
+                <div className="bg-white rounded-lg p-4 text-center border border-gray-200">
+                  <div className="text-sm text-gray-600 mb-1">Average</div>
+                  <div className="text-2xl font-bold text-blue-600">
+                    {(stats.averageDuration / 1000).toFixed(1)}s
+                  </div>
+                </div>
+                <div className="bg-white rounded-lg p-4 text-center border border-gray-200">
+                  <div className="text-sm text-gray-600 mb-1">Slowest</div>
+                  <div className="text-2xl font-bold text-orange-600">
+                    {(stats.slowestDuration! / 1000).toFixed(1)}s
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Unknown Words */}
           {stats.unknownWords.length > 0 && (

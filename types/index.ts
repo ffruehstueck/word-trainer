@@ -10,6 +10,7 @@ export interface WordProgress {
   word: Word;
   isCorrect: boolean;
   attempts: number;
+  durations?: number[]; // Duration in milliseconds for each attempt
 }
 
 export interface SessionStats {
@@ -18,5 +19,8 @@ export interface SessionStats {
   incorrectWords: number;
   accuracy: number;
   unknownWords: Word[];
+  quickestDuration?: number; // in milliseconds
+  slowestDuration?: number; // in milliseconds
+  averageDuration?: number; // in milliseconds
 }
 

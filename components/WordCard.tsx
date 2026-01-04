@@ -99,7 +99,7 @@ export default function WordCard({ word, isRevealed, onReveal, onAnswer, reverse
       </div>
 
       {/* Sticky buttons at bottom */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg p-4 z-50">
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-indigo-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] p-4 z-50">
         <div className="max-w-2xl mx-auto">
           {isRevealed ? (
             <div className="flex gap-4">
@@ -116,16 +116,14 @@ export default function WordCard({ word, isRevealed, onReveal, onAnswer, reverse
                 ✓ Correct
               </button>
             </div>
-          ) : (
-            <div className="text-center">
-              <button
-                onClick={onReveal}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
-              >
-                Show Translation
-              </button>
-            </div>
-          )}
+              ) : (
+                <button
+                  onClick={onReveal}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+                >
+                  Show Translation
+                </button>
+              )}
         </div>
       </div>
     </>

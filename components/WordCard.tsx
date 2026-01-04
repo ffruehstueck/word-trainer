@@ -1,6 +1,7 @@
 "use client";
 
 import { Word } from "@/types";
+import { useMemo } from "react";
 
 interface WordCardProps {
   word: Word;
@@ -11,11 +12,44 @@ interface WordCardProps {
   onReverseDirection?: () => void;
 }
 
+// Scramble letters in a string (deterministic based on word id for consistency)
+const scrambleText = (text: string, seed: number): string => {
+  // Create a simple seeded random function
+  let random = seed;
+  const seededRandom = () => {
+    random = (random * 9301 + 49297) % 233280;
+    return random / 233280;
+  };
+  
+  // Split by words to preserve word boundaries and spacing
+  return text
+    .split(/(\s+)/)
+    .map((part) => {
+      // Only scramble if it's a word (not whitespace)
+      if (part.trim().length === 0) return part;
+      
+      // Split word into characters, scramble using seeded random, and rejoin
+      const chars = part.split('');
+      for (let i = chars.length - 1; i > 0; i--) {
+        const j = Math.floor(seededRandom() * (i + 1));
+        [chars[i], chars[j]] = [chars[j], chars[i]];
+      }
+      return chars.join('');
+    })
+    .join('');
+};
+
 export default function WordCard({ word, isRevealed, onReveal, onAnswer, reverseDirection = false, onReverseDirection }: WordCardProps) {
   const displaySource = reverseDirection ? word.target : word.source;
   const displayTarget = reverseDirection ? word.source : word.target;
   const displaySourceLanguage = reverseDirection ? word.targetLanguage : word.sourceLanguage;
   const displayTargetLanguage = reverseDirection ? word.sourceLanguage : word.targetLanguage;
+  
+  // Scramble the target text when not revealed (memoized for consistency)
+  const scrambledTarget = useMemo(() => {
+    if (isRevealed) return displayTarget;
+    return scrambleText(displayTarget, word.id);
+  }, [displayTarget, word.id, isRevealed]);
 
   return (
     <>
@@ -51,15 +85,15 @@ export default function WordCard({ word, isRevealed, onReveal, onAnswer, reverse
           <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
             {displayTargetLanguage}
           </div>
-          <div
-            className={`text-4xl font-bold text-center py-8 ${
-              isRevealed
-                ? "text-indigo-600 opacity-100 transition-colors duration-200"
-                : "text-gray-300 opacity-50 blur-sm"
-            }`}
-          >
-            {displayTarget}
-          </div>
+        <div
+          className={`text-4xl font-bold text-center py-8 ${
+            isRevealed
+              ? "text-indigo-600 opacity-100 transition-colors duration-200"
+              : "text-gray-300 opacity-50 blur-sm"
+          }`}
+        >
+          {isRevealed ? displayTarget : scrambledTarget}
+        </div>
         </div>
       </div>
 

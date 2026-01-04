@@ -12,7 +12,14 @@ export async function getAvailableFiles(): Promise<FileOption[]> {
   try {
     const filesPath = path.join(process.cwd(), 'public', 'data', 'files.json');
     const filesContent = fs.readFileSync(filesPath, 'utf-8');
-    return JSON.parse(filesContent);
+    const allFiles = JSON.parse(filesContent);
+    
+    // Filter out test.json if not in development mode
+    if (process.env.NODE_ENV !== 'development') {
+      return allFiles.filter((file: FileOption) => file.value !== 'test.json');
+    }
+    
+    return allFiles;
   } catch (error) {
     console.error('Error loading files list:', error);
     // Return default if manifest doesn't exist

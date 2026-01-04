@@ -731,6 +731,22 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
                     <span className="text-lg font-bold text-gray-700">{formatTime(highScore)}</span>
                   </div>
                 )}
+                <button
+                  onClick={() => {
+                    setReverseDirection(!reverseDirection);
+                    handleInteraction();
+                  }}
+                  disabled={mode === "exam" && !isRevealed}
+                  className={`font-semibold py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2 shadow-md disabled:opacity-50 disabled:cursor-not-allowed ${
+                    reverseDirection
+                      ? "bg-indigo-500 hover:bg-indigo-600 text-white disabled:hover:bg-indigo-500"
+                      : "bg-gray-200 hover:bg-gray-300 text-gray-700 disabled:hover:bg-gray-200"
+                  }`}
+                  title={mode === "exam" && !isRevealed ? "Reveal translation first" : "Reverse translation direction"}
+                >
+                  <span className="text-lg transform rotate-90">⇄</span>
+                  <span className="hidden sm:inline">Reverse</span>
+                </button>
                 {mode === "exam" && (
                   <button
                     onClick={handleStop}
@@ -784,20 +800,12 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
               onReveal={handleReveal}
               onAnswer={handleAnswer}
               reverseDirection={reverseDirection}
-              onReverseDirection={() => {
-                setReverseDirection(!reverseDirection);
-                handleInteraction();
-              }}
             />
           ) : words.length > 0 && words[currentIndex] ? (
             <TrainingCard
               key={`${words[currentIndex].id}-${reverseDirection}`}
               word={words[currentIndex]}
               reverseDirection={reverseDirection}
-              onReverseDirection={() => {
-                setReverseDirection(!reverseDirection);
-                handleInteraction();
-              }}
               onPrevious={() => {
                 setCurrentIndex(Math.max(0, currentIndex - 1));
                 handleInteraction();

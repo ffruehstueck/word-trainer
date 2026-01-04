@@ -5,7 +5,6 @@ import { Word } from "@/types";
 interface TrainingCardProps {
   word: Word;
   reverseDirection?: boolean;
-  onReverseDirection?: () => void;
   onPrevious?: () => void;
   onNext?: () => void;
   hasPrevious: boolean;
@@ -15,7 +14,6 @@ interface TrainingCardProps {
 export default function TrainingCard({
   word,
   reverseDirection = false,
-  onReverseDirection,
   onPrevious,
   onNext,
   hasPrevious,
@@ -42,17 +40,6 @@ export default function TrainingCard({
         {/* Divider */}
         <div className="relative my-6">
           <div className="border-t border-gray-200"></div>
-          {onReverseDirection && (
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-2">
-              <button
-                onClick={onReverseDirection}
-                className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-1.5 px-3 rounded-lg transition-colors duration-200 flex items-center gap-2 text-lg transform rotate-90 text-center"
-                title="Reverse translation direction"
-              >
-                ⇄
-              </button>
-            </div>
-          )}
         </div>
 
         {/* Target Language */}

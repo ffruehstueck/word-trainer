@@ -9,7 +9,6 @@ interface WordCardProps {
   onReveal: () => void;
   onAnswer: (isCorrect: boolean) => void;
   reverseDirection?: boolean;
-  onReverseDirection?: () => void;
 }
 
 // Scramble letters in a string (deterministic based on word id for consistency)
@@ -39,7 +38,7 @@ const scrambleText = (text: string, seed: number): string => {
     .join('');
 };
 
-export default function WordCard({ word, isRevealed, onReveal, onAnswer, reverseDirection = false, onReverseDirection }: WordCardProps) {
+export default function WordCard({ word, isRevealed, onReveal, onAnswer, reverseDirection = false }: WordCardProps) {
   const displaySource = reverseDirection ? word.target : word.source;
   const displayTarget = reverseDirection ? word.source : word.target;
   const displaySourceLanguage = reverseDirection ? word.targetLanguage : word.sourceLanguage;
@@ -98,19 +97,33 @@ export default function WordCard({ word, isRevealed, onReveal, onAnswer, reverse
           {/* Left half - Incorrect (clickable) */}
           <div 
             className="absolute left-0 top-0 bottom-0 w-1/2 cursor-pointer group z-20"
-            onClick={() => onAnswer(false)}
+            onClick={(e) => {
+              // Don't trigger if clicking on the reverse button
+              const target = e.target as HTMLElement;
+              if (target.closest('button[title="Reverse translation direction"]')) {
+                return;
+              }
+              onAnswer(false);
+            }}
           >
             {/* Red gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-red-500/30 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-transparent pointer-events-none"></div>
           </div>
 
           {/* Right half - Correct (clickable) */}
           <div 
             className="absolute right-0 top-0 bottom-0 w-1/2 cursor-pointer group z-20 border-l border-gray-200"
-            onClick={() => onAnswer(true)}
+            onClick={(e) => {
+              // Don't trigger if clicking on the reverse button
+              const target = e.target as HTMLElement;
+              if (target.closest('button[title="Reverse translation direction"]')) {
+                return;
+              }
+              onAnswer(true);
+            }}
           >
             {/* Green gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-l from-green-500/30 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-l from-green-500/20 to-transparent pointer-events-none"></div>
           </div>
 
           {/* Content - shown once in center */}
@@ -128,20 +141,6 @@ export default function WordCard({ word, isRevealed, onReveal, onAnswer, reverse
             {/* Divider */}
             <div className="relative my-6">
               <div className="border-t border-gray-200"></div>
-              {onReverseDirection && (
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-2 z-30">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onReverseDirection();
-                    }}
-                    className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-1.5 px-3 rounded-lg transition-colors duration-200 flex items-center gap-2 text-lg transform rotate-90 text-center"
-                    title="Reverse translation direction"
-                  >
-                    ⇄
-                  </button>
-                </div>
-              )}
             </div>
 
             {/* Target Language */}

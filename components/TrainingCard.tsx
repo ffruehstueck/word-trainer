@@ -28,7 +28,7 @@ export default function TrainingCard({
 
   return (
     <>
-      <div className="bg-white rounded-2xl shadow-xl p-8 mb-24">
+      <div className="bg-white rounded-2xl shadow-xl p-8 mb-24 notranslate">
         {/* Source Language */}
         <div className="mb-6">
           <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">

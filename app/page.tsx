@@ -27,6 +27,13 @@ interface PersistedProgress {
 
 const STORAGE_KEY_PREFIX = "word-trainer-progress";
 
+// Format time in seconds to MM:SS
+const formatTime = (seconds: number): string => {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+};
+
 export default function Home() {
   const [words, setWords] = useState<Word[]>([]);
   const [currentBatch, setCurrentBatch] = useState<WordProgress[]>([]);
@@ -43,6 +50,14 @@ export default function Home() {
   const [availableFiles, setAvailableFiles] = useState<FileOption[]>([]);
   const [reverseDirection, setReverseDirection] = useState(false);
   const [mode, setMode] = useState<"exam" | "training">("exam");
+  
+  // Timer state
+  const [sessionStartTime, setSessionStartTime] = useState<number | null>(null);
+  const [lastInteractionTime, setLastInteractionTime] = useState<number | null>(null);
+  const [sessionTime, setSessionTime] = useState<number>(0); // in seconds
+  const [isOnBreak, setIsOnBreak] = useState(false);
+  const [breakEndTime, setBreakEndTime] = useState<number | null>(null);
+  const [highScore, setHighScore] = useState<number>(0); // in seconds
 
   // Helper to get storage key
   const getStorageKey = (file: string, mode: string) => `${STORAGE_KEY_PREFIX}-${file}-${mode}`;
@@ -95,6 +110,61 @@ export default function Home() {
     }
   };
 
+  // Detect browser auto-translation and show warning
+  const [showTranslationWarning, setShowTranslationWarning] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Check for Google Translate overlay
+      const checkTranslation = () => {
+        // Google Translate adds elements with specific IDs/classes
+        const hasGoogleTranslate = 
+          document.getElementById("google_translate_element") ||
+          document.querySelector('.goog-te-banner-frame') ||
+          document.body.classList.contains('translated-ltr') ||
+          document.body.classList.contains('translated-rtl') ||
+          // Check for translation attribute changes
+          (document.documentElement && document.documentElement.getAttribute('translated') === 'yes');
+        
+        if (hasGoogleTranslate) {
+          setShowTranslationWarning(true);
+        }
+      };
+
+      // Check immediately and periodically
+      checkTranslation();
+      const interval = setInterval(checkTranslation, 1000);
+      
+      // Also check on DOM mutations (Google Translate modifies the DOM)
+      const observer = new MutationObserver(checkTranslation);
+      observer.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class'],
+        childList: true,
+        subtree: true
+      });
+
+      return () => {
+        clearInterval(interval);
+        observer.disconnect();
+      };
+    }
+  }, []);
+
+  // Load high score from localStorage
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("word-trainer-highscore");
+        if (saved) {
+          setHighScore(parseInt(saved, 10));
+        }
+      } catch (err) {
+        console.error("Error loading high score:", err);
+      }
+    }
+  }, []);
+
   useEffect(() => {
     // Load available files list
     fetch("/data/files.json")
@@ -113,6 +183,59 @@ export default function Home() {
         ]);
       });
   }, []);
+  
+  // Timer logic: track session time and check for inactivity/breaks
+  useEffect(() => {
+    if (isOnBreak) {
+      // Break timer
+      const interval = setInterval(() => {
+        if (breakEndTime) {
+          const now = Date.now();
+          if (now >= breakEndTime) {
+            setIsOnBreak(false);
+            setBreakEndTime(null);
+            setSessionStartTime(null);
+            setSessionTime(0);
+            setLastInteractionTime(null);
+          }
+        }
+      }, 1000);
+      return () => clearInterval(interval);
+    } else if (sessionStartTime) {
+      // Active learning timer
+      const interval = setInterval(() => {
+        const now = Date.now();
+        const elapsed = Math.floor((now - sessionStartTime) / 1000);
+        setSessionTime(elapsed);
+        
+        // Check for inactivity (1 minute = 60 seconds)
+        if (lastInteractionTime && (now - lastInteractionTime) > 60000) {
+          // 1 minute of inactivity - reset timer
+          setSessionStartTime(null);
+          setSessionTime(0);
+          setLastInteractionTime(null);
+          return;
+        }
+        
+        // Check for forced break (15 minutes = 900 seconds)
+        if (elapsed >= 900) {
+          setIsOnBreak(true);
+          setBreakEndTime(now + 300000); // 5 minutes = 300000ms
+          // Update high score if this session is longer
+          if (elapsed > highScore) {
+            const newHighScore = elapsed;
+            setHighScore(newHighScore);
+            try {
+              localStorage.setItem("word-trainer-highscore", newHighScore.toString());
+            } catch (err) {
+              console.error("Error saving high score:", err);
+            }
+          }
+        }
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [sessionStartTime, lastInteractionTime, isOnBreak, breakEndTime, highScore]);
 
   // Load saved progress when file/mode changes (but only after words are loaded)
   useEffect(() => {
@@ -266,11 +389,23 @@ export default function Home() {
   };
 
   const handleReveal = () => {
+    const now = Date.now();
     setIsRevealed(true);
+    
+    // Start timer on first reveal if not already started
+    if (!sessionStartTime) {
+      setSessionStartTime(now);
+      setLastInteractionTime(now);
+    } else {
+      setLastInteractionTime(now);
+    }
   };
 
   const handleAnswer = (isCorrect: boolean) => {
     if (!isRevealed) return;
+
+    // Update last interaction time
+    setLastInteractionTime(Date.now());
 
     // Reset revealed state immediately to prevent showing next word's answer
     setIsRevealed(false);
@@ -408,9 +543,38 @@ export default function Home() {
     setAllProgress(new Map());
     setCurrentIndex(0);
     setIsRevealed(false);
+    // Reset timer
+    setSessionStartTime(null);
+    setSessionTime(0);
+    setLastInteractionTime(null);
+    setIsOnBreak(false);
+    setBreakEndTime(null);
     // Reload words to reset everything
     loadWords(selectedFile, true);
   };
+
+  // Break screen
+  if (isOnBreak && breakEndTime) {
+    const now = Date.now();
+    const remainingSeconds = Math.ceil((breakEndTime - now) / 1000);
+    const remainingTime = formatTime(Math.max(0, remainingSeconds));
+    
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-100 flex items-center justify-center py-8 px-4">
+        <div className="max-w-2xl mx-auto text-center bg-white rounded-2xl shadow-xl p-8">
+          <div className="text-6xl mb-4">☕</div>
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">Take a Break!</h1>
+          <p className="text-lg text-gray-600 mb-6">
+            You've been learning for 15 minutes. Please take a 5-minute break before continuing.
+          </p>
+          <div className="text-6xl font-bold text-indigo-600 mb-6">{remainingTime}</div>
+          <p className="text-sm text-gray-500">
+            Your longest learning session: {formatTime(highScore)}
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   if (sessionComplete && stats) {
     return <SessionComplete stats={stats} onRestart={handleRestart} />;
@@ -442,9 +606,32 @@ export default function Home() {
       )}
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
         <div className="max-w-2xl mx-auto">
+          {/* Translation Warning */}
+          {showTranslationWarning && (
+            <div className="mb-4 bg-yellow-100 border-2 border-yellow-400 rounded-lg p-4 text-center notranslate">
+              <p className="text-yellow-800 font-semibold">
+                ⚠️ Browser auto-translation detected! Please disable it for the best learning experience.
+              </p>
+            </div>
+          )}
           {/* Header */}
-          <div className="mb-8 text-center">
+          <div className="mb-8 text-center notranslate">
             <h1 className="text-4xl font-bold text-gray-800 mb-4">Word Trainer</h1>
+            {/* Timer display */}
+            {sessionStartTime && !isOnBreak && (
+              <div className="mb-4 flex justify-center items-center gap-4">
+                <div className="bg-white rounded-lg px-4 py-2 shadow-sm border border-gray-200">
+                  <span className="text-sm text-gray-600 mr-2">⏱️ Learning time:</span>
+                  <span className="text-lg font-bold text-indigo-600">{formatTime(sessionTime)}</span>
+                </div>
+                {highScore > 0 && (
+                  <div className="bg-white rounded-lg px-4 py-2 shadow-sm border border-gray-200">
+                    <span className="text-sm text-gray-600 mr-2">🏆 Best:</span>
+                    <span className="text-lg font-bold text-gray-700">{formatTime(highScore)}</span>
+                  </div>
+                )}
+              </div>
+            )}
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-3">
                 <select
@@ -481,18 +668,6 @@ export default function Home() {
                 </button>
               )}
             </div>
-            {mode === "exam" && (
-              <div className="flex justify-center items-center gap-4 text-sm text-gray-600">
-                <span>Batch {batchNumber} of {allBatches.length}</span>
-                <span>•</span>
-                <span>{remainingInBatch} remaining in batch</span>
-              </div>
-            )}
-            {mode === "training" && (
-              <div className="flex justify-center items-center gap-4 text-sm text-gray-600">
-                <span>Word {currentIndex + 1} of {words.length}</span>
-              </div>
-            )}
           </div>
 
         {/* Progress Bar - Only in exam mode */}
@@ -526,20 +701,32 @@ export default function Home() {
             onReveal={handleReveal}
             onAnswer={handleAnswer}
             reverseDirection={reverseDirection}
-            onReverseDirection={() => setReverseDirection(!reverseDirection)}
+            onReverseDirection={() => {
+              setReverseDirection(!reverseDirection);
+              setLastInteractionTime(Date.now());
+            }}
           />
-        ) : words.length > 0 && words[currentIndex] ? (
-          <TrainingCard
-            key={`${words[currentIndex].id}-${reverseDirection}`}
-            word={words[currentIndex]}
-            reverseDirection={reverseDirection}
-            onReverseDirection={() => setReverseDirection(!reverseDirection)}
-            onPrevious={() => setCurrentIndex(Math.max(0, currentIndex - 1))}
-            onNext={() => setCurrentIndex(Math.min(words.length - 1, currentIndex + 1))}
-            hasPrevious={currentIndex > 0}
-            hasNext={currentIndex < words.length - 1}
-          />
-        ) : null}
+            ) : words.length > 0 && words[currentIndex] ? (
+              <TrainingCard
+                key={`${words[currentIndex].id}-${reverseDirection}`}
+                word={words[currentIndex]}
+                reverseDirection={reverseDirection}
+                onReverseDirection={() => {
+                  setReverseDirection(!reverseDirection);
+                  setLastInteractionTime(Date.now());
+                }}
+                onPrevious={() => {
+                  setCurrentIndex(Math.max(0, currentIndex - 1));
+                  setLastInteractionTime(Date.now());
+                }}
+                onNext={() => {
+                  setCurrentIndex(Math.min(words.length - 1, currentIndex + 1));
+                  setLastInteractionTime(Date.now());
+                }}
+                hasPrevious={currentIndex > 0}
+                hasNext={currentIndex < words.length - 1}
+              />
+            ) : null}
       </div>
     </div>
     </>

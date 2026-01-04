@@ -208,8 +208,8 @@ export default function Home() {
         const elapsed = Math.floor((now - sessionStartTime) / 1000);
         setSessionTime(elapsed);
         
-        // Check for inactivity (1 minute = 60 seconds)
-        if (lastInteractionTime && (now - lastInteractionTime) > 60000) {
+        // Check for inactivity (2 minute = 120 seconds)
+        if (lastInteractionTime && (now - lastInteractionTime) > 120000) {
           // 1 minute of inactivity - reset timer
           setSessionStartTime(null);
           setSessionTime(0);

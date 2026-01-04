@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import WordCard from "@/components/WordCard";
 import TrainingCard from "@/components/TrainingCard";
 import SessionComplete from "@/components/SessionComplete";
@@ -13,6 +13,19 @@ interface FileOption {
   value: string;
   label: string;
 }
+
+interface PersistedProgress {
+  allProgress: Array<[number, WordProgress]>;
+  currentBatch: WordProgress[];
+  currentIndex: number;
+  batchNumber: number;
+  selectedFile: string;
+  mode: "exam" | "training";
+  reverseDirection: boolean;
+  timestamp: number;
+}
+
+const STORAGE_KEY_PREFIX = "word-trainer-progress";
 
 export default function Home() {
   const [words, setWords] = useState<Word[]>([]);
@@ -30,6 +43,57 @@ export default function Home() {
   const [availableFiles, setAvailableFiles] = useState<FileOption[]>([]);
   const [reverseDirection, setReverseDirection] = useState(false);
   const [mode, setMode] = useState<"exam" | "training">("exam");
+
+  // Helper to get storage key
+  const getStorageKey = (file: string, mode: string) => `${STORAGE_KEY_PREFIX}-${file}-${mode}`;
+
+  // Load progress from localStorage
+  const loadProgress = (file: string, currentMode: "exam" | "training"): PersistedProgress | null => {
+    if (typeof window === "undefined") return null;
+    try {
+      const key = getStorageKey(file, currentMode);
+      const stored = localStorage.getItem(key);
+      if (!stored) return null;
+      
+      const data: PersistedProgress = JSON.parse(stored);
+      return data;
+    } catch (err) {
+      console.error("Error loading progress from localStorage:", err);
+      return null;
+    }
+  };
+
+  // Save progress to localStorage
+  const saveProgress = (file: string, currentMode: "exam" | "training") => {
+    if (typeof window === "undefined") return;
+    try {
+      const key = getStorageKey(file, currentMode);
+      const data: PersistedProgress = {
+        allProgress: Array.from(allProgress.entries()),
+        currentBatch,
+        currentIndex,
+        batchNumber,
+        selectedFile: file,
+        mode: currentMode,
+        reverseDirection,
+        timestamp: Date.now(),
+      };
+      localStorage.setItem(key, JSON.stringify(data));
+    } catch (err) {
+      console.error("Error saving progress to localStorage:", err);
+    }
+  };
+
+  // Clear progress for a specific file/mode
+  const clearProgress = (file: string, currentMode: "exam" | "training") => {
+    if (typeof window === "undefined") return;
+    try {
+      const key = getStorageKey(file, currentMode);
+      localStorage.removeItem(key);
+    } catch (err) {
+      console.error("Error clearing progress from localStorage:", err);
+    }
+  };
 
   useEffect(() => {
     // Load available files list
@@ -50,17 +114,60 @@ export default function Home() {
       });
   }, []);
 
+  // Load saved progress when file/mode changes (but only after words are loaded)
+  useEffect(() => {
+    if (words.length === 0 || allBatches.length === 0) return;
+    
+    const saved = loadProgress(selectedFile, mode);
+    if (saved && saved.selectedFile === selectedFile && saved.mode === mode) {
+      // Restore progress
+      setAllProgress(new Map(saved.allProgress));
+      setBatchNumber(saved.batchNumber);
+      setReverseDirection(saved.reverseDirection);
+      
+      if (mode === "exam") {
+        // Reconstruct the current batch from saved progress
+        const currentBatchNum = saved.batchNumber - 1;
+        if (currentBatchNum >= 0 && currentBatchNum < allBatches.length) {
+          const currentBatchWords = allBatches[currentBatchNum];
+          const progressMap = new Map(saved.allProgress);
+          const restoredBatch = currentBatchWords.map((word) => {
+            const progress = progressMap.get(word.id);
+            if (progress) {
+              return progress;
+            }
+            return {
+              word,
+              isCorrect: false,
+              attempts: 0,
+            };
+          });
+          setCurrentBatch(restoredBatch);
+          setCurrentIndex(Math.min(saved.currentIndex, restoredBatch.length - 1));
+        }
+      } else if (mode === "training") {
+        setCurrentIndex(Math.min(saved.currentIndex, words.length - 1));
+      }
+    }
+  }, [selectedFile, mode, words.length, allBatches.length]);
+
+  // Save progress whenever it changes
+  useEffect(() => {
+    if (words.length === 0 || allBatches.length === 0) return;
+    saveProgress(selectedFile, mode);
+  }, [allProgress, currentBatch, currentIndex, batchNumber, selectedFile, mode, reverseDirection, words.length, allBatches.length]);
+
   // Fisher-Yates shuffle algorithm
-  const shuffleArray = <T,>(array: T[]): T[] => {
+  const shuffleArray = useCallback(<T,>(array: T[]): T[] => {
     const shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     return shuffled;
-  };
+  }, []);
 
-  const loadWords = async (fileSelection: string) => {
+  const loadWords = useCallback(async (fileSelection: string, resetProgress = false) => {
     if (availableFiles.length === 0) return; // Wait for files list to load
     
     setIsLoading(true);
@@ -103,23 +210,34 @@ export default function Home() {
         batches.push(allWords.slice(i, i + BATCH_SIZE));
       }
       setAllBatches(batches);
-      setBatchNumber(1);
-      setAllProgress(new Map());
-      if (batches.length > 0) {
-        initializeBatch(batches[0]);
+      
+      // Only reset progress if explicitly requested (new session)
+      if (resetProgress) {
+        clearProgress(fileSelection, mode);
+        setBatchNumber(1);
+        setAllProgress(new Map());
+        if (batches.length > 0) {
+          initializeBatch(batches[0]);
+        }
+      } else {
+        // Always initialize batch first - progress will be restored by useEffect if it exists
+        if (batches.length > 0) {
+          initializeBatch(batches[0]);
+        }
       }
     } catch (err) {
       console.error("Error loading words:", err);
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [availableFiles, mode, shuffleArray]);
 
   useEffect(() => {
     if (availableFiles.length > 0 && selectedFile) {
-      loadWords(selectedFile);
+      // Check if file/mode changed - if so, clear old progress for previous file/mode
+      loadWords(selectedFile, false);
     }
-  }, [selectedFile, availableFiles.length, mode]);
+  }, [selectedFile, availableFiles.length, mode, loadWords]);
 
   // Reset revealed state whenever the word index changes (exam mode only)
   useEffect(() => {
@@ -282,8 +400,20 @@ export default function Home() {
     setStats(currentStats);
   };
 
+  const handleRestart = () => {
+    clearProgress(selectedFile, mode);
+    setSessionComplete(false);
+    setStats(null);
+    setBatchNumber(1);
+    setAllProgress(new Map());
+    setCurrentIndex(0);
+    setIsRevealed(false);
+    // Reload words to reset everything
+    loadWords(selectedFile, true);
+  };
+
   if (sessionComplete && stats) {
-    return <SessionComplete stats={stats} onRestart={() => window.location.reload()} />;
+    return <SessionComplete stats={stats} onRestart={handleRestart} />;
   }
 
   if (isLoading || (mode === "exam" && currentBatch.length === 0) || (mode === "training" && words.length === 0)) {

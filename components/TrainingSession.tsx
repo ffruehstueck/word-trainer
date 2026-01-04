@@ -41,7 +41,10 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
   const [stats, setStats] = useState<SessionStats | null>(null);
   const [allProgress, setAllProgress] = useState<Map<number, WordProgress>>(new Map());
   const [showStats, setShowStats] = useState(false);
-  const [selectedFile, setSelectedFile] = useState<string>("unit-8.json");
+  const [selectedFile, setSelectedFile] = useState<string>(
+    process.env.NEXT_PUBLIC_DEFAULT_WORD_FILE || 
+    (process.env.NODE_ENV === 'development' ? 'test.json' : 'unit-8.json')
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [availableFiles] = useState<FileOption[]>(initialAvailableFiles);
   const [reverseDirection, setReverseDirection] = useState(false);
@@ -691,33 +694,6 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
                 )}
               </div>
             )}
-            <div className="flex justify-between items-center mb-4">
-              <div className="flex items-center gap-3">
-                <select
-                  value={selectedFile}
-                  onChange={(e) => setSelectedFile(e.target.value)}
-                  className="bg-white border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer w-32"
-                  disabled={isLoading || availableFiles.length === 0}
-                >
-                  {availableFiles.map((file) => (
-                    <option key={file.value} value={file.value}>
-                      {file.label}
-                    </option>
-                  ))}
-                  <option value="all">All Files</option>
-                </select>
-              </div>
-              {mode === "exam" && (
-                <button
-                  onClick={() => setShowStats(true)}
-                  className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2 shadow-md"
-                  title="Show Stats"
-                >
-                  <span>📊</span>
-                  <span className="hidden sm:inline">Stats</span>
-                </button>
-              )}
-            </div>
           </div>
 
           {mode === "exam" && (
@@ -763,7 +739,6 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
                 setReverseDirection(!reverseDirection);
                 handleInteraction();
               }}
-              onInteraction={handleInteraction}
             />
           ) : words.length > 0 && words[currentIndex] ? (
             <TrainingCard
@@ -784,7 +759,6 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
               }}
               hasPrevious={currentIndex > 0}
               hasNext={currentIndex < words.length - 1}
-              onInteraction={handleInteraction}
             />
           ) : null}
         </div>

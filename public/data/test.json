@@ -1,0 +1,8 @@
+[
+    { "id": 1, "source": "space centre", "target": "Raumstation", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 2, "source": "spaceship", "target": "Raumschiff", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 3, "source": "commander", "target": "Befehlshaber / Befehlshaberin", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 4, "source": "spacesuit", "target": "Raumanzug", "sourceLanguage": "English", "targetLanguage": "German" },
+    { "id": 5, "source": "planet", "target": "Planet", "sourceLanguage": "English", "targetLanguage": "German" }
+]
+

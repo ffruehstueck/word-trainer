@@ -5,6 +5,7 @@ import WordCard from "@/components/WordCard";
 import TrainingCard from "@/components/TrainingCard";
 import SessionComplete from "@/components/SessionComplete";
 import StatsModal from "@/components/StatsModal";
+import InactivityModal from "@/components/InactivityModal";
 import { Word, WordProgress, SessionStats } from "@/types";
 
 interface FileOption {
@@ -53,6 +54,7 @@ export default function Home() {
   const [isOnBreak, setIsOnBreak] = useState(false);
   const [breakEndTime, setBreakEndTime] = useState<number | null>(null);
   const [highScore, setHighScore] = useState<number>(0); // in seconds
+  const [showInactivityModal, setShowInactivityModal] = useState(false);
 
   // Helper to get storage key
   const getStorageKey = (file: string, mode: string) => `${STORAGE_KEY_PREFIX}-${file}-${mode}`;
@@ -203,10 +205,11 @@ export default function Home() {
         
         // Check for inactivity (2 minute = 120 seconds)
         if (lastInteractionTime && (now - lastInteractionTime) > 120000) {
-          // 1 minute of inactivity - reset timer
+          // 2 minutes of inactivity - pause timer and show modal
           setSessionStartTime(null);
           setSessionTime(0);
           setLastInteractionTime(null);
+          setShowInactivityModal(true);
           return;
         }
         
@@ -370,6 +373,21 @@ export default function Home() {
     const now = Date.now();
     setSessionStartTime(now);
     setLastInteractionTime(now);
+    setShowInactivityModal(false);
+  };
+
+  const handleResumeFromInactivity = () => {
+    // Resume the timer
+    const now = Date.now();
+    setSessionStartTime(now);
+    setLastInteractionTime(now);
+    setShowInactivityModal(false);
+  };
+
+  const handleRestartFromInactivity = () => {
+    // Start a new session
+    setShowInactivityModal(false);
+    handleRestart();
   };
 
   const handleAnswer = (isCorrect: boolean) => {
@@ -685,6 +703,12 @@ export default function Home() {
 
   return (
     <>
+      {showInactivityModal && (
+        <InactivityModal
+          onResume={handleResumeFromInactivity}
+          onRestart={handleRestartFromInactivity}
+        />
+      )}
       {showStats && currentStats && (
         <StatsModal
           stats={currentStats}

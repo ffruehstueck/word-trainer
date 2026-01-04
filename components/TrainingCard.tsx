@@ -2,16 +2,25 @@
 
 import { Word } from "@/types";
 
-interface WordCardProps {
+interface TrainingCardProps {
   word: Word;
-  isRevealed: boolean;
-  onReveal: () => void;
-  onAnswer: (isCorrect: boolean) => void;
   reverseDirection?: boolean;
   onReverseDirection?: () => void;
+  onPrevious?: () => void;
+  onNext?: () => void;
+  hasPrevious: boolean;
+  hasNext: boolean;
 }
 
-export default function WordCard({ word, isRevealed, onReveal, onAnswer, reverseDirection = false, onReverseDirection }: WordCardProps) {
+export default function TrainingCard({
+  word,
+  reverseDirection = false,
+  onReverseDirection,
+  onPrevious,
+  onNext,
+  hasPrevious,
+  hasNext,
+}: TrainingCardProps) {
   const displaySource = reverseDirection ? word.target : word.source;
   const displayTarget = reverseDirection ? word.source : word.target;
   const displaySourceLanguage = reverseDirection ? word.targetLanguage : word.sourceLanguage;
@@ -33,7 +42,7 @@ export default function WordCard({ word, isRevealed, onReveal, onAnswer, reverse
         {/* Divider */}
         <div className="relative my-6">
           <div className="border-t border-gray-200"></div>
-          {isRevealed && onReverseDirection && (
+          {onReverseDirection && (
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-2">
               <button
                 onClick={onReverseDirection}
@@ -51,13 +60,7 @@ export default function WordCard({ word, isRevealed, onReveal, onAnswer, reverse
           <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
             {displayTargetLanguage}
           </div>
-          <div
-            className={`text-4xl font-bold text-center py-8 ${
-              isRevealed
-                ? "text-indigo-600 opacity-100 transition-colors duration-200"
-                : "text-gray-300 opacity-50 blur-sm"
-            }`}
-          >
+          <div className="text-4xl font-bold text-indigo-600 text-center py-8">
             {displayTarget}
           </div>
         </div>
@@ -66,31 +69,22 @@ export default function WordCard({ word, isRevealed, onReveal, onAnswer, reverse
       {/* Sticky buttons at bottom */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg p-4 z-50">
         <div className="max-w-2xl mx-auto">
-          {isRevealed ? (
-            <div className="flex gap-4">
-              <button
-                onClick={() => onAnswer(false)}
-                className="flex-1 bg-red-100 hover:bg-red-200 text-red-700 font-semibold py-4 px-6 rounded-lg transition-colors duration-200 border-2 border-red-300"
-              >
-                ✗ Incorrect
-              </button>
-              <button
-                onClick={() => onAnswer(true)}
-                className="flex-1 bg-green-100 hover:bg-green-200 text-green-700 font-semibold py-4 px-6 rounded-lg transition-colors duration-200 border-2 border-green-300"
-              >
-                ✓ Correct
-              </button>
-            </div>
-          ) : (
-            <div className="text-center">
-              <button
-                onClick={onReveal}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
-              >
-                Show Translation
-              </button>
-            </div>
-          )}
+          <div className="flex gap-4">
+            <button
+              onClick={onPrevious}
+              disabled={!hasPrevious}
+              className="flex-1 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed text-gray-700 font-semibold py-4 px-6 rounded-lg transition-colors duration-200 border-2 border-gray-300"
+            >
+              ← Previous
+            </button>
+            <button
+              onClick={onNext}
+              disabled={!hasNext}
+              className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 shadow-md"
+            >
+              Next →
+            </button>
+          </div>
         </div>
       </div>
     </>

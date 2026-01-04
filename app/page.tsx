@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import WordCard from "@/components/WordCard";
+import TrainingCard from "@/components/TrainingCard";
 import SessionComplete from "@/components/SessionComplete";
 import StatsModal from "@/components/StatsModal";
 import { Word, WordProgress, SessionStats } from "@/types";
@@ -24,10 +25,11 @@ export default function Home() {
   const [allBatches, setAllBatches] = useState<Word[][]>([]);
   const [allProgress, setAllProgress] = useState<Map<number, WordProgress>>(new Map());
   const [showStats, setShowStats] = useState(false);
-  const [selectedFile, setSelectedFile] = useState<string>("words.json");
+  const [selectedFile, setSelectedFile] = useState<string>("unit-8.json");
   const [isLoading, setIsLoading] = useState(false);
   const [availableFiles, setAvailableFiles] = useState<FileOption[]>([]);
   const [reverseDirection, setReverseDirection] = useState(false);
+  const [mode, setMode] = useState<"exam" | "training">("exam");
 
   useEffect(() => {
     // Load available files list
@@ -43,7 +45,7 @@ export default function Home() {
         console.error("Error loading files list:", err);
         // Fallback to default files if manifest doesn't exist
         setAvailableFiles([
-          { value: "words.json", label: "Words" },
+          { value: "unit-8.json", label: "Unit-8" },
         ]);
       });
   }, []);
@@ -83,8 +85,10 @@ export default function Home() {
         allWords = await response.json();
       }
 
-      // Shuffle words for random order
-      allWords = shuffleArray(allWords);
+      // Shuffle words only in exam mode
+      if (mode === "exam") {
+        allWords = shuffleArray(allWords);
+      }
 
       // Ensure unique IDs across all words (renumber sequentially to avoid conflicts)
       allWords = allWords.map((word, index) => ({
@@ -115,12 +119,22 @@ export default function Home() {
     if (availableFiles.length > 0 && selectedFile) {
       loadWords(selectedFile);
     }
-  }, [selectedFile, availableFiles.length]);
+  }, [selectedFile, availableFiles.length, mode]);
 
-  // Reset revealed state whenever the word index changes
+  // Reset revealed state whenever the word index changes (exam mode only)
   useEffect(() => {
-    setIsRevealed(false);
-  }, [currentIndex]);
+    if (mode === "exam") {
+      setIsRevealed(false);
+    }
+  }, [currentIndex, mode]);
+
+  // Reset current index when switching modes
+  useEffect(() => {
+    if (mode === "training") {
+      setCurrentIndex(0);
+      setIsRevealed(false);
+    }
+  }, [mode]);
 
   const initializeBatch = (batchWords: Word[]) => {
     const batchProgress: WordProgress[] = batchWords.map((word) => ({
@@ -272,7 +286,7 @@ export default function Home() {
     return <SessionComplete stats={stats} onRestart={() => window.location.reload()} />;
   }
 
-  if (isLoading || currentBatch.length === 0) {
+  if (isLoading || (mode === "exam" && currentBatch.length === 0) || (mode === "training" && words.length === 0)) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
@@ -283,13 +297,13 @@ export default function Home() {
     );
   }
 
-  const currentWordProgress = currentBatch[currentIndex];
-  const remainingInBatch = currentBatch.filter((wp) => !wp.isCorrect).length;
-  const currentStats = calculateCurrentStats();
+  const currentWordProgress = mode === "exam" && currentBatch.length > 0 ? currentBatch[currentIndex] : null;
+  const remainingInBatch = mode === "exam" ? currentBatch.filter((wp) => !wp.isCorrect).length : 0;
+  const currentStats = mode === "exam" ? calculateCurrentStats() : null;
 
   return (
     <>
-      {showStats && (
+      {showStats && currentStats && (
         <StatsModal
           stats={currentStats}
           onClose={() => setShowStats(false)}
@@ -302,55 +316,100 @@ export default function Home() {
           <div className="mb-8 text-center">
             <h1 className="text-4xl font-bold text-gray-800 mb-4">Word Trainer</h1>
             <div className="flex justify-between items-center mb-4">
-              <select
-                value={selectedFile}
-                onChange={(e) => setSelectedFile(e.target.value)}
-                className="bg-white border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer w-32"
-                disabled={isLoading || availableFiles.length === 0}
-              >
-                {availableFiles.map((file) => (
-                  <option key={file.value} value={file.value}>
-                    {file.label}
-                  </option>
-                ))}
-                <option value="all">All Files</option>
-              </select>
-              <button
-                onClick={() => setShowStats(true)}
-                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2 shadow-md"
-                title="Show Stats"
-              >
-                <span>📊</span>
-                <span className="hidden sm:inline">Stats</span>
-              </button>
+              <div className="flex items-center gap-3">
+                <select
+                  value={selectedFile}
+                  onChange={(e) => setSelectedFile(e.target.value)}
+                  className="bg-white border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer w-32"
+                  disabled={isLoading || availableFiles.length === 0}
+                >
+                  {availableFiles.map((file) => (
+                    <option key={file.value} value={file.value}>
+                      {file.label}
+                    </option>
+                  ))}
+                  <option value="all">All Files</option>
+                </select>
+                <select
+                  value={mode}
+                  onChange={(e) => setMode(e.target.value as "exam" | "training")}
+                  className="bg-white border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer"
+                  disabled={isLoading}
+                >
+                  <option value="exam">Exam Mode</option>
+                  <option value="training">Training Mode</option>
+                </select>
+              </div>
+              {mode === "exam" && (
+                <button
+                  onClick={() => setShowStats(true)}
+                  className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2 shadow-md"
+                  title="Show Stats"
+                >
+                  <span>📊</span>
+                  <span className="hidden sm:inline">Stats</span>
+                </button>
+              )}
             </div>
-            <div className="flex justify-center items-center gap-4 text-sm text-gray-600">
-              <span>Batch {batchNumber} of {allBatches.length}</span>
-              <span>•</span>
-              <span>{remainingInBatch} remaining in batch</span>
-            </div>
+            {mode === "exam" && (
+              <div className="flex justify-center items-center gap-4 text-sm text-gray-600">
+                <span>Batch {batchNumber} of {allBatches.length}</span>
+                <span>•</span>
+                <span>{remainingInBatch} remaining in batch</span>
+              </div>
+            )}
+            {mode === "training" && (
+              <div className="flex justify-center items-center gap-4 text-sm text-gray-600">
+                <span>Word {currentIndex + 1} of {words.length}</span>
+              </div>
+            )}
           </div>
 
-        {/* Progress Bar */}
-        <div className="mb-8 bg-white rounded-full h-3 shadow-sm">
-          <div
-            className="bg-blue-600 h-3 rounded-full transition-all duration-300"
-            style={{
-              width: `${((currentBatch.length - remainingInBatch) / currentBatch.length) * 100}%`,
-            }}
-          />
-        </div>
+        {/* Progress Bar - Only in exam mode */}
+        {mode === "exam" && (
+          <div className="mb-8 bg-white rounded-full h-3 shadow-sm">
+            <div
+              className="bg-blue-600 h-3 rounded-full transition-all duration-300"
+              style={{
+                width: `${((currentBatch.length - remainingInBatch) / currentBatch.length) * 100}%`,
+              }}
+            />
+          </div>
+        )}
+        {mode === "training" && (
+          <div className="mb-8 bg-white rounded-full h-3 shadow-sm">
+            <div
+              className="bg-blue-600 h-3 rounded-full transition-all duration-300"
+              style={{
+                width: `${((currentIndex + 1) / words.length) * 100}%`,
+              }}
+            />
+          </div>
+        )}
 
         {/* Word Card */}
-        <WordCard
-          key={`${currentWordProgress.word.id}-${reverseDirection}`}
-          word={currentWordProgress.word}
-          isRevealed={isRevealed}
-          onReveal={handleReveal}
-          onAnswer={handleAnswer}
-          reverseDirection={reverseDirection}
-          onReverseDirection={() => setReverseDirection(!reverseDirection)}
-        />
+        {mode === "exam" && currentWordProgress ? (
+          <WordCard
+            key={`${currentWordProgress.word.id}-${reverseDirection}`}
+            word={currentWordProgress.word}
+            isRevealed={isRevealed}
+            onReveal={handleReveal}
+            onAnswer={handleAnswer}
+            reverseDirection={reverseDirection}
+            onReverseDirection={() => setReverseDirection(!reverseDirection)}
+          />
+        ) : words.length > 0 && words[currentIndex] ? (
+          <TrainingCard
+            key={`${words[currentIndex].id}-${reverseDirection}`}
+            word={words[currentIndex]}
+            reverseDirection={reverseDirection}
+            onReverseDirection={() => setReverseDirection(!reverseDirection)}
+            onPrevious={() => setCurrentIndex(Math.max(0, currentIndex - 1))}
+            onNext={() => setCurrentIndex(Math.min(words.length - 1, currentIndex + 1))}
+            hasPrevious={currentIndex > 0}
+            hasNext={currentIndex < words.length - 1}
+          />
+        ) : null}
       </div>
     </div>
     </>

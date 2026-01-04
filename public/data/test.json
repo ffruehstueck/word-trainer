@@ -1,1 +1,37 @@
-
+[
+    {
+        "id": 1,
+        "source": "cinema",
+        "target": "Kino",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 2,
+        "source": "bank",
+        "target": "Bank",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 3,
+        "source": "hospital",
+        "target": "Krankenhaus",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 4,
+        "source": "church",
+        "target": "Kirche",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    },
+    {
+        "id": 5,
+        "source": "restaurant",
+        "target": "Restaurant / Gaststätte",
+        "sourceLanguage": "English",
+        "targetLanguage": "German"
+    }
+]

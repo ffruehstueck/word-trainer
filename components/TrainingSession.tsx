@@ -256,11 +256,6 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
 
       // Use targetMode if provided, otherwise fall back to current mode state
       const modeToUse = targetMode !== undefined ? targetMode : mode;
-      
-      // Shuffle words only in exam mode
-      if (modeToUse === "exam") {
-        allWords = shuffleArray(allWords);
-      }
 
       // Ensure unique IDs
       allWords = allWords.map((word, index) => ({
@@ -268,15 +263,59 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
         id: index + 1,
       }));
 
-      setWords(allWords);
+      // For exam mode: check if we should filter to remaining words or start fresh
+      let wordsToShow = allWords;
+      if (modeToUse === "exam" && !resetProgress) {
+        const saved = loadProgress(fileSelection, "exam");
+        if (saved && saved.allProgress.length > 0) {
+          const progressMap = new Map(saved.allProgress);
+          
+          // Check if all words are completed
+          const allCompleted = allWords.every((word) => {
+            const progress = progressMap.get(word.id);
+            return progress && progress.isCorrect;
+          });
+          
+          if (!allCompleted) {
+            // Filter to only words that aren't correct yet
+            wordsToShow = allWords.filter((word) => {
+              const progress = progressMap.get(word.id);
+              return !progress || !progress.isCorrect;
+            });
+          } else {
+            // All completed - reset progress to start over
+            resetProgress = true;
+          }
+        }
+      }
+      
+      // Shuffle words only in exam mode (after filtering)
+      if (modeToUse === "exam") {
+        wordsToShow = shuffleArray(wordsToShow);
+      }
+
+      // Check if we got any words
+      if (allWords.length === 0) {
+        console.error(`No words found in file: ${fileSelection}`);
+        setWords([]);
+        setIsLoading(false);
+        return;
+      }
+
+      setWords(wordsToShow);
       
       if (resetProgress) {
         setAllProgress(new Map());
         setCurrentIndex(0);
         setIsRevealed(false);
+      } else if (modeToUse === "exam" && wordsToShow.length !== allWords.length) {
+        // If we filtered words in exam mode, reset index to 0 since we have a new filtered/shuffled list
+        setCurrentIndex(0);
+        setIsRevealed(false);
       }
       
-      // Initialize progress for all words
+      // Initialize progress for all words (not just filtered ones)
+      // This ensures progress tracking works for all words, even if not currently shown
       if (allWords.length > 0) {
         setAllProgress((prev) => {
           const newMap = new Map(prev);
@@ -295,6 +334,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
       }
     } catch (err) {
       console.error("Error loading words:", err);
+      setWords([]);
     } finally {
       setIsLoading(false);
     }
@@ -336,6 +376,35 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     setLastInteractionTime(now);
   };
 
+  // Check if a file/mode is already completed
+  const isFileCompleted = useCallback((file: string, currentMode: "exam" | "training"): boolean => {
+    if (words.length === 0) {
+      // If words aren't loaded yet, check from saved progress
+      const saved = loadProgress(file, currentMode);
+      if (!saved || saved.allProgress.length === 0) return false;
+      
+      // We can't fully verify without words, but if we have progress saved, 
+      // we can check if all saved progress entries are marked correct
+      const progressMap = new Map(saved.allProgress);
+      const allProgressEntries = Array.from(progressMap.values());
+      if (allProgressEntries.length === 0) return false;
+      
+      // Check if all saved progress entries are marked as correct
+      return allProgressEntries.every((progress) => progress.isCorrect);
+    }
+    
+    const saved = loadProgress(file, currentMode);
+    if (!saved || saved.allProgress.length === 0) return false;
+    
+    const progressMap = new Map(saved.allProgress);
+    // Check if all words are marked as correct
+    const allCompleted = words.every((word) => {
+      const progress = progressMap.get(word.id);
+      return progress && progress.isCorrect;
+    });
+    return allCompleted;
+  }, [words]);
+
   const handleStartSession = (selectedMode: "exam" | "training") => {
     setMode(selectedMode);
     setSessionStarted(true);
@@ -344,9 +413,22 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     setLastInteractionTime(now);
     setShowInactivityModal(false);
     // Reload words for the current selected file to ensure we have the latest data
-    // Pass the target mode to ensure words are shuffled correctly for exam mode
+    // For training mode, always reset. For exam mode, loadWords will check if we should reset
     if (selectedFile && availableFiles.length > 0) {
-      loadWords(selectedFile, true, selectedMode);
+      const shouldReset = selectedMode === "training"; // Always reset for training mode
+      loadWords(selectedFile, shouldReset, selectedMode);
+    }
+  };
+
+  const handleRedo = (selectedMode: "exam" | "training") => {
+    // Clear progress and start fresh
+    if (selectedFile) {
+      clearProgress(selectedFile, selectedMode);
+      setAllProgress(new Map());
+      setCurrentIndex(0);
+      setIsRevealed(false);
+      setSessionComplete(false);
+      handleStartSession(selectedMode);
     }
   };
 
@@ -452,14 +534,9 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
   };
 
   const calculateCurrentStats = (): SessionStats => {
-    const progressArray: WordProgress[] = words.map((word) => {
-      return allProgress.get(word.id) || {
-        word,
-        isCorrect: false,
-        attempts: 0,
-        durations: [],
-      };
-    });
+    // Calculate stats from all words in progress, not just the filtered words array
+    // This ensures stats reflect overall progress even when words array is filtered
+    const progressArray: WordProgress[] = Array.from(allProgress.values());
     
     const correctWords = progressArray.filter((wp) => wp.isCorrect);
     const unknownWords = progressArray.filter((wp) => !wp.isCorrect).map((wp) => wp.word);
@@ -504,12 +581,10 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
   };
 
   const handleStop = () => {
-    // Show stats modal when stopping
-    if (mode === "exam") {
-      const currentStats = calculateCurrentStats();
-      setStats(currentStats);
-      setShowStats(true);
-    }
+    // Show stats modal when stopping (works for both exam and training modes)
+    const currentStats = calculateCurrentStats();
+    setStats(currentStats);
+    setShowStats(true);
   };
 
   const handleResume = () => {
@@ -578,7 +653,8 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
 
   // Show mode selection screen if session hasn't started
   if (!sessionStarted || !mode) {
-    if (isLoading || words.length === 0) {
+    // Only show loading screen if actively loading and we don't have words yet
+    if (isLoading && words.length === 0) {
       return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center py-8 px-4">
           <div className="max-w-2xl mx-auto w-full">
@@ -609,6 +685,9 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
       );
     }
 
+    const examCompleted = isFileCompleted(selectedFile, "exam");
+    const trainingCompleted = isFileCompleted(selectedFile, "training");
+
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center py-8 px-4">
         <div className="max-w-2xl mx-auto w-full">
@@ -632,51 +711,107 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <button
-              onClick={() => handleStartSession("exam")}
-              disabled={isLoading}
-              className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-200 border-2 border-blue-200 hover:border-blue-400 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <div className="text-5xl mb-4">🎯</div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-3">Exam Mode</h2>
-              <p className="text-gray-600 mb-4">
-                Test your knowledge! Words are hidden and shuffled. Mark your answers as correct or incorrect.
-              </p>
-              <div className="text-sm text-gray-500">
-                • Words are scrambled<br/>
-                • Track your progress<br/>
-                • Review missed words
-              </div>
-            </button>
+            <div className="relative">
+              <button
+                onClick={() => handleStartSession("exam")}
+                disabled={isLoading}
+                className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-200 border-2 border-blue-200 hover:border-blue-400 disabled:opacity-50 disabled:cursor-not-allowed w-full"
+              >
+                <div className="text-5xl mb-4">🎯</div>
+                <h2 className="text-2xl font-bold text-gray-800 mb-3">Exam Mode</h2>
+                {examCompleted && (
+                  <div className="mb-3 px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold inline-block">
+                    ✓ Already Done
+                  </div>
+                )}
+                <p className="text-gray-600 mb-4">
+                  Test your knowledge! Words are hidden and shuffled. Mark your answers as correct or incorrect.
+                </p>
+                <div className="text-sm text-gray-500">
+                  • Words are scrambled<br/>
+                  • Track your progress<br/>
+                  • Review missed words
+                </div>
+              </button>
+              {examCompleted && (
+                <button
+                  onClick={() => handleRedo("exam")}
+                  className="mt-3 w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 shadow-md"
+                >
+                  🔄 Redo Exam
+                </button>
+              )}
+            </div>
 
+            <div className="relative">
             <button
               onClick={() => handleStartSession("training")}
-              disabled={isLoading || words.length === 0}
-              className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-200 border-2 border-green-200 hover:border-green-400 disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={isLoading}
+              className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-200 border-2 border-green-200 hover:border-green-400 disabled:opacity-50 disabled:cursor-not-allowed w-full"
             >
-              <div className="text-5xl mb-4">📚</div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-3">Training Mode</h2>
-              <p className="text-gray-600 mb-4">
-                Learn at your own pace! Both source and target are visible. Navigate through words freely.
-              </p>
-              <div className="text-sm text-gray-500">
-                • All translations visible<br/>
-                • Navigate freely<br/>
-                • No shuffling
-              </div>
-            </button>
+                <div className="text-5xl mb-4">📚</div>
+                <h2 className="text-2xl font-bold text-gray-800 mb-3">Training Mode</h2>
+                {trainingCompleted && (
+                  <div className="mb-3 px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold inline-block">
+                    ✓ Already Done
+                  </div>
+                )}
+                <p className="text-gray-600 mb-4">
+                  Learn at your own pace! Both source and target are visible. Navigate through words freely.
+                </p>
+                <div className="text-sm text-gray-500">
+                  • All translations visible<br/>
+                  • Navigate freely<br/>
+                  • No shuffling
+                </div>
+              </button>
+              {trainingCompleted && (
+                <button
+                  onClick={() => handleRedo("training")}
+                  className="mt-3 w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 shadow-md"
+                >
+                  🔄 Redo Training
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
     );
   }
 
-  if (isLoading || (mode === "exam" && words.length === 0) || (mode === "training" && words.length === 0)) {
+  // Only show loading screen if actively loading, not if words array is empty after loading
+  if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading words...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // If we're not loading but have no words and session has started, show error
+  if ((mode === "exam" && words.length === 0 && sessionStarted) || (mode === "training" && words.length === 0 && sessionStarted)) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center max-w-md mx-auto px-4">
+          <div className="text-6xl mb-4">⚠️</div>
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">No Words Found</h2>
+          <p className="text-gray-600 mb-6">
+            The selected file ({selectedFile}) appears to be empty or could not be loaded.
+          </p>
+          <button
+            onClick={() => {
+              setMode(null);
+              setSessionStarted(false);
+              setCurrentIndex(0);
+            }}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200"
+          >
+            Back to Start
+          </button>
         </div>
       </div>
     );
@@ -702,7 +837,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
       {showStats && (currentStats || stats) && (
         <StatsModal
           stats={currentStats || stats!}
-          onClose={() => setShowStats(false)}
+          onClose={handleStopFromModal}
           onResume={mode && sessionStarted ? handleResume : undefined}
           onStop={handleStopFromModal}
           isComplete={false}
@@ -747,16 +882,14 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
                   <span className="text-lg transform rotate-90">⇄</span>
                   <span className="hidden sm:inline">Reverse</span>
                 </button>
-                {mode === "exam" && (
-                  <button
-                    onClick={handleStop}
-                    className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2 shadow-md"
-                    title="Stop Session"
-                  >
-                    <span>⏹</span>
-                    <span className="hidden sm:inline">Stop</span>
-                  </button>
-                )}
+                <button
+                  onClick={handleStop}
+                  className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2 shadow-md"
+                  title="Stop Session"
+                >
+                  <span>⏹</span>
+                  <span className="hidden sm:inline">Stop</span>
+                </button>
               </div>
             )}
           </div>

@@ -49,7 +49,8 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [availableFiles, setAvailableFiles] = useState<FileOption[]>([]);
   const [reverseDirection, setReverseDirection] = useState(false);
-  const [mode, setMode] = useState<"exam" | "training">("exam");
+  const [mode, setMode] = useState<"exam" | "training" | null>(null); // null means not started yet
+  const [sessionStarted, setSessionStarted] = useState(false);
   
   // Timer state
   const [sessionStartTime, setSessionStartTime] = useState<number | null>(null);
@@ -237,9 +238,10 @@ export default function Home() {
     }
   }, [sessionStartTime, lastInteractionTime, isOnBreak, breakEndTime, highScore]);
 
-  // Load saved progress when file/mode changes (but only after words are loaded)
+  // Load saved progress when file/mode changes (but only after words are loaded and session has started)
   useEffect(() => {
     if (words.length === 0 || allBatches.length === 0) return;
+    if (!mode || !sessionStarted) return; // Don't restore if session hasn't started
     
     const saved = loadProgress(selectedFile, mode);
     if (saved && saved.selectedFile === selectedFile && saved.mode === mode) {
@@ -272,12 +274,14 @@ export default function Home() {
         setCurrentIndex(Math.min(saved.currentIndex, words.length - 1));
       }
     }
-  }, [selectedFile, mode, words.length, allBatches.length]);
+  }, [selectedFile, mode, sessionStarted, words.length, allBatches.length]);
 
   // Save progress whenever it changes
   useEffect(() => {
     if (words.length === 0 || allBatches.length === 0) return;
-    saveProgress(selectedFile, mode);
+    if (mode) {
+      saveProgress(selectedFile, mode);
+    }
   }, [allProgress, currentBatch, currentIndex, batchNumber, selectedFile, mode, reverseDirection, words.length, allBatches.length]);
 
   // Fisher-Yates shuffle algorithm
@@ -315,7 +319,7 @@ export default function Home() {
         allWords = await response.json();
       }
 
-      // Shuffle words only in exam mode
+      // Shuffle words only in exam mode (if mode is set)
       if (mode === "exam") {
         allWords = shuffleArray(allWords);
       }
@@ -336,7 +340,7 @@ export default function Home() {
       
       // Only reset progress if explicitly requested (new session)
       if (resetProgress) {
-        clearProgress(fileSelection, mode);
+        // Don't clear progress here since mode might be null - will be cleared on restart
         setBatchNumber(1);
         setAllProgress(new Map());
         if (batches.length > 0) {
@@ -392,13 +396,17 @@ export default function Home() {
     const now = Date.now();
     setIsRevealed(true);
     
-    // Start timer on first reveal if not already started
-    if (!sessionStartTime) {
-      setSessionStartTime(now);
-      setLastInteractionTime(now);
-    } else {
-      setLastInteractionTime(now);
-    }
+    // Update last interaction time
+    setLastInteractionTime(now);
+  };
+  
+  const handleStartSession = (selectedMode: "exam" | "training") => {
+    setMode(selectedMode);
+    setSessionStarted(true);
+    // Start timer when session starts
+    const now = Date.now();
+    setSessionStartTime(now);
+    setLastInteractionTime(now);
   };
 
   const handleAnswer = (isCorrect: boolean) => {
@@ -536,19 +544,21 @@ export default function Home() {
   };
 
   const handleRestart = () => {
-    clearProgress(selectedFile, mode);
+    clearProgress(selectedFile, mode || "exam");
     setSessionComplete(false);
     setStats(null);
     setBatchNumber(1);
     setAllProgress(new Map());
     setCurrentIndex(0);
     setIsRevealed(false);
-    // Reset timer
+    // Reset timer and session
     setSessionStartTime(null);
     setSessionTime(0);
     setLastInteractionTime(null);
     setIsOnBreak(false);
     setBreakEndTime(null);
+    setMode(null);
+    setSessionStarted(false);
     // Reload words to reset everything
     loadWords(selectedFile, true);
   };
@@ -580,12 +590,99 @@ export default function Home() {
     return <SessionComplete stats={stats} onRestart={handleRestart} />;
   }
 
-  if (isLoading || (mode === "exam" && currentBatch.length === 0) || (mode === "training" && words.length === 0)) {
+  // Show mode selection screen if session hasn't started (check this BEFORE loading check)
+  if (!sessionStarted || !mode) {
+    // Show loading state on start screen if words aren't loaded yet
+    if (isLoading || words.length === 0) {
+      return (
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center py-8 px-4">
+          <div className="max-w-2xl mx-auto w-full">
+            <div className="text-center mb-8">
+              <h1 className="text-4xl font-bold text-gray-800 mb-4">Word Trainer</h1>
+              <div className="flex justify-center items-center gap-3 mb-8">
+                <select
+                  value={selectedFile}
+                  onChange={(e) => setSelectedFile(e.target.value)}
+                  className="bg-white border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer"
+                  disabled={isLoading || availableFiles.length === 0}
+                >
+                  {availableFiles.map((file) => (
+                    <option key={file.value} value={file.value}>
+                      {file.label}
+                    </option>
+                  ))}
+                  <option value="all">All Files</option>
+                </select>
+              </div>
+              <div className="text-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+                <p className="mt-4 text-gray-600">Loading words...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading words...</p>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center py-8 px-4">
+        <div className="max-w-2xl mx-auto w-full">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold text-gray-800 mb-4">Word Trainer</h1>
+            <div className="flex justify-center items-center gap-3 mb-8">
+              <select
+                value={selectedFile}
+                onChange={(e) => setSelectedFile(e.target.value)}
+                className="bg-white border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer"
+                disabled={isLoading || availableFiles.length === 0}
+              >
+                {availableFiles.map((file) => (
+                  <option key={file.value} value={file.value}>
+                    {file.label}
+                  </option>
+                ))}
+                <option value="all">All Files</option>
+              </select>
+            </div>
+            <p className="text-lg text-gray-600 mb-8">Choose your learning mode:</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Exam Mode Button */}
+            <button
+              onClick={() => handleStartSession("exam")}
+              disabled={isLoading}
+              className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-200 border-2 border-blue-200 hover:border-blue-400 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <div className="text-5xl mb-4">🎯</div>
+              <h2 className="text-2xl font-bold text-gray-800 mb-3">Exam Mode</h2>
+              <p className="text-gray-600 mb-4">
+                Test your knowledge! Words are hidden and shuffled. Mark your answers as correct or incorrect.
+              </p>
+              <div className="text-sm text-gray-500">
+                • Words are scrambled<br/>
+                • Track your progress<br/>
+                • Review missed words
+              </div>
+            </button>
+
+            {/* Training Mode Button */}
+            <button
+              onClick={() => handleStartSession("training")}
+              disabled={isLoading || words.length === 0}
+              className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-200 border-2 border-green-200 hover:border-green-400 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <div className="text-5xl mb-4">📚</div>
+              <h2 className="text-2xl font-bold text-gray-800 mb-3">Training Mode</h2>
+              <p className="text-gray-600 mb-4">
+                Learn at your own pace! Both source and target are visible. Navigate through words freely.
+              </p>
+              <div className="text-sm text-gray-500">
+                • All translations visible<br/>
+                • Navigate freely<br/>
+                • No shuffling
+              </div>
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -646,15 +743,6 @@ export default function Home() {
                     </option>
                   ))}
                   <option value="all">All Files</option>
-                </select>
-                <select
-                  value={mode}
-                  onChange={(e) => setMode(e.target.value as "exam" | "training")}
-                  className="bg-white border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer"
-                  disabled={isLoading}
-                >
-                  <option value="exam">Exam Mode</option>
-                  <option value="training">Training Mode</option>
                 </select>
               </div>
               {mode === "exam" && (

@@ -645,7 +645,6 @@ export default function Home() {
                 <option value="all">All Files</option>
               </select>
             </div>
-            <p className="text-lg text-gray-600 mb-8">Choose your learning mode:</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

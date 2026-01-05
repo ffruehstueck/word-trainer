@@ -32,7 +32,23 @@ export async function loadWordsFromFile(fileName: string): Promise<Word[]> {
   try {
     const filePath = path.join(process.cwd(), 'public', 'data', fileName);
     const fileContent = fs.readFileSync(filePath, 'utf-8');
-    return JSON.parse(fileContent);
+    let words: Word[] = JSON.parse(fileContent);
+    
+    // Transform words: if source has 3 parts separated by " - ", split them
+    words = words.map((word) => {
+      const sourceParts = word.source.split(' - ').map(part => part.trim());
+      if (sourceParts.length === 3) {
+        // Keep first part as source, combine last two parts with target
+        return {
+          ...word,
+          source: sourceParts[0],
+          target: `${sourceParts[1]} - ${sourceParts[2]} / ${word.target}`
+        };
+      }
+      return word;
+    });
+    
+    return words;
   } catch (error) {
     console.error(`Error loading file ${fileName}:`, error);
     return [];

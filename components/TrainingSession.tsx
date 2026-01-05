@@ -257,6 +257,22 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
       // Use targetMode if provided, otherwise fall back to current mode state
       const modeToUse = targetMode !== undefined ? targetMode : mode;
 
+      // Transform words for exam mode: if source has 3 parts separated by " - ", split them
+      if (modeToUse === "exam") {
+        allWords = allWords.map((word) => {
+          const sourceParts = word.source.split(' - ').map(part => part.trim());
+          if (sourceParts.length === 3) {
+            // Keep first part as source, combine last two parts with target
+            return {
+              ...word,
+              source: sourceParts[0],
+              target: `${sourceParts[1]} - ${sourceParts[2]} / ${word.target}`
+            };
+          }
+          return word;
+        });
+      }
+
       // Ensure unique IDs
       allWords = allWords.map((word, index) => ({
         ...word,

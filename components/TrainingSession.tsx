@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import WordCard from "@/components/WordCard";
 import TrainingCard from "@/components/TrainingCard";
 import SessionComplete from "@/components/SessionComplete";
@@ -59,6 +59,9 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
   const [breakEndTime, setBreakEndTime] = useState<number | null>(null);
   const [highScore, setHighScore] = useState<number>(0);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
+  
+  // Store all transformed words (for reference when loading saved progress)
+  const allWordsRef = useRef<Word[]>([]);
 
   // Helper to get storage key
   const getStorageKey = (file: string, mode: string) => `${STORAGE_KEY_PREFIX}-${file}-${mode}`;
@@ -218,11 +221,28 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     
     const saved = loadProgress(selectedFile, mode);
     if (saved && saved.selectedFile === selectedFile && saved.mode === mode) {
-      setAllProgress(new Map(saved.allProgress));
+      // Update saved progress to use transformed words from allWordsRef
+      // Create a map of all transformed words by ID for quick lookup
+      const allWordsMap = new Map(allWordsRef.current.map(w => [w.id, w]));
+      
+      setAllProgress((prev) => {
+        const newMap = new Map();
+        saved.allProgress.forEach(([wordId, progress]) => {
+          // Use the transformed word object if available, otherwise use the saved one
+          const transformedWord = allWordsMap.get(wordId);
+          if (transformedWord) {
+            newMap.set(wordId, {
+              ...progress,
+              word: transformedWord, // Use the transformed word
+            });
+          }
+        });
+        return newMap;
+      });
       setReverseDirection(saved.reverseDirection);
       setCurrentIndex(Math.min(saved.currentIndex, words.length - 1));
     }
-  }, [selectedFile, mode, sessionStarted, words.length]);
+  }, [selectedFile, mode, sessionStarted, words]);
 
   // Save progress whenever it changes
   useEffect(() => {
@@ -247,6 +267,13 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     
     setIsLoading(true);
     try {
+      // Clear progress if switching to a different file
+      if (fileSelection !== selectedFile) {
+        setAllProgress(new Map());
+        setCurrentIndex(0);
+        setIsRevealed(false);
+      }
+      
       // Fetch words from API route (client-side fetch)
       const response = await fetch(`/api/words?file=${encodeURIComponent(fileSelection)}`);
       if (!response.ok) {
@@ -272,13 +299,12 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
           return word;
         });
       }
-
+      
       // Ensure unique IDs
       allWords = allWords.map((word, index) => ({
         ...word,
         id: index + 1,
       }));
-
       // For exam mode: check if we should filter to remaining words or start fresh
       let wordsToShow = allWords;
       if (modeToUse === "exam" && !resetProgress) {
@@ -320,6 +346,9 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
 
       setWords(wordsToShow);
       
+      // Store all transformed words for reference when loading saved progress
+      allWordsRef.current = allWords;
+      
       if (resetProgress) {
         setAllProgress(new Map());
         setCurrentIndex(0);
@@ -332,9 +361,21 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
       
       // Initialize progress for all words (not just filtered ones)
       // This ensures progress tracking works for all words, even if not currently shown
+      // Only keep progress entries that match words in the current file
       if (allWords.length > 0) {
         setAllProgress((prev) => {
-          const newMap = new Map(prev);
+          const newMap = new Map();
+          // Create a set of word IDs from the current file for quick lookup
+          const currentWordIds = new Set(allWords.map(w => w.id));
+          
+          // Only keep progress entries that belong to words in the current file
+          prev.forEach((progress, wordId) => {
+            if (currentWordIds.has(wordId)) {
+              newMap.set(wordId, progress);
+            }
+          });
+          
+          // Initialize progress for all words in the current file
           allWords.forEach((word) => {
             if (!newMap.has(word.id)) {
               newMap.set(word.id, {

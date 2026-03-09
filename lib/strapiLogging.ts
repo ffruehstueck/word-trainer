@@ -66,6 +66,7 @@ export async function getFromStrapiCollection<T>(
       "X-Internal-Token": internalToken,
     },
     cache: "no-store",
+    next: { revalidate: 0 },
   });
 
   if (!response.ok) {

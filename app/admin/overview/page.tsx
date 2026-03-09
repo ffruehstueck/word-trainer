@@ -1,9 +1,14 @@
 import { getFromStrapiCollection } from "@/lib/strapiLogging";
 import { Space_Grotesk } from "next/font/google";
 import Link from "next/link";
+import { unstable_noStore as noStore } from "next/cache";
 
 const displayFont = Space_Grotesk({ subsets: ["latin"], weight: ["400", "500", "700"] });
 const SESSION_PAGE_SIZE = 10;
+const ADMIN_TIME_ZONE = "Europe/Vienna";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 type StrapiSession = {
   sessionId: string;
@@ -64,12 +69,21 @@ type OverviewSession = {
 const dateTimeFormatter = new Intl.DateTimeFormat("de-AT", {
   dateStyle: "medium",
   timeStyle: "short",
+  timeZone: ADMIN_TIME_ZONE,
 });
 
 const shortDateFormatter = new Intl.DateTimeFormat("de-AT", {
   day: "2-digit",
   month: "2-digit",
   year: "numeric",
+  timeZone: ADMIN_TIME_ZONE,
+});
+
+const dayKeyFormatter = new Intl.DateTimeFormat("sv-SE", {
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  timeZone: ADMIN_TIME_ZONE,
 });
 
 const formatDateTime = (value?: string): string => {
@@ -105,7 +119,7 @@ const getDayKey = (value?: string): string | null => {
   if (!value) return null;
   const asDate = new Date(value);
   if (Number.isNaN(asDate.getTime())) return null;
-  return asDate.toISOString().slice(0, 10);
+  return dayKeyFormatter.format(asDate);
 };
 
 const buildOverviewHref = (page: number, day?: string): string => {
@@ -155,6 +169,8 @@ export default async function AdminOverviewPage({
 }: {
   searchParams?: { day?: string; page?: string };
 }) {
+  noStore();
+
   let sessions: StrapiSession[] = [];
   let events: StrapiAnswerEvent[] = [];
   let loadError: string | null = null;

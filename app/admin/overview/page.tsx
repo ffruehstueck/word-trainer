@@ -264,11 +264,14 @@ export default async function AdminOverviewPage({
       .sort((a, b) => {
         const aAvg = getAverageDuration(a.durationSamples);
         const bAvg = getAverageDuration(b.durationSamples);
-        const aSuspicious = aAvg !== undefined && aAvg < 1000;
-        const bSuspicious = bAvg !== undefined && bAvg < 1000;
-
-        if (aSuspicious !== bSuspicious) {
-          return aSuspicious ? -1 : 1;
+        if (aAvg !== undefined && bAvg !== undefined && aAvg !== bAvg) {
+          return aAvg - bAvg;
+        }
+        if (aAvg !== undefined && bAvg === undefined) {
+          return -1;
+        }
+        if (aAvg === undefined && bAvg !== undefined) {
+          return 1;
         }
         return b.correctCount - a.correctCount || a.source.localeCompare(b.source);
       });

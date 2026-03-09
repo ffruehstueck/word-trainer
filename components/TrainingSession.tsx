@@ -94,9 +94,13 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
   const trainingAnalyticsRef = useRef<{
     viewedWordIds: Set<number>;
     totalWords: number;
+    currentWordStartedAt: number | null;
+    durationsByWord: Map<number, number[]>;
   }>({
     viewedWordIds: new Set<number>(),
     totalWords: 0,
+    currentWordStartedAt: null,
+    durationsByWord: new Map<number, number[]>(),
   });
 
   const textToSha256 = async (value: string): Promise<string> => {
@@ -220,7 +224,26 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     trainingAnalyticsRef.current = {
       viewedWordIds: new Set<number>(),
       totalWords: 0,
+      currentWordStartedAt: null,
+      durationsByWord: new Map<number, number[]>(),
     };
+  };
+
+  const markTrainingWordViewed = (wordId: number) => {
+    trainingAnalyticsRef.current.viewedWordIds.add(wordId);
+  };
+
+  const recordTrainingWordDuration = (timestampMs: number) => {
+    const currentWord = words[currentIndex];
+    const startedAt = trainingAnalyticsRef.current.currentWordStartedAt;
+    if (!currentWord || !startedAt) {
+      return;
+    }
+
+    const duration = Math.max(timestampMs - startedAt, 0);
+    const existingDurations = trainingAnalyticsRef.current.durationsByWord.get(currentWord.id) || [];
+    existingDurations.push(duration);
+    trainingAnalyticsRef.current.durationsByWord.set(currentWord.id, existingDurations);
   };
 
   const startLoggingSession = (loggingMode: "exam" | "training", file: string) => {
@@ -251,12 +274,17 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     finalizedSessionIdsRef.current.add(activeSession.sessionId);
     await flushPendingEvents();
 
+    const now = Date.now();
+    if (activeSession.mode === "training") {
+      recordTrainingWordDuration(now);
+    }
+
     const payload: TrainingSessionFinalizePayload =
       activeSession.mode === "exam"
         ? {
             sessionId: activeSession.sessionId,
             startedAt: activeSession.startedAt,
-            endedAt: new Date().toISOString(),
+            endedAt: new Date(now).toISOString(),
             mode: "exam",
             selectedFile: activeSession.selectedFile,
             knownCount: sessionAnalyticsRef.current.knownCount,
@@ -268,7 +296,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
         : {
             sessionId: activeSession.sessionId,
             startedAt: activeSession.startedAt,
-            endedAt: new Date().toISOString(),
+            endedAt: new Date(now).toISOString(),
             mode: "training",
             selectedFile: activeSession.selectedFile,
             knownCount: trainingAnalyticsRef.current.viewedWordIds.size,
@@ -288,6 +316,11 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
                       100,
                   )
                 : 0,
+            suspiciousFastWords: Array.from(trainingAnalyticsRef.current.durationsByWord.values()).filter(
+              (durations) =>
+                durations.length > 0 &&
+                durations.reduce((sum, duration) => sum + duration, 0) / durations.length < 1000,
+            ).length,
             ...loggingIdentity,
           };
 
@@ -696,7 +729,10 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     trainingAnalyticsRef.current.totalWords = words.length;
     const currentWord = words[currentIndex];
     if (currentWord) {
-      trainingAnalyticsRef.current.viewedWordIds.add(currentWord.id);
+      markTrainingWordViewed(currentWord.id);
+      if (trainingAnalyticsRef.current.currentWordStartedAt === null) {
+        trainingAnalyticsRef.current.currentWordStartedAt = Date.now();
+      }
     }
   }, [mode, sessionStarted, words, currentIndex]);
 
@@ -706,6 +742,22 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     }
     setLastInteractionTime(Date.now());
   }, [sessionStartTime]);
+
+  const handleTrainingNavigation = (nextIndex: number) => {
+    if (mode !== "training") return;
+    if (nextIndex < 0 || nextIndex >= words.length) return;
+
+    const now = Date.now();
+    recordTrainingWordDuration(now);
+    const nextWord = words[nextIndex];
+    if (nextWord) {
+      markTrainingWordViewed(nextWord.id);
+    }
+    trainingAnalyticsRef.current.totalWords = words.length;
+    trainingAnalyticsRef.current.currentWordStartedAt = now;
+    setCurrentIndex(nextIndex);
+    handleInteraction();
+  };
 
   const handleReveal = () => {
     const now = Date.now();
@@ -1326,14 +1378,8 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
               key={`${words[currentIndex].id}-${reverseDirection}`}
               word={words[currentIndex]}
               reverseDirection={reverseDirection}
-              onPrevious={() => {
-                setCurrentIndex(Math.max(0, currentIndex - 1));
-                handleInteraction();
-              }}
-              onNext={() => {
-                setCurrentIndex(Math.min(words.length - 1, currentIndex + 1));
-                handleInteraction();
-              }}
+              onPrevious={() => handleTrainingNavigation(Math.max(0, currentIndex - 1))}
+              onNext={() => handleTrainingNavigation(Math.min(words.length - 1, currentIndex + 1))}
               hasPrevious={currentIndex > 0}
               hasNext={currentIndex < words.length - 1}
             />

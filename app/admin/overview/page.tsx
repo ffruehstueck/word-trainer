@@ -9,11 +9,15 @@ type StrapiSession = {
   sessionId: string;
   startedAt: string;
   endedAt: string;
-  mode: "exam";
+  mode: "exam" | "training";
   selectedFile: string;
   knownCount: number;
   unknownCount: number;
   totalAnswers: number;
+  viewedWords?: number;
+  totalWords?: number;
+  progressPercent?: number;
+  suspiciousFastWords?: number;
 };
 
 type StrapiAnswerEvent = {
@@ -41,6 +45,7 @@ type WordItem = {
 
 type OverviewSession = {
   sessionId: string;
+  mode: "exam" | "training";
   selectedFile: string;
   startedAt?: string;
   endedAt?: string;
@@ -48,6 +53,10 @@ type OverviewSession = {
   knownAnswerCount: number;
   unknownAnswerCount: number;
   averageDurationMs?: number;
+  viewedWords?: number;
+  totalWords?: number;
+  progressPercent?: number;
+  suspiciousFastWords?: number;
   knownWords: WordItem[];
   unknownWords: WordItem[];
 };
@@ -270,6 +279,7 @@ export default async function AdminOverviewPage({
 
     overviewRows.push({
       sessionId,
+      mode: session?.mode || "exam",
       selectedFile: session?.selectedFile || eventsForSession[0]?.selectedFile || "-",
       startedAt: session?.startedAt || eventsForSession[0]?.timestamp,
       endedAt: session?.endedAt || eventsForSession[eventsForSession.length - 1]?.timestamp,
@@ -277,6 +287,10 @@ export default async function AdminOverviewPage({
       knownAnswerCount: session?.knownCount ?? knownAnswerCount,
       unknownAnswerCount: session?.unknownCount ?? unknownAnswerCount,
       averageDurationMs: getAverageDuration(sessionDurations),
+      viewedWords: session?.viewedWords,
+      totalWords: session?.totalWords,
+      progressPercent: session?.progressPercent,
+      suspiciousFastWords: session?.suspiciousFastWords,
       knownWords,
       unknownWords,
     });
@@ -307,6 +321,9 @@ export default async function AdminOverviewPage({
   const totalUnknown = filteredRows.reduce((sum, row) => sum + row.unknownAnswerCount, 0);
   const totalAnswers = filteredRows.reduce((sum, row) => sum + row.eventCount, 0);
   const overallScore = getScore(totalKnown, totalUnknown);
+  const totalViewedWords = filteredRows.reduce((sum, row) => sum + (row.viewedWords ?? 0), 0);
+  const totalTrainingWords = filteredRows.reduce((sum, row) => sum + (row.totalWords ?? 0), 0);
+  const onlyTrainingRows = filteredRows.length > 0 && filteredRows.every((row) => row.mode === "training");
 
   return (
     <main className={`min-h-screen bg-[radial-gradient(circle_at_top_right,#fde68a_0%,#fff7ed_32%,#f8fafc_72%)] p-6 md:p-10 ${displayFont.className}`}>
@@ -378,12 +395,20 @@ export default async function AdminOverviewPage({
               <div className="text-2xl font-bold text-slate-900 mt-1">{totalSessions}</div>
             </div>
             <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
-              <div className="text-xs uppercase tracking-wide text-emerald-700">Gewusst</div>
-              <div className="text-2xl font-bold text-emerald-900 mt-1">{totalKnown}</div>
+              <div className="text-xs uppercase tracking-wide text-emerald-700">
+                {onlyTrainingRows ? "Gesehen" : "Gewusst"}
+              </div>
+              <div className="text-2xl font-bold text-emerald-900 mt-1">
+                {onlyTrainingRows ? totalViewedWords : totalKnown}
+              </div>
             </div>
             <div className="rounded-2xl border border-rose-200 bg-rose-50 p-4">
-              <div className="text-xs uppercase tracking-wide text-rose-700">Nicht gewusst</div>
-              <div className="text-2xl font-bold text-rose-900 mt-1">{totalUnknown}</div>
+              <div className="text-xs uppercase tracking-wide text-rose-700">
+                {onlyTrainingRows ? "Gesamt Vokabeln" : "Nicht gewusst"}
+              </div>
+              <div className="text-2xl font-bold text-rose-900 mt-1">
+                {onlyTrainingRows ? totalTrainingWords : totalUnknown}
+              </div>
             </div>
             <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4">
               <div className="text-xs uppercase tracking-wide text-amber-700">Score</div>
@@ -405,6 +430,12 @@ export default async function AdminOverviewPage({
                 const averageDuration = getAverageDuration(word.durationSamples);
                 return averageDuration !== undefined && averageDuration < 1000;
               }).length;
+              const trainingViewed = row.viewedWords ?? row.knownAnswerCount;
+              const trainingTotal = row.totalWords ?? Math.max(row.knownAnswerCount + row.unknownAnswerCount, 0);
+              const trainingPercent =
+                row.progressPercent ??
+                (trainingTotal > 0 ? Math.round((trainingViewed / trainingTotal) * 100) : 0);
+              const trainingSuspiciousFast = row.suspiciousFastWords ?? 0;
               return (
                 <section
                   key={row.sessionId}
@@ -418,27 +449,60 @@ export default async function AdminOverviewPage({
                         <div className="mt-2 inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">
                           Datei: {row.selectedFile}
                         </div>
+                        <div className="mt-2 inline-flex items-center rounded-full bg-indigo-100 px-3 py-1 text-xs font-medium text-indigo-700">
+                          Modus: {row.mode}
+                        </div>
                       </div>
 
                       <div className="min-w-[220px]">
-                        <div className="flex items-center justify-between text-xs text-slate-500 mb-1">
-                          <span>Lernscore</span>
-                          <span>{score}%</span>
-                        </div>
-                        <div className="h-2 rounded-full bg-slate-200 overflow-hidden">
-                          <div className="h-full bg-gradient-to-r from-emerald-500 to-amber-500" style={{ width: `${score}%` }} />
-                        </div>
-                        <div className="mt-3 grid grid-cols-4 gap-2 text-sm">
-                          <div className="rounded-lg bg-emerald-50 border border-emerald-200 px-2 py-1 text-emerald-800 text-center">{row.knownAnswerCount} ✓</div>
-                          <div className="rounded-lg bg-rose-50 border border-rose-200 px-2 py-1 text-rose-800 text-center">{row.unknownAnswerCount} ✗</div>
-                          <div className="rounded-lg bg-slate-50 border border-slate-200 px-2 py-1 text-slate-700 text-center">{row.eventCount} #</div>
-                          <div className="rounded-lg bg-amber-50 border border-amber-200 px-2 py-1 text-amber-800 text-center">{formatDuration(row.averageDurationMs)}</div>
-                        </div>
-                        {suspiciousKnownCount > 0 ? (
-                          <div className="mt-2 text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-2 py-1">
-                            {suspiciousKnownCount}x sehr schnell (&lt;1s) korrekt beantwortet
-                          </div>
-                        ) : null}
+                        {row.mode === "exam" ? (
+                          <>
+                            <div className="flex items-center justify-between text-xs text-slate-500 mb-1">
+                              <span>Lernscore</span>
+                              <span>{score}%</span>
+                            </div>
+                            <div className="h-2 rounded-full bg-slate-200 overflow-hidden">
+                              <div className="h-full bg-gradient-to-r from-emerald-500 to-amber-500" style={{ width: `${score}%` }} />
+                            </div>
+                            <div className="mt-3 grid grid-cols-4 gap-2 text-sm">
+                              <div className="rounded-lg bg-emerald-50 border border-emerald-200 px-2 py-1 text-emerald-800 text-center">{row.knownAnswerCount} ✓</div>
+                              <div className="rounded-lg bg-rose-50 border border-rose-200 px-2 py-1 text-rose-800 text-center">{row.unknownAnswerCount} ✗</div>
+                              <div className="rounded-lg bg-slate-50 border border-slate-200 px-2 py-1 text-slate-700 text-center">{row.eventCount} #</div>
+                              <div className="rounded-lg bg-amber-50 border border-amber-200 px-2 py-1 text-amber-800 text-center">{formatDuration(row.averageDurationMs)}</div>
+                            </div>
+                            {suspiciousKnownCount > 0 ? (
+                              <div className="mt-2 text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-2 py-1">
+                                {suspiciousKnownCount}x sehr schnell (&lt;1s) korrekt beantwortet
+                              </div>
+                            ) : null}
+                          </>
+                        ) : (
+                          <>
+                            <div className="flex items-center justify-between text-xs text-slate-500 mb-1">
+                              <span>Trainingsfortschritt</span>
+                              <span>{trainingPercent}%</span>
+                            </div>
+                            <div className="h-2 rounded-full bg-slate-200 overflow-hidden">
+                              <div className="h-full bg-gradient-to-r from-indigo-500 to-cyan-500" style={{ width: `${trainingPercent}%` }} />
+                            </div>
+                            <div className="mt-3 grid grid-cols-3 gap-2 text-sm">
+                              <div className="rounded-lg bg-indigo-50 border border-indigo-200 px-2 py-1 text-indigo-800 text-center">
+                                {trainingViewed}/{trainingTotal}
+                              </div>
+                              <div className="rounded-lg bg-slate-50 border border-slate-200 px-2 py-1 text-slate-700 text-center">
+                                {trainingPercent}%
+                              </div>
+                              <div className="rounded-lg bg-amber-50 border border-amber-200 px-2 py-1 text-amber-800 text-center">
+                                {trainingSuspiciousFast}
+                              </div>
+                            </div>
+                            {trainingSuspiciousFast > 0 ? (
+                              <div className="mt-2 text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-2 py-1">
+                                {trainingSuspiciousFast}x Vokabel auffällig schnell weitergeklickt (&lt;1s)
+                              </div>
+                            ) : null}
+                          </>
+                        )}
                       </div>
                     </div>
 
@@ -448,7 +512,8 @@ export default async function AdminOverviewPage({
                     </div>
                   </div>
 
-                  <div className="grid lg:grid-cols-2 gap-0">
+                  {row.mode === "exam" ? (
+                    <div className="grid lg:grid-cols-2 gap-0">
                     <div className="p-5 md:p-6 border-b lg:border-b-0 lg:border-r border-slate-100">
                       <h3 className="font-semibold text-emerald-700 mb-3">Gewusst</h3>
                       {row.knownWords.length === 0 ? (
@@ -572,7 +637,16 @@ export default async function AdminOverviewPage({
                         </>
                       )}
                     </div>
-                  </div>
+                    </div>
+                  ) : (
+                    <div className="p-5 md:p-6">
+                      <h3 className="font-semibold text-indigo-700 mb-2">Training-Session</h3>
+                      <p className="text-sm text-slate-600">
+                        Im Trainingsmodus wird kein „gewusst / nicht gewusst“ erfasst. Es wird nur gespeichert,
+                        wie viele Vokabeln angesehen wurden.
+                      </p>
+                    </div>
+                  )}
                 </section>
               );
             })}

@@ -62,4 +62,5 @@ export interface TrainingSessionFinalizePayload extends LoggingIdentity {
   viewedWords?: number;
   totalWords?: number;
   progressPercent?: number;
+  suspiciousFastWords?: number;
 }

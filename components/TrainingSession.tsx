@@ -6,9 +6,16 @@ import TrainingCard from "@/components/TrainingCard";
 import SessionComplete from "@/components/SessionComplete";
 import StatsModal from "@/components/StatsModal";
 import InactivityModal from "@/components/InactivityModal";
-import { Word, WordProgress, SessionStats } from "@/types";
+import {
+  LoggingIdentity,
+  SessionWordAggregate,
+  TrainingAnswerEventPayload,
+  TrainingSessionFinalizePayload,
+  Word,
+  WordProgress,
+  SessionStats,
+} from "@/types";
 import { FileOption } from "@/lib/data";
-import { getWordsForFile } from "@/lib/data";
 
 interface TrainingSessionProps {
   initialAvailableFiles: FileOption[];
@@ -24,6 +31,7 @@ interface PersistedProgress {
 }
 
 const STORAGE_KEY_PREFIX = "word-trainer-progress";
+const ANONYMOUS_CLIENT_ID_KEY = "word-trainer-anonymous-client-id";
 
 // Format time in seconds to MM:SS
 const formatTime = (seconds: number): string => {
@@ -59,9 +67,226 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
   const [breakEndTime, setBreakEndTime] = useState<number | null>(null);
   const [highScore, setHighScore] = useState<number>(0);
   const [showInactivityModal, setShowInactivityModal] = useState(false);
+  const [loggingIdentity, setLoggingIdentity] = useState<LoggingIdentity>({});
   
   // Store all transformed words (for reference when loading saved progress)
   const allWordsRef = useRef<Word[]>([]);
+  const pendingEventsRef = useRef<TrainingAnswerEventPayload[]>([]);
+  const isFlushingEventsRef = useRef(false);
+  const activeSessionRef = useRef<{
+    sessionId: string;
+    startedAt: string;
+    mode: "exam";
+    selectedFile: string;
+  } | null>(null);
+  const finalizedSessionIdsRef = useRef<Set<string>>(new Set());
+  const sessionAnalyticsRef = useRef<{
+    knownCount: number;
+    unknownCount: number;
+    totalAnswers: number;
+    unknownByWord: Map<number, SessionWordAggregate>;
+  }>({
+    knownCount: 0,
+    unknownCount: 0,
+    totalAnswers: 0,
+    unknownByWord: new Map<number, SessionWordAggregate>(),
+  });
+
+  const textToSha256 = async (value: string): Promise<string> => {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(value);
+    const hash = await window.crypto.subtle.digest("SHA-256", data);
+    return Array.from(new Uint8Array(hash))
+      .map((byte) => byte.toString(16).padStart(2, "0"))
+      .join("");
+  };
+
+  const getOrCreateAnonymousClientId = (): string => {
+    if (typeof window === "undefined") {
+      return "";
+    }
+
+    const existing = localStorage.getItem(ANONYMOUS_CLIENT_ID_KEY);
+    if (existing) {
+      return existing;
+    }
+
+    const generatedId =
+      typeof crypto !== "undefined" && typeof crypto.randomUUID === "function"
+        ? crypto.randomUUID()
+        : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+
+    localStorage.setItem(ANONYMOUS_CLIENT_ID_KEY, generatedId);
+    return generatedId;
+  };
+
+  const buildSystemFingerprintHash = async (): Promise<string | null> => {
+    if (typeof window === "undefined" || typeof navigator === "undefined") {
+      return null;
+    }
+    if (!window.crypto?.subtle) {
+      return null;
+    }
+
+    const parts = [
+      navigator.userAgent,
+      navigator.language,
+      navigator.platform,
+      Intl.DateTimeFormat().resolvedOptions().timeZone,
+      String(window.screen?.width || ""),
+      String(window.screen?.height || ""),
+      String(navigator.hardwareConcurrency || ""),
+    ];
+    const fingerprintInput = parts.join("|");
+    return textToSha256(fingerprintInput);
+  };
+
+  const sendSessionEvent = useCallback(async (payload: TrainingAnswerEventPayload): Promise<boolean> => {
+    try {
+      const response = await fetch("/api/logs/session-event", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      return response.ok;
+    } catch (error) {
+      console.error("Session-event upload failed:", error);
+      return false;
+    }
+  }, []);
+
+  const flushPendingEvents = useCallback(async () => {
+    if (isFlushingEventsRef.current) {
+      return;
+    }
+
+    isFlushingEventsRef.current = true;
+
+    try {
+      while (pendingEventsRef.current.length > 0) {
+        const nextEvent = pendingEventsRef.current[0];
+        const sent = await sendSessionEvent(nextEvent);
+
+        if (!sent) {
+          break;
+        }
+
+        pendingEventsRef.current.shift();
+      }
+    } finally {
+      isFlushingEventsRef.current = false;
+    }
+  }, [sendSessionEvent]);
+
+  const enqueueSessionEvent = useCallback(
+    (payload: TrainingAnswerEventPayload) => {
+      pendingEventsRef.current.push(payload);
+      void flushPendingEvents();
+    },
+    [flushPendingEvents],
+  );
+
+  const postSessionFinalize = useCallback(async (payload: TrainingSessionFinalizePayload): Promise<boolean> => {
+    try {
+      const response = await fetch("/api/logs/session-finalize", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      return response.ok;
+    } catch (error) {
+      console.error("Session-finalize upload failed:", error);
+      return false;
+    }
+  }, []);
+
+  const resetSessionAnalytics = () => {
+    sessionAnalyticsRef.current = {
+      knownCount: 0,
+      unknownCount: 0,
+      totalAnswers: 0,
+      unknownByWord: new Map<number, SessionWordAggregate>(),
+    };
+  };
+
+  const startExamLoggingSession = (file: string) => {
+    const sessionId =
+      typeof crypto !== "undefined" && typeof crypto.randomUUID === "function"
+        ? crypto.randomUUID()
+        : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+
+    activeSessionRef.current = {
+      sessionId,
+      startedAt: new Date().toISOString(),
+      mode: "exam",
+      selectedFile: file,
+    };
+    resetSessionAnalytics();
+  };
+
+  const finalizeActiveSession = useCallback(async () => {
+    const activeSession = activeSessionRef.current;
+    if (!activeSession) {
+      return;
+    }
+    if (finalizedSessionIdsRef.current.has(activeSession.sessionId)) {
+      return;
+    }
+
+    finalizedSessionIdsRef.current.add(activeSession.sessionId);
+    await flushPendingEvents();
+
+    const unknownByWord = Array.from(sessionAnalyticsRef.current.unknownByWord.values());
+    const payload: TrainingSessionFinalizePayload = {
+      sessionId: activeSession.sessionId,
+      startedAt: activeSession.startedAt,
+      endedAt: new Date().toISOString(),
+      mode: activeSession.mode,
+      selectedFile: activeSession.selectedFile,
+      knownCount: sessionAnalyticsRef.current.knownCount,
+      unknownCount: sessionAnalyticsRef.current.unknownCount,
+      totalAnswers: sessionAnalyticsRef.current.totalAnswers,
+      unknownByWord,
+      ...loggingIdentity,
+    };
+
+    const sent = await postSessionFinalize(payload);
+    if (sent) {
+      activeSessionRef.current = null;
+      resetSessionAnalytics();
+    } else {
+      finalizedSessionIdsRef.current.delete(activeSession.sessionId);
+    }
+  }, [flushPendingEvents, loggingIdentity, postSessionFinalize]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    let isMounted = true;
+
+    const initIdentity = async () => {
+      const anonymousClientId = getOrCreateAnonymousClientId();
+      try {
+        const systemFingerprintHash = await buildSystemFingerprintHash();
+        if (!isMounted) return;
+        setLoggingIdentity(
+          systemFingerprintHash
+            ? { systemFingerprintHash }
+            : { anonymousClientId },
+        );
+      } catch (error) {
+        console.error("Fingerprint generation failed, using anonymous client ID:", error);
+        if (!isMounted) return;
+        setLoggingIdentity({ anonymousClientId });
+      }
+    };
+
+    void initIdentity();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // Helper to get storage key
   const getStorageKey = (file: string, mode: string) => `${STORAGE_KEY_PREFIX}-${file}-${mode}`;
@@ -188,6 +413,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
         
         // Check for inactivity (2 minute = 120 seconds)
         if (lastInteractionTime && (now - lastInteractionTime) > 120000) {
+          void finalizeActiveSession();
           setSessionStartTime(null);
           setSessionTime(0);
           setLastInteractionTime(null);
@@ -212,7 +438,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
       }, 1000);
       return () => clearInterval(interval);
     }
-  }, [sessionStartTime, lastInteractionTime, isOnBreak, breakEndTime, highScore]);
+  }, [sessionStartTime, lastInteractionTime, isOnBreak, breakEndTime, highScore, finalizeActiveSession]);
 
   // Load saved progress when file/mode changes
   useEffect(() => {
@@ -469,6 +695,12 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     setSessionStartTime(now);
     setLastInteractionTime(now);
     setShowInactivityModal(false);
+    if (selectedMode === "exam") {
+      startExamLoggingSession(selectedFile);
+    } else {
+      activeSessionRef.current = null;
+      resetSessionAnalytics();
+    }
     // Reload words for the current selected file to ensure we have the latest data
     // For training mode, always reset. For exam mode, loadWords will check if we should reset
     if (selectedFile && availableFiles.length > 0) {
@@ -503,6 +735,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
 
   const handleAnswer = (isCorrect: boolean) => {
     if (!isRevealed) return;
+    if (mode !== "exam") return;
 
     const now = Date.now();
     setLastInteractionTime(now);
@@ -514,6 +747,9 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
 
     const currentWord = words[currentIndex];
     if (!currentWord) return;
+
+    const previousProgress = allProgress.get(currentWord.id);
+    const attemptNumber = (previousProgress?.attempts ?? 0) + 1;
     
     setAllProgress((prev) => {
       const newMap = new Map(prev);
@@ -539,6 +775,47 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
       newMap.set(currentWord.id, updatedProgress);
       return newMap;
     });
+
+    const activeSession = activeSessionRef.current;
+    if (activeSession) {
+      const analytics = sessionAnalyticsRef.current;
+      analytics.totalAnswers += 1;
+      if (isCorrect) {
+        analytics.knownCount += 1;
+      } else {
+        analytics.unknownCount += 1;
+      }
+
+      const existingAggregate = analytics.unknownByWord.get(currentWord.id) || {
+        wordId: currentWord.id,
+        incorrectCount: 0,
+        correctCount: 0,
+      };
+
+      const updatedAggregate: SessionWordAggregate = {
+        ...existingAggregate,
+        incorrectCount: existingAggregate.incorrectCount + (isCorrect ? 0 : 1),
+        correctCount: existingAggregate.correctCount + (isCorrect ? 1 : 0),
+      };
+      analytics.unknownByWord.set(currentWord.id, updatedAggregate);
+
+      const payload: TrainingAnswerEventPayload = {
+        sessionId: activeSession.sessionId,
+        timestamp: new Date(now).toISOString(),
+        mode: "exam",
+        selectedFile: activeSession.selectedFile,
+        wordId: currentWord.id,
+        source: currentWord.source,
+        target: currentWord.target,
+        isCorrect,
+        attemptNumber,
+        durationMs: duration,
+        reverseDirection,
+        ...loggingIdentity,
+      };
+
+      enqueueSessionEvent(payload);
+    }
     
     moveToNextWord();
   };
@@ -635,6 +912,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
   const calculateFinalStats = () => {
     const currentStats = calculateCurrentStats();
     setStats(currentStats);
+    void finalizeActiveSession();
   };
 
   const handleStop = () => {
@@ -651,6 +929,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
   };
 
   const handleStopFromModal = () => {
+    void finalizeActiveSession();
     // Actually stop the session and return to start screen (keep progress)
     setSessionStartTime(null);
     setSessionTime(0);
@@ -665,6 +944,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
   };
 
   const handleRestart = () => {
+    void finalizeActiveSession();
     clearProgress(selectedFile, mode || "exam");
     setSessionComplete(false);
     setStats(null);
@@ -1013,4 +1293,3 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     </>
   );
 }
-

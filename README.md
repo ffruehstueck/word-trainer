@@ -61,3 +61,22 @@ You can create additional JSON files and modify the code to load multiple files.
 
 You can adjust the batch size by modifying `BATCH_SIZE` in `app/page.tsx` (currently set to 10).
 
+## Session Logging to Strapi
+
+The app now logs exam-session analytics through internal Next.js proxy routes:
+
+- `POST /api/logs/session-event`
+- `POST /api/logs/session-finalize`
+
+Set these environment variables for server-to-server forwarding:
+
+```bash
+STRAPI_URL=https://your-strapi-host
+STRAPI_TOKEN=your-strapi-api-token
+```
+
+Expected Strapi collection endpoints:
+
+- `/api/training-answer-events`
+- `/api/training-sessions`
+- `/api/training-session-word-aggregates`

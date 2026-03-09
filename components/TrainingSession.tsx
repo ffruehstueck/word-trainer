@@ -76,7 +76,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
   const activeSessionRef = useRef<{
     sessionId: string;
     startedAt: string;
-    mode: "exam";
+    mode: "exam" | "training";
     selectedFile: string;
   } | null>(null);
   const finalizedSessionIdsRef = useRef<Set<string>>(new Set());
@@ -90,6 +90,13 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     unknownCount: 0,
     totalAnswers: 0,
     unknownByWord: new Map<number, SessionWordAggregate>(),
+  });
+  const trainingAnalyticsRef = useRef<{
+    viewedWordIds: Set<number>;
+    totalWords: number;
+  }>({
+    viewedWordIds: new Set<number>(),
+    totalWords: 0,
   });
 
   const textToSha256 = async (value: string): Promise<string> => {
@@ -209,7 +216,14 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     };
   };
 
-  const startExamLoggingSession = (file: string) => {
+  const resetTrainingAnalytics = () => {
+    trainingAnalyticsRef.current = {
+      viewedWordIds: new Set<number>(),
+      totalWords: 0,
+    };
+  };
+
+  const startLoggingSession = (loggingMode: "exam" | "training", file: string) => {
     const sessionId =
       typeof crypto !== "undefined" && typeof crypto.randomUUID === "function"
         ? crypto.randomUUID()
@@ -218,10 +232,11 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     activeSessionRef.current = {
       sessionId,
       startedAt: new Date().toISOString(),
-      mode: "exam",
+      mode: loggingMode,
       selectedFile: file,
     };
     resetSessionAnalytics();
+    resetTrainingAnalytics();
   };
 
   const finalizeActiveSession = useCallback(async () => {
@@ -236,24 +251,51 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     finalizedSessionIdsRef.current.add(activeSession.sessionId);
     await flushPendingEvents();
 
-    const unknownByWord = Array.from(sessionAnalyticsRef.current.unknownByWord.values());
-    const payload: TrainingSessionFinalizePayload = {
-      sessionId: activeSession.sessionId,
-      startedAt: activeSession.startedAt,
-      endedAt: new Date().toISOString(),
-      mode: activeSession.mode,
-      selectedFile: activeSession.selectedFile,
-      knownCount: sessionAnalyticsRef.current.knownCount,
-      unknownCount: sessionAnalyticsRef.current.unknownCount,
-      totalAnswers: sessionAnalyticsRef.current.totalAnswers,
-      unknownByWord,
-      ...loggingIdentity,
-    };
+    const payload: TrainingSessionFinalizePayload =
+      activeSession.mode === "exam"
+        ? {
+            sessionId: activeSession.sessionId,
+            startedAt: activeSession.startedAt,
+            endedAt: new Date().toISOString(),
+            mode: "exam",
+            selectedFile: activeSession.selectedFile,
+            knownCount: sessionAnalyticsRef.current.knownCount,
+            unknownCount: sessionAnalyticsRef.current.unknownCount,
+            totalAnswers: sessionAnalyticsRef.current.totalAnswers,
+            unknownByWord: Array.from(sessionAnalyticsRef.current.unknownByWord.values()),
+            ...loggingIdentity,
+          }
+        : {
+            sessionId: activeSession.sessionId,
+            startedAt: activeSession.startedAt,
+            endedAt: new Date().toISOString(),
+            mode: "training",
+            selectedFile: activeSession.selectedFile,
+            knownCount: trainingAnalyticsRef.current.viewedWordIds.size,
+            unknownCount: Math.max(
+              trainingAnalyticsRef.current.totalWords - trainingAnalyticsRef.current.viewedWordIds.size,
+              0,
+            ),
+            totalAnswers: trainingAnalyticsRef.current.viewedWordIds.size,
+            unknownByWord: [],
+            viewedWords: trainingAnalyticsRef.current.viewedWordIds.size,
+            totalWords: trainingAnalyticsRef.current.totalWords,
+            progressPercent:
+              trainingAnalyticsRef.current.totalWords > 0
+                ? Math.round(
+                    (trainingAnalyticsRef.current.viewedWordIds.size /
+                      trainingAnalyticsRef.current.totalWords) *
+                      100,
+                  )
+                : 0,
+            ...loggingIdentity,
+          };
 
     const sent = await postSessionFinalize(payload);
     if (sent) {
       activeSessionRef.current = null;
       resetSessionAnalytics();
+      resetTrainingAnalytics();
     } else {
       finalizedSessionIdsRef.current.delete(activeSession.sessionId);
     }
@@ -645,6 +687,19 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     }
   }, [mode]);
 
+  // Track viewed words in training mode for session logging
+  useEffect(() => {
+    if (mode !== "training" || !sessionStarted) return;
+    if (words.length === 0) return;
+    if (!activeSessionRef.current || activeSessionRef.current.mode !== "training") return;
+
+    trainingAnalyticsRef.current.totalWords = words.length;
+    const currentWord = words[currentIndex];
+    if (currentWord) {
+      trainingAnalyticsRef.current.viewedWordIds.add(currentWord.id);
+    }
+  }, [mode, sessionStarted, words, currentIndex]);
+
   const handleInteraction = useCallback(() => {
     if (!sessionStartTime) {
       setSessionStartTime(Date.now());
@@ -695,12 +750,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     setSessionStartTime(now);
     setLastInteractionTime(now);
     setShowInactivityModal(false);
-    if (selectedMode === "exam") {
-      startExamLoggingSession(selectedFile);
-    } else {
-      activeSessionRef.current = null;
-      resetSessionAnalytics();
-    }
+    startLoggingSession(selectedMode, selectedFile);
     // Reload words for the current selected file to ensure we have the latest data
     // For training mode, always reset. For exam mode, loadWords will check if we should reset
     if (selectedFile && availableFiles.length > 0) {

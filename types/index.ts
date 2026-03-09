@@ -53,10 +53,13 @@ export interface TrainingSessionFinalizePayload extends LoggingIdentity {
   sessionId: string;
   startedAt: string;
   endedAt: string;
-  mode: "exam";
+  mode: "exam" | "training";
   selectedFile: string;
   knownCount: number;
   unknownCount: number;
   totalAnswers: number;
   unknownByWord: SessionWordAggregate[];
+  viewedWords?: number;
+  totalWords?: number;
+  progressPercent?: number;
 }

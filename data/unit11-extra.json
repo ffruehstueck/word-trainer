@@ -1,0 +1,16 @@
+[
+  { "id": 1, "source": "roof", "target": "Dach", "sourceLanguage": "English", "targetLanguage": "German" },
+  { "id": 2, "source": "living room", "target": "Wohnzimmer", "sourceLanguage": "English", "targetLanguage": "German" },
+  { "id": 3, "source": "chimney", "target": "Schornstein", "sourceLanguage": "English", "targetLanguage": "German" },
+  { "id": 4, "source": "kitchen", "target": "Küche", "sourceLanguage": "English", "targetLanguage": "German" },
+  { "id": 5, "source": "garage", "target": "Garage", "sourceLanguage": "English", "targetLanguage": "German" },
+  { "id": 6, "source": "bedroom", "target": "Schlafzimmer", "sourceLanguage": "English", "targetLanguage": "German" },
+  { "id": 7, "source": "balcony", "target": "Balkon", "sourceLanguage": "English", "targetLanguage": "German" },
+  { "id": 8, "source": "bathroom", "target": "Badezimmer", "sourceLanguage": "English", "targetLanguage": "German" },
+  { "id": 9, "source": "terrace", "target": "Terrasse", "sourceLanguage": "English", "targetLanguage": "German" },
+  { "id": 10, "source": "dining room", "target": "Esszimmer", "sourceLanguage": "English", "targetLanguage": "German" },
+  { "id": 11, "source": "hallway", "target": "Flur", "sourceLanguage": "English", "targetLanguage": "German" },
+  { "id": 12, "source": "garden", "target": "Garten", "sourceLanguage": "English", "targetLanguage": "German" },
+  { "id": 13, "source": "fence", "target": "Zaun", "sourceLanguage": "English", "targetLanguage": "German" },
+  { "id": 14, "source": "attic", "target": "Dachboden", "sourceLanguage": "English", "targetLanguage": "German" }
+]

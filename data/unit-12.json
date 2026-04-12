@@ -1,52 +1,401 @@
 [
-  { "id": 1, "source": "bath", "target": "Bad", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 2, "source": "medicine", "target": "Medizin", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 3, "source": "memory", "target": "Gedächtnis", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 4, "source": "patient", "target": "Patient/Patientin", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 5, "source": "spoon", "target": "Löffel", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 6, "source": "blood", "target": "Blut", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 7, "source": "lamp post", "target": "Laternenmast", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 8, "source": "cure", "target": "Heilmittel", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 9, "source": "to cure", "target": "heilen", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 10, "source": "dentist", "target": "Zahnarzt/Zahnärztin", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 11, "source": "to mash", "target": "zerdrücken, zerstampfen", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 12, "source": "to mix", "target": "vermischen", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 13, "source": "taste", "target": "Geschmack", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 14, "source": "toothpaste", "target": "Zahnpasta", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 15, "source": "worm", "target": "Wurm", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 16, "source": "smell", "target": "Geruch", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 17, "source": "first aid", "target": "Erste Hilfe", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 18, "source": "helpful", "target": "hilfsbereit", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 19, "source": "horrible", "target": "schrecklich", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 20, "source": "pupil", "target": "Schüler/Schülerin", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 21, "source": "since", "target": "seit", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 22, "source": "Believe me!", "target": "Glaub mir!", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 23, "source": "to injure", "target": "verletzen", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 24, "source": "It doesn't matter.", "target": "Das macht nichts. Egal.", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 25, "source": "writer", "target": "Schriftsteller/Schriftstellerin", "sourceLanguage": "English", "targetLanguage": "German" },
-
-  { "id": 26, "source": "I have to give my dog a bath. She's very dirty.", "target": "Ich muss meinem Hund ein Bad geben. Sie ist sehr schmutzig.", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 27, "source": "The doctor says you should take your medicine.", "target": "Der Arzt sagt, du sollst deine Medizin nehmen.", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 28, "source": "Her memory is very good. She can remember lots of important facts.", "target": "Ihr Gedächtnis ist sehr gut. Sie kann sich an viele wichtige Fakten erinnern.", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 29, "source": "There are many patient and doctor jokes.", "target": "Es gibt viele Patienten- und Arztwitze.", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 30, "source": "I need a spoon to eat my soup.", "target": "Ich brauche einen Löffel, um meine Suppe zu essen.", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 31, "source": "There's blood on your T-shirt. It's all red.", "target": "Da ist Blut auf deinem T-Shirt. Es ist ganz rot.", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 32, "source": "Ouch – I've just walked into a lamp post.", "target": "Autsch – ich bin gerade gegen einen Laternenmast gelaufen.", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 33, "source": "In Ancient Egypt, a dead mouse was a cure for toothache.", "target": "Im alten Ägypten war eine tote Maus ein Heilmittel gegen Zahnschmerzen.", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 34, "source": "Worms cured stomach ache.", "target": "Würmer heilten Bauchschmerzen.", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 35, "source": "I want to become a dentist.", "target": "Ich möchte Zahnarzt/Zahnärztin werden.", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 36, "source": "They mashed a dead mouse and mixed it with food to get a paste.", "target": "Sie zerstampften eine tote Maus und vermischten sie mit Essen, um eine Paste zu erhalten.", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 37, "source": "I mix my pet's medicine with its food.", "target": "Ich mische die Medizin meines Haustiers mit seinem Futter.", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 38, "source": "The taste was very good.", "target": "Der Geschmack war sehr gut.", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 39, "source": "In Ancient Rome, people didn't have toothpaste.", "target": "Im alten Rom hatten die Menschen keine Zahnpasta.", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 40, "source": "A worm lives under the ground.", "target": "Ein Wurm lebt unter der Erde.", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 41, "source": "The smell of the fish was awful.", "target": "Der Geruch des Fisches war schrecklich.", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 42, "source": "We have first aid classes at school.", "target": "Wir haben Erste-Hilfe-Unterricht in der Schule.", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 43, "source": "She has always been a great and helpful friend.", "target": "Sie war immer eine großartige und hilfsbereite Freundin.", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 44, "source": "The accident was horrible!", "target": "Der Unfall war schrecklich!", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 45, "source": "Sam is a very helpful pupil.", "target": "Sam ist ein sehr hilfsbereiter Schüler.", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 46, "source": "I've been in hospital since last week.", "target": "Ich bin seit letzter Woche im Krankenhaus.", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 47, "source": "It's true. Believe me!", "target": "Es ist wahr. Glaub mir!", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 48, "source": "I don't want to injure my knee again.", "target": "Ich möchte mein Knie nicht noch einmal verletzen.", "sourceLanguage": "English", "targetLanguage": "German" },
-  { "id": 49, "source": "I don't know who the writer of this text is.", "target": "Ich weiß nicht, wer der Schriftsteller dieses Textes ist.", "sourceLanguage": "English", "targetLanguage": "German" }
+  {
+    "id": 1,
+    "source": "bath",
+    "target": "Bad",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 2,
+    "source": "medicine",
+    "target": "Medizin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 3,
+    "source": "memory",
+    "target": "Gedächtnis",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 4,
+    "source": "patient",
+    "target": "Patient/Patientin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 5,
+    "source": "spoon",
+    "target": "Löffel",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 6,
+    "source": "blood",
+    "target": "Blut",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 7,
+    "source": "lamp post",
+    "target": "Laternenmast",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 8,
+    "source": "cure",
+    "target": "Heilmittel",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 9,
+    "source": "to cure",
+    "target": "heilen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 10,
+    "source": "dentist",
+    "target": "Zahnarzt/Zahnärztin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 11,
+    "source": "to mash",
+    "target": "zerdrücken, zerstampfen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 12,
+    "source": "to mix",
+    "target": "vermischen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 13,
+    "source": "taste",
+    "target": "Geschmack",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 14,
+    "source": "toothpaste",
+    "target": "Zahnpasta",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 15,
+    "source": "worm",
+    "target": "Wurm",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 16,
+    "source": "smell",
+    "target": "Geruch",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 17,
+    "source": "first aid",
+    "target": "Erste Hilfe",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 18,
+    "source": "helpful",
+    "target": "hilfsbereit",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 19,
+    "source": "horrible",
+    "target": "schrecklich",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 20,
+    "source": "pupil",
+    "target": "Schüler/Schülerin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 21,
+    "source": "since",
+    "target": "seit",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 22,
+    "source": "Believe me!",
+    "target": "Glaub mir!",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 23,
+    "source": "to injure",
+    "target": "verletzen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 24,
+    "source": "It doesn't matter.",
+    "target": "Das macht nichts. Egal.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 25,
+    "source": "writer",
+    "target": "Schriftsteller/Schriftstellerin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 26,
+    "source": "I have to give my dog a bath. She's very dirty.",
+    "target": "Ich muss meinem Hund ein Bad geben. Sie ist sehr schmutzig.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 27,
+    "source": "The doctor says you should take your medicine.",
+    "target": "Der Arzt sagt, du sollst deine Medizin nehmen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 28,
+    "source": "Her memory is very good. She can remember lots of important facts.",
+    "target": "Ihr Gedächtnis ist sehr gut. Sie kann sich an viele wichtige Fakten erinnern.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 29,
+    "source": "There are many patient and doctor jokes.",
+    "target": "Es gibt viele Patienten- und Arztwitze.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 30,
+    "source": "I need a spoon to eat my soup.",
+    "target": "Ich brauche einen Löffel, um meine Suppe zu essen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 31,
+    "source": "There's blood on your T-shirt. It's all red.",
+    "target": "Da ist Blut auf deinem T-Shirt. Es ist ganz rot.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 32,
+    "source": "Ouch – I've just walked into a lamp post.",
+    "target": "Autsch – ich bin gerade gegen einen Laternenmast gelaufen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 33,
+    "source": "In Ancient Egypt, a dead mouse was a cure for toothache.",
+    "target": "Im alten Ägypten war eine tote Maus ein Heilmittel gegen Zahnschmerzen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 34,
+    "source": "Worms cured stomach ache.",
+    "target": "Würmer heilten Bauchschmerzen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 35,
+    "source": "I want to become a dentist.",
+    "target": "Ich möchte Zahnarzt/Zahnärztin werden.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 36,
+    "source": "They mashed a dead mouse and mixed it with food to get a paste.",
+    "target": "Sie zerstampften eine tote Maus und vermischten sie mit Essen, um eine Paste zu erhalten.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 37,
+    "source": "I mix my pet's medicine with its food.",
+    "target": "Ich mische die Medizin meines Haustiers mit seinem Futter.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 38,
+    "source": "The taste was very good.",
+    "target": "Der Geschmack war sehr gut.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 39,
+    "source": "In Ancient Rome, people didn't have toothpaste.",
+    "target": "Im alten Rom hatten die Menschen keine Zahnpasta.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 40,
+    "source": "A worm lives under the ground.",
+    "target": "Ein Wurm lebt unter der Erde.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 41,
+    "source": "The smell of the fish was awful.",
+    "target": "Der Geruch des Fisches war schrecklich.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 42,
+    "source": "We have first aid classes at school.",
+    "target": "Wir haben Erste-Hilfe-Unterricht in der Schule.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 43,
+    "source": "She has always been a great and helpful friend.",
+    "target": "Sie war immer eine großartige und hilfsbereite Freundin.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 44,
+    "source": "The accident was horrible!",
+    "target": "Der Unfall war schrecklich!",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 45,
+    "source": "Sam is a very helpful pupil.",
+    "target": "Sam ist ein sehr hilfsbereiter Schüler.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 46,
+    "source": "I've been in hospital since last week.",
+    "target": "Ich bin seit letzter Woche im Krankenhaus.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 47,
+    "source": "It's true. Believe me!",
+    "target": "Es ist wahr. Glaub mir!",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 48,
+    "source": "I don't want to injure my knee again.",
+    "target": "Ich möchte mein Knie nicht noch einmal verletzen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 49,
+    "source": "I don't know who the writer of this text is.",
+    "target": "Ich weiß nicht, wer der Schriftsteller dieses Textes ist.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 50,
+    "source": "throat",
+    "target": "Halsschmerzen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 51,
+    "source": "headache",
+    "target": "Kopfschmerzen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 52,
+    "source": "toothache",
+    "target": "Zahnschmerzen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 53,
+    "source": "earache",
+    "target": "Ohrenschmerzen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 54,
+    "source": "stomach ache",
+    "target": "Bauchschmerzen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 55,
+    "source": "backache",
+    "target": "Rückenschmerzen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 56,
+    "source": "knee",
+    "target": "Knie (Schmerzen im Knie)",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 57,
+    "source": "pain in ankle",
+    "target": "Schmerzen im Knöchel",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  }
 ]

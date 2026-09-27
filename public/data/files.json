@@ -1,55 +1,85 @@
 [
   {
-    "value": "test.json",
-    "label": "Test (5 words)"
+    "value": "class-3-unit-1.json",
+    "label": "3. KL - Unit 1",
+    "grade": 3,
+    "unit": 1
   },
   {
     "value": "unit-15.json",
-    "label": "Unit 15"
+    "label": "2. KL - Unit 15",
+    "grade": 2,
+    "unit": 15
   },
   {
     "value": "unit-14.json",
-    "label": "Unit 14"
+    "label": "2. KL - Unit 14",
+    "grade": 2,
+    "unit": 14
   },
   {
     "value": "unit-13.json",
-    "label": "Unit 13"
+    "label": "2. KL - Unit 13",
+    "grade": 2,
+    "unit": 13
   },
   {
     "value": "unit-12.json",
-    "label": "Unit 12"
+    "label": "2. KL - Unit 12",
+    "grade": 2,
+    "unit": 12
   },
   {
     "value": "unit-11.json",
-    "label": "Unit 11"
+    "label": "2. KL - Unit 11",
+    "grade": 2,
+    "unit": 11
   },
   {
     "value": "unit11-extra.json",
-    "label": "unit11-extra"
+    "label": "2. KL - Unit 11 - Extra",
+    "grade": 2,
+    "unit": 11
   },
   {
     "value": "unit-10.json",
-    "label": "Unit 10"
+    "label": "2. KL - Unit 10",
+    "grade": 2,
+    "unit": 10
   },
   {
     "value": "unit-9.json",
-    "label": "Unit 9"
+    "label": "2. KL - Unit 9",
+    "grade": 2,
+    "unit": 9
   },
   {
     "value": "unit-8.json",
-    "label": "Unit 8"
+    "label": "2. KL - Unit 8",
+    "grade": 2,
+    "unit": 8
   },
   {
     "value": "unit-7.json",
-    "label": "Unit 7"
+    "label": "2. KL - Unit 7",
+    "grade": 2,
+    "unit": 7
   },
   {
     "value": "unit-6.json",
-    "label": "Unit 6"
+    "label": "2. KL - Unit 6",
+    "grade": 2,
+    "unit": 6
   },
   {
     "value": "unit-5.json",
-    "label": "Unit 5"
+    "label": "2. KL - Unit 5",
+    "grade": 2,
+    "unit": 5
+  },
+  {
+    "value": "test.json",
+    "label": "Test (5 words)"
   },
   {
     "value": "irregular-verbs.json",

@@ -1,0 +1,443 @@
+[
+  {
+    "id": 1,
+    "source": "to agree",
+    "target": "zustimmen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 2,
+    "source": "to belong to",
+    "target": "gehören",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 3,
+    "source": "to celebrate",
+    "target": "feiern",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 4,
+    "source": "extremely",
+    "target": "extrem",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 5,
+    "source": "flute",
+    "target": "Flöte",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 6,
+    "source": "singer",
+    "target": "Sänger/Sängerin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 7,
+    "source": "successful",
+    "target": "erfolgreich",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 8,
+    "source": "talented",
+    "target": "talentiert, begabt",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 9,
+    "source": "to spill",
+    "target": "verschütten",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 10,
+    "source": "whole",
+    "target": "ganze/r/s",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 11,
+    "source": "critic",
+    "target": "Kritiker/Kritikerin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 12,
+    "source": "brave",
+    "target": "mutig",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 13,
+    "source": "not even",
+    "target": "(noch) nicht einmal",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 14,
+    "source": "suit",
+    "target": "Anzug",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 15,
+    "source": "unhappy",
+    "target": "unglücklich",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 16,
+    "source": "to waste",
+    "target": "verschwenden",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 17,
+    "source": "to feel",
+    "target": "(sich) fühlen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 18,
+    "source": "to get tired of sth.",
+    "target": "etw. satt haben",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 19,
+    "source": "lyrics",
+    "target": "Liedtext",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 20,
+    "source": "to make up",
+    "target": "erfinden, sich ausdenken",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 21,
+    "source": "record",
+    "target": "(Schall-)Platte",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 22,
+    "source": "to seem",
+    "target": "wirken, scheinen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 23,
+    "source": "to sing along",
+    "target": "mitsingen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 24,
+    "source": "tune",
+    "target": "Melodie",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 25,
+    "source": "I can't stand it.",
+    "target": "Ich kann es nicht ausstehen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 26,
+    "source": "I don't mind.",
+    "target": "Ich habe nichts dagegen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 27,
+    "source": "to come along",
+    "target": "mitkommen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 28,
+    "source": "to take place",
+    "target": "stattfinden",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 29,
+    "source": "afterwards",
+    "target": "danach, anschließend",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 30,
+    "source": "apart from",
+    "target": "abgesehen von",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 31,
+    "source": "in my opinion",
+    "target": "meiner Meinung nach",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 32,
+    "source": "to be interested in",
+    "target": "an etw. interessiert sein",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 33,
+    "source": "Me neither.",
+    "target": "Ich auch nicht.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 34,
+    "source": "I couldn't agree more.",
+    "target": "Ich stimme voll und ganz zu.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 35,
+    "source": "It probably belonged to my great-grandparents.",
+    "target": "Es gehörte wahrscheinlich meinen Urgroßeltern.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 36,
+    "source": "To celebrate music, I thought I'd share with you my favourite musical facts.",
+    "target": "Um die Musik zu feiern, dachte ich, ich teile mit euch meine Lieblingsfakten über Musik.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 37,
+    "source": "He was also extremely talented.",
+    "target": "Er war auch extrem talentiert.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 38,
+    "source": "The oldest musical instrument is the flute.",
+    "target": "Das älteste Musikinstrument ist die Flöte.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 39,
+    "source": "You can choose from 11 million singers and songs on Spotify.",
+    "target": "Auf Spotify kannst du aus 11 Millionen Sängern und Liedern wählen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 40,
+    "source": "The song was so successful that it got a statue.",
+    "target": "Das Lied war so erfolgreich, dass es eine Statue bekam.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 41,
+    "source": "She was very talented.",
+    "target": "Sie war sehr talentiert.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 42,
+    "source": "I hope she didn't spill anything on it!",
+    "target": "Ich hoffe, sie hat nichts darauf verschüttet!",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 43,
+    "source": "Your driver will drive you behind your favourite stars for the whole day.",
+    "target": "Dein Fahrer wird dich den ganzen Tag hinter deinen Lieblingsstars herfahren.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 44,
+    "source": "Paul Sacks and Simon Gray are critics on Superstar.",
+    "target": "Paul Sacks und Simon Gray sind Kritiker bei Superstar.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 45,
+    "source": "You're a brave man.",
+    "target": "Du bist ein mutiger Mann.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 46,
+    "source": "In fact you're not even a background singer.",
+    "target": "Tatsächlich bist du nicht einmal ein Backgroundsänger.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 47,
+    "source": "Sing at home, you're not wearing that suit.",
+    "target": "Sing zu Hause, du ziehst diesen Anzug nicht an.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 48,
+    "source": "Don't be too unhappy.",
+    "target": "Sei nicht zu unglücklich.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 49,
+    "source": "Don't waste our time.",
+    "target": "Verschwende nicht unsere Zeit.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 50,
+    "source": "I feel sad.",
+    "target": "Ich fühle mich traurig.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 51,
+    "source": "I never get tired of listening to music.",
+    "target": "Ich habe es nie satt, Musik zu hören.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 52,
+    "source": "The lyrics in this song should be meaningful.",
+    "target": "Der Liedtext in diesem Lied sollte sinnvoll sein.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 53,
+    "source": "I make up special dances for my fans.",
+    "target": "Ich denke mir besondere Tänze für meine Fans aus.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 54,
+    "source": "I buy a record every week.",
+    "target": "Ich kaufe jede Woche eine Schallplatte.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 55,
+    "source": "He doesn't seem to get old.",
+    "target": "Er scheint nicht alt zu werden.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 56,
+    "source": "I always sing along to the songs I like.",
+    "target": "Ich singe immer bei den Liedern mit, die ich mag.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 57,
+    "source": "I like songs with a good tune.",
+    "target": "Ich mag Lieder mit einer guten Melodie.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 58,
+    "source": "James wanted to come along.",
+    "target": "James wollte mitkommen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 59,
+    "source": "Where did the concert take place?",
+    "target": "Wo fand das Konzert statt?",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 60,
+    "source": "We'll go to the cinema and afterwards to the restaurant.",
+    "target": "Wir gehen ins Kino und danach ins Restaurant.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 61,
+    "source": "Apart from his bad taste in music, my dad's cool.",
+    "target": "Abgesehen von seinem schlechten Musikgeschmack ist mein Papa cool.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 62,
+    "source": "In my opinion, it's the best they've done.",
+    "target": "Meiner Meinung nach ist es das Beste, was sie gemacht haben.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 63,
+    "source": "He seems to be interested in her music.",
+    "target": "Er scheint an ihrer Musik interessiert zu sein.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  }
+]

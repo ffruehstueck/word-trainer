@@ -50,8 +50,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
   const [allProgress, setAllProgress] = useState<Map<number, WordProgress>>(new Map());
   const [showStats, setShowStats] = useState(false);
   const [selectedFile, setSelectedFile] = useState<string>(
-    process.env.NEXT_PUBLIC_DEFAULT_WORD_FILE || 
-    (process.env.NODE_ENV === 'development' ? 'test.json' : 'unit-8.json')
+    initialAvailableFiles.find(file => file.value !== 'test.json')?.value ?? ''
   );
   const [isLoading, setIsLoading] = useState(false);
   const [availableFiles] = useState<FileOption[]>(initialAvailableFiles);

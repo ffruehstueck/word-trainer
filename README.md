@@ -29,7 +29,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Adding Words
 
-Edit `public/data/words.json` to add your words and phrases. The format is:
+Create a JSON file in `public/data/` to add words, phrases, and example sentences as separate learning cards. The format is:
 
 ```json
 [
@@ -43,7 +43,13 @@ Edit `public/data/words.json` to add your words and phrases. The format is:
 ]
 ```
 
-You can create additional JSON files and modify the code to load multiple files.
+Register each file in `public/data/files.json` with its class (`grade`) and unit:
+
+```json
+{ "value": "class-3-unit-1.json", "label": "3. KL - Unit 1", "grade": 3, "unit": 1 }
+```
+
+Files are sorted by class and unit, newest first. The newest vocabulary file is preselected in both development and production. Entries without class/unit metadata appear after the units; `test.json` is only available in development and is never preselected. Existing file names stay unchanged to preserve saved progress. Keep matching copies in `data/` in sync when adding or editing units.
 
 ## How It Works
 

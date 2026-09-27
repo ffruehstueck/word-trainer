@@ -86,3 +86,11 @@ Expected Strapi collection endpoints:
 - `/api/training-answer-events`
 - `/api/training-sessions`
 - `/api/training-session-word-aggregates`
+
+## Exam review cards
+
+Exams add eight distinct cards from strictly older classes/units (or all available cards if fewer than eight exist). The selected unit remains complete. Files without class/unit metadata and “All Files” do not receive extra cards. Training mode is unchanged.
+
+Review selection prioritizes past mistakes using personal exam progress in this browser, then chooses randomly among equally ranked cards. Answer history is stored separately from session progress so restarting an exam keeps the difficulty history. No cross-device history is fetched from Strapi. The selected review deck is saved with progress and reused when resuming an unfinished exam.
+
+Run the review-selection checks with `node --test tests/exam-review.cjs`.

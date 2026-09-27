@@ -57,6 +57,15 @@ export async function loadAllWords(): Promise<Word[]> {
   return allWords;
 }
 
+export async function loadOlderWords(fileSelection: string): Promise<Word[]> {
+  const files = await getAvailableFiles();
+  const selected = files.find(file => file.value === fileSelection);
+  if (selected?.grade === undefined || selected.unit === undefined) return [];
+  const older = files.filter(file => file.grade !== undefined && file.unit !== undefined &&
+    (file.grade < selected.grade! || (file.grade === selected.grade && file.unit < selected.unit!)));
+  return (await Promise.all(older.map(file => loadWordsFromFile(file.value)))).flat();
+}
+
 // Server-side function to load words based on file selection
 export async function getWordsForFile(fileSelection: string): Promise<Word[]> {
   if (fileSelection === 'all') {

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getWordsForFile } from '@/lib/data';
+import { getWordsForFile, loadOlderWords } from '@/lib/data';
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
@@ -10,11 +10,12 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const words = await getWordsForFile(file);
+    const words = searchParams.get('older') === 'true'
+      ? await loadOlderWords(file)
+      : await getWordsForFile(file);
     return NextResponse.json(words);
   } catch (error) {
     console.error('Error loading words:', error);
     return NextResponse.json({ error: 'Failed to load words' }, { status: 500 });
   }
 }
-

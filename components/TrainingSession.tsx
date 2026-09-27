@@ -16,6 +16,7 @@ import {
   SessionStats,
 } from "@/types";
 import { FileOption } from "@/lib/data";
+import { readReviewHistory, REVIEW_HISTORY_KEY, selectReviewWords, wordKey } from "@/lib/examReview";
 
 interface TrainingSessionProps {
   initialAvailableFiles: FileOption[];
@@ -28,6 +29,7 @@ interface PersistedProgress {
   mode: "exam" | "training";
   reverseDirection: boolean;
   timestamp: number;
+  examDeck?: Word[];
 }
 
 const STORAGE_KEY_PREFIX = "word-trainer-progress";
@@ -70,6 +72,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
   
   // Store all transformed words (for reference when loading saved progress)
   const allWordsRef = useRef<Word[]>([]);
+  const loadingWordsRef = useRef(false);
   const pendingEventsRef = useRef<TrainingAnswerEventPayload[]>([]);
   const isFlushingEventsRef = useRef(false);
   const activeSessionRef = useRef<{
@@ -393,6 +396,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
         mode: currentMode,
         reverseDirection,
         timestamp: Date.now(),
+        examDeck: currentMode === "exam" ? allWordsRef.current : undefined,
       };
       localStorage.setItem(key, JSON.stringify(data));
     } catch (err) {
@@ -514,39 +518,9 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     }
   }, [sessionStartTime, lastInteractionTime, isOnBreak, breakEndTime, highScore, finalizeActiveSession]);
 
-  // Load saved progress when file/mode changes
-  useEffect(() => {
-    if (words.length === 0) return;
-    if (!mode || !sessionStarted) return;
-    
-    const saved = loadProgress(selectedFile, mode);
-    if (saved && saved.selectedFile === selectedFile && saved.mode === mode) {
-      // Update saved progress to use transformed words from allWordsRef
-      // Create a map of all transformed words by ID for quick lookup
-      const allWordsMap = new Map(allWordsRef.current.map(w => [w.id, w]));
-      
-      setAllProgress((prev) => {
-        const newMap = new Map();
-        saved.allProgress.forEach(([wordId, progress]) => {
-          // Use the transformed word object if available, otherwise use the saved one
-          const transformedWord = allWordsMap.get(wordId);
-          if (transformedWord) {
-            newMap.set(wordId, {
-              ...progress,
-              word: transformedWord, // Use the transformed word
-            });
-          }
-        });
-        return newMap;
-      });
-      setReverseDirection(saved.reverseDirection);
-      setCurrentIndex(Math.min(saved.currentIndex, words.length - 1));
-    }
-  }, [selectedFile, mode, sessionStarted, words]);
-
   // Save progress whenever it changes
   useEffect(() => {
-    if (words.length === 0) return;
+    if (words.length === 0 || loadingWordsRef.current || !sessionStarted) return;
     if (mode) {
       saveProgress(selectedFile, mode);
     }
@@ -565,6 +539,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
   const loadWords = useCallback(async (fileSelection: string, resetProgress = false, targetMode?: "exam" | "training" | null) => {
     if (availableFiles.length === 0) return;
     
+    loadingWordsRef.current = true;
     setIsLoading(true);
     try {
       // Clear progress if switching to a different file
@@ -583,6 +558,26 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
 
       // Use targetMode if provided, otherwise fall back to current mode state
       const modeToUse = targetMode !== undefined ? targetMode : mode;
+
+      let saved = !resetProgress && modeToUse ? loadProgress(fileSelection, modeToUse) : null;
+      if (saved?.allProgress.length && saved.allProgress.every(([, progress]) => progress.isCorrect)) {
+        saved = null;
+        resetProgress = true;
+      }
+
+      if (modeToUse === "exam") {
+        if (saved?.examDeck?.length) {
+          // Keep the exact selection and IDs when resuming a mixed exam.
+          allWords = saved.examDeck;
+        } else {
+          const olderResponse = await fetch(`/api/words?file=${encodeURIComponent(fileSelection)}&older=true`);
+          if (!olderResponse.ok) throw new Error("Failed to load review words");
+          const pool: Word[] = await olderResponse.json();
+          let history = {};
+          try { history = readReviewHistory(localStorage); } catch { /* Storage may be unavailable. */ }
+          allWords = [...allWords, ...selectReviewWords(pool, allWords, history)];
+        }
+      }
 
       // Transform words for exam mode: if source has 3 parts separated by " - ", split them
       if (modeToUse === "exam") {
@@ -608,7 +603,6 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
       // For exam mode: check if we should filter to remaining words or start fresh
       let wordsToShow = allWords;
       if (modeToUse === "exam" && !resetProgress) {
-        const saved = loadProgress(fileSelection, "exam");
         if (saved && saved.allProgress.length > 0) {
           const progressMap = new Map(saved.allProgress);
           
@@ -649,50 +643,23 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
       // Store all transformed words for reference when loading saved progress
       allWordsRef.current = allWords;
       
-      if (resetProgress) {
-        setAllProgress(new Map());
-        setCurrentIndex(0);
-        setIsRevealed(false);
-      } else if (modeToUse === "exam" && wordsToShow.length !== allWords.length) {
-        // If we filtered words in exam mode, reset index to 0 since we have a new filtered/shuffled list
-        setCurrentIndex(0);
-        setIsRevealed(false);
-      }
-      
-      // Initialize progress for all words (not just filtered ones)
-      // This ensures progress tracking works for all words, even if not currently shown
-      // Only keep progress entries that match words in the current file
-      if (allWords.length > 0) {
-        setAllProgress((prev) => {
-          const newMap = new Map();
-          // Create a set of word IDs from the current file for quick lookup
-          const currentWordIds = new Set(allWords.map(w => w.id));
-          
-          // Only keep progress entries that belong to words in the current file
-          prev.forEach((progress, wordId) => {
-            if (currentWordIds.has(wordId)) {
-              newMap.set(wordId, progress);
-            }
-          });
-          
-          // Initialize progress for all words in the current file
-          allWords.forEach((word) => {
-            if (!newMap.has(word.id)) {
-              newMap.set(word.id, {
-                word,
-                isCorrect: false,
-                attempts: 0,
-                durations: [],
-              });
-            }
-          });
-          return newMap;
-        });
-      }
+      const savedMap = new Map(saved?.allProgress ?? []);
+      setAllProgress(new Map(allWords.map(word => {
+        const previous = !resetProgress ? savedMap.get(word.id) : undefined;
+        return [word.id, previous ? { ...previous, word } : {
+          word, isCorrect: false, attempts: 0, durations: [],
+        }];
+      })));
+      // Remaining exam cards are shuffled, so resume at the first remaining card.
+      setCurrentIndex(modeToUse === "training" && saved
+        ? Math.min(saved.currentIndex, wordsToShow.length - 1) : 0);
+      setIsRevealed(false);
+      if (saved) setReverseDirection(saved.reverseDirection);
     } catch (err) {
       console.error("Error loading words:", err);
       setWords([]);
     } finally {
+      loadingWordsRef.current = false;
       setIsLoading(false);
     }
   }, [availableFiles, mode, shuffleArray]);
@@ -851,6 +818,16 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
 
     const previousProgress = allProgress.get(currentWord.id);
     const attemptNumber = (previousProgress?.attempts ?? 0) + 1;
+    try {
+      const history = readReviewHistory(localStorage);
+      const key = wordKey(currentWord);
+      const previous = history[key] || { correct: 0, incorrect: 0 };
+      history[key] = {
+        correct: previous.correct + (isCorrect ? 1 : 0),
+        incorrect: previous.incorrect + (isCorrect ? 0 : 1),
+      };
+      localStorage.setItem(REVIEW_HISTORY_KEY, JSON.stringify(history));
+    } catch { /* An unavailable browser store must not interrupt the exam. */ }
     
     setAllProgress((prev) => {
       const newMap = new Map(prev);
@@ -1168,7 +1145,8 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
                 <div className="text-sm text-gray-500">
                   • Words are scrambled<br/>
                   • Track your progress<br/>
-                  • Review missed words
+                  • Review missed words<br/>
+                  • Up to 8 extra cards from older units, prioritizing past mistakes
                 </div>
               </button>
               {examCompleted && (
@@ -1260,7 +1238,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     (allProgress.get(currentWord.id) || { word: currentWord, isCorrect: false, attempts: 0, durations: [] }) : null;
   
   const currentStats = mode === "exam" ? calculateCurrentStats() : null;
-  const totalWords = words.length;
+  const totalWords = mode === "exam" ? allProgress.size : words.length;
   const correctWordsCount = currentStats ? currentStats.correctWords : 0;
   const remainingWords = totalWords - correctWordsCount;
 

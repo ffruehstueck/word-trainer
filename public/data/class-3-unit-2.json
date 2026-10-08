@@ -1,0 +1,464 @@
+[
+  {
+    "id": 1,
+    "source": "coincidence",
+    "target": "Zufall",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 2,
+    "source": "married",
+    "target": "verheiratet",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 3,
+    "source": "similar",
+    "target": "ähnlich",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 4,
+    "source": "to return",
+    "target": "zurückgeben; zurückkehren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 5,
+    "source": "What a ...!",
+    "target": "Was für ein/e ...!",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 6,
+    "source": "author",
+    "target": "Autor/Autorin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 7,
+    "source": "member",
+    "target": "Mitglied",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 8,
+    "source": "passenger",
+    "target": "Passagier/Passagierin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 9,
+    "source": "to sink",
+    "target": "sinken",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 10,
+    "source": "to survive",
+    "target": "überleben",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 11,
+    "source": "careless",
+    "target": "unvorsichtig, leichtsinnig",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 12,
+    "source": "handbag",
+    "target": "Handtasche",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 13,
+    "source": "I beg your pardon.",
+    "target": "Entschuldigung, Verzeihen Sie bitte.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 14,
+    "source": "to steal",
+    "target": "stehlen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 15,
+    "source": "thief (pl thieves)",
+    "target": "Dieb/Diebin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 16,
+    "source": "North Pole",
+    "target": "Nordpol",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 17,
+    "source": "South Pole",
+    "target": "Südpol",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 18,
+    "source": "awful",
+    "target": "furchtbar, schrecklich, scheußlich",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 19,
+    "source": "entrance",
+    "target": "Eingang",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 20,
+    "source": "to hand sth. in",
+    "target": "einreichen, abgeben",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 21,
+    "source": "Hold on!",
+    "target": "Warte(t)!",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 22,
+    "source": "to leave sb. alone",
+    "target": "jdn. in Ruhe lassen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 23,
+    "source": "to look forward to sth.",
+    "target": "sich auf etw. freuen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 24,
+    "source": "queue",
+    "target": "Warteschlange",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 25,
+    "source": "to queue (up)",
+    "target": "sich anstellen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 26,
+    "source": "to wave",
+    "target": "winken",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 27,
+    "source": "date of birth",
+    "target": "Geburtsdatum",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 28,
+    "source": "Hang on a minute.",
+    "target": "Einen Augenblick (mal).",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 29,
+    "source": "to achieve (a goal)",
+    "target": "(ein Ziel) erreichen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 30,
+    "source": "laugh",
+    "target": "Lachen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 31,
+    "source": "note",
+    "target": "hier: Geldschein",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 32,
+    "source": "per cent",
+    "target": "Prozent",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 33,
+    "source": "speech",
+    "target": "Rede, Ansprache",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 34,
+    "source": "stage",
+    "target": "Bühne",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 35,
+    "source": "to try out",
+    "target": "ausprobieren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 36,
+    "source": "What a coincidence!",
+    "target": "Was für ein Zufall!",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 37,
+    "source": "When they got married, his wife changed her name.",
+    "target": "Als sie heirateten, änderte seine Frau ihren Namen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 38,
+    "source": "They both like similar clothes.",
+    "target": "Sie mögen beide ähnliche Kleidung.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 39,
+    "source": "Please return the balloon to the following address.",
+    "target": "Bitte schicke den Ballon an die folgende Adresse zurück.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 40,
+    "source": "This author wrote a lot of novels.",
+    "target": "Dieser Autor schrieb viele Romane.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 41,
+    "source": "A member of the crew remembered the famous ship.",
+    "target": "Ein Mitglied der Besatzung erinnerte sich an das berühmte Schiff.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 42,
+    "source": "Of the 2,200 passengers, only 705 survived.",
+    "target": "Von den 2.200 Passagieren überlebten nur 705.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 43,
+    "source": "When the ship sank, most of its 2,500 passengers died.",
+    "target": "Als das Schiff sank, starben die meisten seiner 2.500 Passagiere.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 44,
+    "source": "Most people didn’t survive.",
+    "target": "Die meisten Menschen überlebten nicht.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 45,
+    "source": "I’ve lost my phone because I was careless.",
+    "target": "Ich habe mein Handy verloren, weil ich unvorsichtig war.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 46,
+    "source": "She put the phone in her handbag.",
+    "target": "Sie steckte das Handy in ihre Handtasche.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 47,
+    "source": "The thief wanted to steal the woman’s money.",
+    "target": "Der Dieb wollte das Geld der Frau stehlen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 48,
+    "source": "The thief was watching the two boys.",
+    "target": "Der Dieb beobachtete die beiden Jungen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 49,
+    "source": "I want to travel to the North Pole one day.",
+    "target": "Ich möchte eines Tages zum Nordpol reisen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 50,
+    "source": "An imaginary line connects the North and the South Pole.",
+    "target": "Eine gedachte Linie verbindet den Nordpol und den Südpol.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 51,
+    "source": "There is an awful smell.",
+    "target": "Es riecht furchtbar.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 52,
+    "source": "They were all queuing up at the entrance.",
+    "target": "Sie standen alle am Eingang Schlange.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 53,
+    "source": "I’m sure someone found it and handed it in.",
+    "target": "Ich bin sicher, dass jemand es gefunden und abgegeben hat.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 54,
+    "source": "Lucas didn’t leave his sister alone.",
+    "target": "Lucas ließ seine Schwester nicht in Ruhe.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 55,
+    "source": "Lucas was very much looking forward to it.",
+    "target": "Lucas freute sich sehr darauf.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 56,
+    "source": "The queue was getting shorter and shorter.",
+    "target": "Die Warteschlange wurde immer kürzer.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 57,
+    "source": "They were all queuing up to get in the museum.",
+    "target": "Sie standen alle Schlange, um ins Museum zu kommen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 58,
+    "source": "Someone is waving at us from the front of the queue.",
+    "target": "Jemand winkt uns vom Anfang der Warteschlange aus zu.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 59,
+    "source": "We talked about our date of birth.",
+    "target": "Wir sprachen über unser Geburtsdatum.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 60,
+    "source": "Think of a time you were trying to achieve a goal.",
+    "target": "Denke an eine Zeit, in der du versucht hast, ein Ziel zu erreichen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 61,
+    "source": "I got no laugh for my jokes.",
+    "target": "Niemand lachte über meine Witze.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 62,
+    "source": "The £50 note was mine.",
+    "target": "Der 50-Pfund-Schein gehörte mir.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 63,
+    "source": "50 per cent of the jokes weren’t even funny.",
+    "target": "50 Prozent der Witze waren nicht einmal lustig.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 64,
+    "source": "I’m writing a motivational speech.",
+    "target": "Ich schreibe eine motivierende Rede.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 65,
+    "source": "I went to the front of the stage.",
+    "target": "Ich ging nach vorne an den Bühnenrand.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 66,
+    "source": "Try out your jokes before you go on stage.",
+    "target": "Probiere deine Witze aus, bevor du auf die Bühne gehst.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  }
+]

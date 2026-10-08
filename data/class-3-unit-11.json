@@ -1,0 +1,408 @@
+[
+  {
+    "id": 1,
+    "source": "fabulous",
+    "target": "fabelhaft",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 2,
+    "source": "height",
+    "target": "Höhe",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 3,
+    "source": "capital",
+    "target": "Hauptstadt",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 4,
+    "source": "independent",
+    "target": "unabhängig",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 5,
+    "source": "innovation",
+    "target": "Neuerung, Innovation",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 6,
+    "source": "state",
+    "target": "Staat",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 7,
+    "source": "to commute",
+    "target": "pendeln",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 8,
+    "source": "connection",
+    "target": "Verbindung",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 9,
+    "source": "programmer",
+    "target": "Programmierer/Programmiererin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 10,
+    "source": "steep",
+    "target": "steil",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 11,
+    "source": "to crack",
+    "target": "aufbrechen; zerbrechen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 12,
+    "source": "four-wheel drive",
+    "target": "Allradantrieb",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 13,
+    "source": "gold digger",
+    "target": "Goldgräber/Goldgräberin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 14,
+    "source": "gold rush",
+    "target": "Goldrausch",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 15,
+    "source": "lip",
+    "target": "Lippe",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 16,
+    "source": "mountain range",
+    "target": "Bergkette",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 17,
+    "source": "shade (no pl)",
+    "target": "Schatten",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 18,
+    "source": "to be situated",
+    "target": "liegen, sich befinden",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 19,
+    "source": "thirst",
+    "target": "Durst",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 20,
+    "source": "criminal",
+    "target": "Krimineller/Kriminelle",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 21,
+    "source": "cyclist",
+    "target": "Radfahrer/Radfahrerin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 22,
+    "source": "familiar",
+    "target": "vertraut, bekannt",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 23,
+    "source": "ferry",
+    "target": "Fähre",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 24,
+    "source": "guided",
+    "target": "geführt, geleitet",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 25,
+    "source": "to take over",
+    "target": "übernehmen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 26,
+    "source": "to catch (the train)",
+    "target": "(den Zug) erwischen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 27,
+    "source": "information office",
+    "target": "Informationsbüro, Auskunftsbüro",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 28,
+    "source": "railway",
+    "target": "Zug, Eisenbahn",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 29,
+    "source": "totally",
+    "target": "total",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 30,
+    "source": "Don’t forget our fabulous national parks.",
+    "target": "Vergiss unsere fabelhaften Nationalparks nicht.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 31,
+    "source": "The giant redwood trees can reach heights of more than 100 m.",
+    "target": "Die riesigen Mammutbäume können Höhen von mehr als 100 Metern erreichen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 32,
+    "source": "Which city is the state capital of California?",
+    "target": "Welche Stadt ist die Hauptstadt des Bundesstaates Kalifornien?",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 33,
+    "source": "California was an independent country for one month in 1846.",
+    "target": "Kalifornien war 1846 einen Monat lang ein unabhängiges Land.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 34,
+    "source": "California is famous for its innovations.",
+    "target": "Kalifornien ist für seine Innovationen berühmt.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 35,
+    "source": "There are about 40 million people living in the state of California.",
+    "target": "Im Bundesstaat Kalifornien leben etwa 40 Millionen Menschen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 36,
+    "source": "My mum commuted to the Valley every day.",
+    "target": "Meine Mama pendelte jeden Tag ins Valley.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 37,
+    "source": "His internet connection was slow.",
+    "target": "Seine Internetverbindung war langsam.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 38,
+    "source": "Your mum works as a programmer.",
+    "target": "Deine Mama arbeitet als Programmiererin.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 39,
+    "source": "A canyon is deep with steep sides of rock.",
+    "target": "Ein Canyon ist tief und hat steile Felswände.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 40,
+    "source": "My mouth was dry and my lips began to crack.",
+    "target": "Mein Mund war trocken und meine Lippen begannen aufzureißen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 41,
+    "source": "We need a jeep with four-wheel drive in the desert.",
+    "target": "Wir brauchen in der Wüste einen Jeep mit Allradantrieb.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 42,
+    "source": "Gold diggers were the people trying to find gold.",
+    "target": "Goldgräber waren die Menschen, die versuchten, Gold zu finden.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 43,
+    "source": "The California gold rush began in 1849.",
+    "target": "Der kalifornische Goldrausch begann 1849.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 44,
+    "source": "Her lips were shaking and she started to cry.",
+    "target": "Ihre Lippen zitterten und sie begann zu weinen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 45,
+    "source": "The valley is situated between two mountain ranges.",
+    "target": "Das Tal liegt zwischen zwei Bergketten.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 46,
+    "source": "I stayed in the shade of a giant rock.",
+    "target": "Ich blieb im Schatten eines riesigen Felsens.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 47,
+    "source": "Where is Death Valley situated?",
+    "target": "Wo liegt das Death Valley?",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 48,
+    "source": "A group of gold diggers got lost in the valley and died of thirst.",
+    "target": "Eine Gruppe von Goldgräbern verirrte sich im Tal und verdurstete.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 49,
+    "source": "Alcatraz was home to some famous criminals.",
+    "target": "Auf Alcatraz waren einige berühmte Kriminelle untergebracht.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 50,
+    "source": "On Sundays, the road is only open to cyclists and roller skaters.",
+    "target": "Sonntags ist die Straße nur für Radfahrer und Rollschuhfahrer geöffnet.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 51,
+    "source": "The Golden Gate Bridge is one of the most familiar sights of San Francisco.",
+    "target": "Die Golden Gate Bridge ist eine der bekanntesten Sehenswürdigkeiten von San Francisco.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 52,
+    "source": "You can take a ferry to Alcatraz Island.",
+    "target": "Du kannst mit einer Fähre zur Insel Alcatraz fahren.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 53,
+    "source": "These days you can go on a guided tour to Alcatraz Island.",
+    "target": "Heutzutage kannst du an einer geführten Tour zur Insel Alcatraz teilnehmen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 54,
+    "source": "On Sundays, the cyclists and roller skaters take over the street.",
+    "target": "Sonntags übernehmen die Radfahrer und Rollschuhfahrer die Straße.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 55,
+    "source": "They have to go to the platform to catch the train.",
+    "target": "Sie müssen zum Bahnsteig gehen, um den Zug zu erwischen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 56,
+    "source": "If you need help, you can ask someone in the information office.",
+    "target": "Wenn du Hilfe brauchst, kannst du jemanden im Informationsbüro fragen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 57,
+    "source": "The railway service to Manchester is leaving from platform 3.",
+    "target": "Der Zug nach Manchester fährt von Bahnsteig 3 ab.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 58,
+    "source": "You are totally right about this.",
+    "target": "Du hast damit vollkommen recht.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  }
+]

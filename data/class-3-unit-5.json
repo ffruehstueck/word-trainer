@@ -1,0 +1,436 @@
+[
+  {
+    "id": 1,
+    "source": "alarm clock",
+    "target": "Wecker",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 2,
+    "source": "Any luck?",
+    "target": "Hattest du Glück?",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 3,
+    "source": "beside",
+    "target": "neben",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 4,
+    "source": "Do you mind ...?",
+    "target": "Macht es dir etwas aus ...?",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 5,
+    "source": "evil",
+    "target": "böse",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 6,
+    "source": "I’m joking.",
+    "target": "Ich scherze nur.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 7,
+    "source": "to ignore",
+    "target": "ignorieren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 8,
+    "source": "satisfied",
+    "target": "zufrieden",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 9,
+    "source": "scream",
+    "target": "Schrei",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 10,
+    "source": "sleeping bag",
+    "target": "Schlafsack",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 11,
+    "source": "spirit",
+    "target": "Geist",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 12,
+    "source": "superstition",
+    "target": "Aberglaube",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 13,
+    "source": "to attract",
+    "target": "anziehen, anlocken",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 14,
+    "source": "to enter",
+    "target": "betreten, eintreten",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 15,
+    "source": "haircut",
+    "target": "Haarschnitt",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 16,
+    "source": "obvious",
+    "target": "offensichtlich",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 17,
+    "source": "traditional",
+    "target": "traditionell",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 18,
+    "source": "to trick",
+    "target": "austricksen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 19,
+    "source": "unlucky",
+    "target": "unglücklich, glücklos",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 20,
+    "source": "to whistle",
+    "target": "pfeifen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 21,
+    "source": "crack",
+    "target": "Riss, Spalt; hier: Fuge",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 22,
+    "source": "cuckoo",
+    "target": "Kuckuck",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 23,
+    "source": "pavement",
+    "target": "Gehsteig",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 24,
+    "source": "rich",
+    "target": "reich",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 25,
+    "source": "to shake",
+    "target": "schütteln",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 26,
+    "source": "superstitious",
+    "target": "abergläubisch",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 27,
+    "source": "to catch a cold",
+    "target": "sich verkühlen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 28,
+    "source": "toothbrush",
+    "target": "Zahnbürste",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 29,
+    "source": "to arrange",
+    "target": "vereinbaren, arrangieren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 30,
+    "source": "I’m sure.",
+    "target": "Ich bin mir sicher.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 31,
+    "source": "lucky charm",
+    "target": "Glücksbringer",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 32,
+    "source": "salt",
+    "target": "Salz",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 33,
+    "source": "seriously",
+    "target": "ernsthaft, im Ernst",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 34,
+    "source": "I really didn’t want to get up when my alarm clock rang.",
+    "target": "Ich wollte wirklich nicht aufstehen, als mein Wecker klingelte.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 35,
+    "source": "Mr Wallis, the teacher, arrives and sits down beside them.",
+    "target": "Mr Wallis, der Lehrer, kommt und setzt sich neben sie.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 36,
+    "source": "Candyman is an evil spirit.",
+    "target": "Candyman ist ein böser Geist.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 37,
+    "source": "Ignore him – he’s just being silly.",
+    "target": "Ignoriere ihn – er macht nur Unsinn.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 38,
+    "source": "I am not really satisfied with your answer.",
+    "target": "Ich bin mit deiner Antwort nicht wirklich zufrieden.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 39,
+    "source": "I heard your scream in the middle of the night.",
+    "target": "Ich hörte deinen Schrei mitten in der Nacht.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 40,
+    "source": "Nick is lying in his sleeping bag.",
+    "target": "Nick liegt in seinem Schlafsack.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 41,
+    "source": "There is a spirit by the name of Candyman.",
+    "target": "Es gibt einen Geist namens Candyman.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 42,
+    "source": "It’s only a silly superstition, after all.",
+    "target": "Es ist schließlich nur ein alberner Aberglaube.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 43,
+    "source": "If you whistle, you’ll attract rain.",
+    "target": "Wenn du pfeifst, lockst du Regen an.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 44,
+    "source": "When you want to enter your home, you have to turn sharply to the left or right.",
+    "target": "Wenn du dein Zuhause betreten möchtest, musst du scharf nach links oder rechts abbiegen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 45,
+    "source": "If you get a haircut before an exam, you’ll forget everything.",
+    "target": "Wenn du dir vor einer Prüfung die Haare schneiden lässt, wirst du alles vergessen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 46,
+    "source": "Isn’t it obvious that you should watch your handbag carefully?",
+    "target": "Ist es nicht offensichtlich, dass du gut auf deine Handtasche aufpassen solltest?",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 47,
+    "source": "Traditional homes in China have large spirit screens.",
+    "target": "Traditionelle Häuser in China haben große Geisterwände.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 48,
+    "source": "Some homes in China have spirit screens to trick ghosts.",
+    "target": "Einige Häuser in China haben Geisterwände, um Geister auszutricksen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 49,
+    "source": "In Italy, the unlucky number is 17.",
+    "target": "In Italien ist die Unglückszahl 17.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 50,
+    "source": "If you whistle when the sun is shining, it will shine for more than two hours.",
+    "target": "Wenn du pfeifst, während die Sonne scheint, wird sie länger als zwei Stunden scheinen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 51,
+    "source": "You’ll have bad luck if you walk on the cracks in the pavement.",
+    "target": "Du wirst Pech haben, wenn du auf die Fugen im Gehsteig trittst.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 52,
+    "source": "I can hear a cuckoo in the woods.",
+    "target": "Ich kann einen Kuckuck im Wald hören.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 53,
+    "source": "I sometimes don’t walk on the cracks in the pavement.",
+    "target": "Manchmal trete ich nicht auf die Fugen im Gehsteig.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 54,
+    "source": "You’ll get rich if you hear a cuckoo and shake your money.",
+    "target": "Du wirst reich werden, wenn du einen Kuckuck hörst und dein Geld schüttelst.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 55,
+    "source": "I always shake the money in my pocket if I hear a cuckoo.",
+    "target": "Ich schüttle immer das Geld in meiner Tasche, wenn ich einen Kuckuck höre.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 56,
+    "source": "Are you superstitious?",
+    "target": "Bist du abergläubisch?",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 57,
+    "source": "If you don’t wear a jacket, you’ll catch a cold.",
+    "target": "Wenn du keine Jacke trägst, wirst du dich verkühlen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 58,
+    "source": "If you drop your toothbrush, you’ll have to wash it.",
+    "target": "Wenn du deine Zahnbürste fallen lässt, musst du sie waschen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 59,
+    "source": "Have you got something else arranged?",
+    "target": "Hast du etwas anderes vereinbart?",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 60,
+    "source": "I just found a lucky charm.",
+    "target": "Ich habe gerade einen Glücksbringer gefunden.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 61,
+    "source": "Oh no, I spilled the salt on the table.",
+    "target": "Oh nein, ich habe das Salz auf dem Tisch verschüttet.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 62,
+    "source": "You seriously believe in all these things?",
+    "target": "Du glaubst im Ernst an all diese Dinge?",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  }
+]

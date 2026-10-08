@@ -1,0 +1,303 @@
+[
+  {
+    "id": 1,
+    "source": "to be allowed to do sth.",
+    "target": "etw. tun dürfen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 2,
+    "source": "It’s a pity.",
+    "target": "Das ist schade.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 3,
+    "source": "strict",
+    "target": "streng",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 4,
+    "source": "to adopt",
+    "target": "hier: annehmen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 5,
+    "source": "community",
+    "target": "Gemeinschaft, Gemeinde",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 6,
+    "source": "conservative",
+    "target": "konservativ",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 7,
+    "source": "modern technology",
+    "target": "moderne Technologie",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 8,
+    "source": "plenty",
+    "target": "reichlich",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 9,
+    "source": "to pray",
+    "target": "beten",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 10,
+    "source": "to punish",
+    "target": "bestrafen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 11,
+    "source": "It depends.",
+    "target": "Es kommt darauf an.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 12,
+    "source": "to stay up",
+    "target": "aufbleiben",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 13,
+    "source": "to invite sb. over",
+    "target": "jdn. zu sich einladen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 14,
+    "source": "for a change",
+    "target": "zur Abwechslung",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 15,
+    "source": "journalist",
+    "target": "Journalist/Journalistin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 16,
+    "source": "litter-picking",
+    "target": "Müllsammeln",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 17,
+    "source": "rude",
+    "target": "unhöflich, unverschämt",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 18,
+    "source": "unbelievable",
+    "target": "unglaublich",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 19,
+    "source": "to freeze",
+    "target": "(er-)frieren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 20,
+    "source": "to lend",
+    "target": "(ver-)leihen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 21,
+    "source": "Never mind!",
+    "target": "Egal!, Schon gut!",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 22,
+    "source": "to remind sb.",
+    "target": "jdn. erinnern",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 23,
+    "source": "to sort out",
+    "target": "aussortieren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 24,
+    "source": "They are allowed to hold and feed the animals.",
+    "target": "Sie dürfen die Tiere halten und füttern.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 25,
+    "source": "Mum’s very strict about that.",
+    "target": "Mama ist diesbezüglich sehr streng.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 26,
+    "source": "The Amish are known for being slow to adopt modern technology.",
+    "target": "Die Amischen sind dafür bekannt, moderne Technologie nur langsam anzunehmen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 27,
+    "source": "There are many different groups, but the strongest community is the Old Order Amish.",
+    "target": "Es gibt viele verschiedene Gruppen, aber die stärkste Gemeinschaft sind die Amischen alter Ordnung.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 28,
+    "source": "The most conservative Amish groups don’t allow the use of machines.",
+    "target": "Die konservativsten amischen Gruppen erlauben den Einsatz von Maschinen nicht.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 29,
+    "source": "Most Amish groups don’t use modern technology.",
+    "target": "Die meisten amischen Gruppen verwenden keine moderne Technologie.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 30,
+    "source": "We’re a church group of 35 families, and we’ve got plenty to do.",
+    "target": "Wir sind eine Kirchengemeinde mit 35 Familien und haben reichlich zu tun.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 31,
+    "source": "We often get together and pray.",
+    "target": "Wir kommen oft zusammen und beten.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 32,
+    "source": "You can go to parties and your parents don’t punish you for it.",
+    "target": "Du kannst auf Partys gehen und deine Eltern bestrafen dich nicht dafür.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 33,
+    "source": "Well, I can stay up, but only on Saturdays.",
+    "target": "Nun, ich darf aufbleiben, aber nur samstags.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 34,
+    "source": "Are you allowed to invite friends over?",
+    "target": "Darfst du Freunde zu dir einladen?",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 35,
+    "source": "I’ll write something positive about young people for a change.",
+    "target": "Ich werde zur Abwechslung etwas Positives über junge Menschen schreiben.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 36,
+    "source": "My dad’s friend works as a journalist at the local paper.",
+    "target": "Ein Freund meines Papas arbeitet als Journalist bei der örtlichen Zeitung.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 37,
+    "source": "How about we organise a litter-picking day?",
+    "target": "Wie wäre es, wenn wir einen Müllsammeltag organisieren?",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 38,
+    "source": "When some people asked them to stop, they were rude.",
+    "target": "Als einige Leute sie baten aufzuhören, waren sie unhöflich.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 39,
+    "source": "They left their rubbish all over the place. It’s unbelievable.",
+    "target": "Sie ließen ihren Müll überall liegen. Das ist unglaublich.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 40,
+    "source": "She’s from a hot country. She’ll freeze over here.",
+    "target": "Sie kommt aus einem heißen Land. Sie wird hier frieren.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 41,
+    "source": "I could lend her some of my clothes if you like.",
+    "target": "Ich könnte ihr ein paar meiner Kleidungsstücke leihen, wenn du möchtest.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 42,
+    "source": "Kate reminds him that Laura is from Portugal.",
+    "target": "Kate erinnert ihn daran, dass Laura aus Portugal kommt.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 43,
+    "source": "I’m going to sort out my clothes for Bianca.",
+    "target": "Ich werde meine Kleidung für Bianca aussortieren.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  }
+]

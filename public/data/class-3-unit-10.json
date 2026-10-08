@@ -1,0 +1,569 @@
+[
+  {
+    "id": 1,
+    "source": "ability",
+    "target": "Fähigkeit",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 2,
+    "source": "to exist",
+    "target": "existieren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 3,
+    "source": "right(s)",
+    "target": "Recht(e)",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 4,
+    "source": "in general",
+    "target": "im Allgemeinen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 5,
+    "source": "quality",
+    "target": "Qualität",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 6,
+    "source": "to be able to do",
+    "target": "fähig sein, etw. zu tun",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 7,
+    "source": "cottage",
+    "target": "kleines Landhaus; Ferienhaus",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 8,
+    "source": "compromise",
+    "target": "Kompromiss",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 9,
+    "source": "Good point.",
+    "target": "Da ist was dran., Gutes Argument.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 10,
+    "source": "to take action",
+    "target": "etw. unternehmen, aktiv werden",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 11,
+    "source": "town hall",
+    "target": "Rathaus, Gemeindeamt",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 12,
+    "source": "way out",
+    "target": "Ausweg",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 13,
+    "source": "majority",
+    "target": "Mehrheit",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 14,
+    "source": "argument",
+    "target": "Argument; hier: Streit",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 15,
+    "source": "to protest",
+    "target": "protestieren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 16,
+    "source": "city council",
+    "target": "Stadtrat",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 17,
+    "source": "cloth bag",
+    "target": "Stofftasche",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 18,
+    "source": "hardly ever",
+    "target": "fast nie",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 19,
+    "source": "lazy",
+    "target": "faul",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 20,
+    "source": "wrapping",
+    "target": "Verpackung",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 21,
+    "source": "to stand up for",
+    "target": "für etw. eintreten",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 22,
+    "source": "suffrage",
+    "target": "Wahlrecht",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 23,
+    "source": "suffragette",
+    "target": "Frauenrechtlerin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 24,
+    "source": "to vote",
+    "target": "wählen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 25,
+    "source": "to attend",
+    "target": "besuchen (Universität, Veranstaltung)",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 26,
+    "source": "to be equal",
+    "target": "gleichberechtigt sein",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 27,
+    "source": "law",
+    "target": "Gesetz",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 28,
+    "source": "nowadays",
+    "target": "heutzutage",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 29,
+    "source": "to treat",
+    "target": "behandeln",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 30,
+    "source": "arrest",
+    "target": "Verhaftung, Festnahme",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 31,
+    "source": "education",
+    "target": "(Aus-)Bildung",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 32,
+    "source": "to speak out",
+    "target": "sich für etw./jdn. aussprechen, seine Meinung sagen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 33,
+    "source": "to refuse",
+    "target": "(ver-)weigern",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 34,
+    "source": "to close down",
+    "target": "schließen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 35,
+    "source": "non-violent",
+    "target": "gewaltfrei",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 36,
+    "source": "businessman (pl businessmen)",
+    "target": "Geschäftsmann",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 37,
+    "source": "concern",
+    "target": "Anliegen, Sorge",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 38,
+    "source": "debate",
+    "target": "Debatte",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 39,
+    "source": "headteacher",
+    "target": "Schulleiter/Schulleiterin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 40,
+    "source": "to involve",
+    "target": "involvieren, einbeziehen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 41,
+    "source": "organisation",
+    "target": "Organisation",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 42,
+    "source": "You have the ability to make a lot of people happy.",
+    "target": "Du hast die Fähigkeit, viele Menschen glücklich zu machen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 43,
+    "source": "In fact, the Convention on the Rights of the Child didn’t exist until 1990.",
+    "target": "Tatsächlich existierte die Kinderrechtskonvention erst ab 1990.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 44,
+    "source": "The UN lists the rights that all people around the world must have.",
+    "target": "Die UN listet die Rechte auf, die alle Menschen weltweit haben müssen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 45,
+    "source": "In general, kids these days are lucky.",
+    "target": "Im Allgemeinen haben Kinder heutzutage Glück.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 46,
+    "source": "You have the right to a good quality education.",
+    "target": "Du hast das Recht auf eine qualitativ gute Bildung.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 47,
+    "source": "I haven’t been able to talk to him for a few days.",
+    "target": "Ich konnte seit ein paar Tagen nicht mit ihm sprechen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 48,
+    "source": "40 cottages here in the fields?",
+    "target": "40 kleine Landhäuser hier auf den Feldern?",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 49,
+    "source": "I’ve heard they’re working on some kind of compromise.",
+    "target": "Ich habe gehört, dass sie an einer Art Kompromiss arbeiten.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 50,
+    "source": "They take action straightaway to protest against the building plans.",
+    "target": "Sie werden sofort aktiv, um gegen die Baupläne zu protestieren.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 51,
+    "source": "There’s going to be a public meeting in the town hall next week.",
+    "target": "Nächste Woche wird es eine öffentliche Versammlung im Rathaus geben.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 52,
+    "source": "The politicians are trying to find a way out of the dilemma.",
+    "target": "Die Politiker versuchen, einen Ausweg aus dem Dilemma zu finden.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 53,
+    "source": "Well, 40% is not a majority.",
+    "target": "Nun, 40 % sind keine Mehrheit.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 54,
+    "source": "Which side of the argument do you agree with?",
+    "target": "Welcher Seite des Streits stimmst du zu?",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 55,
+    "source": "We have to protest against the building plans.",
+    "target": "Wir müssen gegen die Baupläne protestieren.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 56,
+    "source": "We could write an email to the city council.",
+    "target": "Wir könnten eine E-Mail an den Stadtrat schreiben.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 57,
+    "source": "I always take a basket or a cloth bag when shopping.",
+    "target": "Ich nehme beim Einkaufen immer einen Korb oder eine Stofftasche mit.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 58,
+    "source": "I hardly ever waste water.",
+    "target": "Ich verschwende fast nie Wasser.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 59,
+    "source": "You probably know what you should do, but you are too lazy.",
+    "target": "Du weißt wahrscheinlich, was du tun solltest, aber du bist zu faul.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 60,
+    "source": "Don’t throw paper, wrappings or bottles into the street.",
+    "target": "Wirf kein Papier, keine Verpackungen oder Flaschen auf die Straße.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 61,
+    "source": "You have to stand up for your rights.",
+    "target": "Du musst für deine Rechte eintreten.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 62,
+    "source": "It’s about suffrage, which is the right of women to vote.",
+    "target": "Es geht um das Frauenwahlrecht, also das Recht von Frauen zu wählen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 63,
+    "source": "The suffragettes fought for their right to vote.",
+    "target": "Die Frauenrechtlerinnen kämpften für ihr Wahlrecht.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 64,
+    "source": "In the early 20th century, women wanted the right to vote.",
+    "target": "Anfang des 20. Jahrhunderts wollten Frauen das Recht zu wählen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 65,
+    "source": "However, girls were still not allowed to attend university.",
+    "target": "Mädchen durften jedoch noch immer keine Universität besuchen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 66,
+    "source": "Men and women should be equal.",
+    "target": "Männer und Frauen sollten gleichberechtigt sein.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 67,
+    "source": "In 1993, a law was passed that said men and women should be treated as equals.",
+    "target": "1993 wurde ein Gesetz verabschiedet, das besagte, dass Männer und Frauen gleichberechtigt behandelt werden sollten.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 68,
+    "source": "The situation is much better nowadays.",
+    "target": "Die Situation ist heutzutage viel besser.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 69,
+    "source": "Men and women should be treated as equals.",
+    "target": "Männer und Frauen sollten gleichberechtigt behandelt werden.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 70,
+    "source": "After Rosa Parks’ arrest, there was a 381-day bus boycott.",
+    "target": "Nach Rosa Parks’ Verhaftung gab es einen 381-tägigen Busboykott.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 71,
+    "source": "The Malala Fund fights for education for women all over the world.",
+    "target": "Der Malala Fund kämpft für die Bildung von Frauen auf der ganzen Welt.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 72,
+    "source": "Malala speaks out for girls’ right to go to school.",
+    "target": "Malala spricht sich für das Recht von Mädchen aus, zur Schule zu gehen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 73,
+    "source": "Rosa Parks refused to give up her seat on the bus.",
+    "target": "Rosa Parks weigerte sich, ihren Sitzplatz im Bus aufzugeben.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 74,
+    "source": "They didn’t get their jobs back, because the company closed down.",
+    "target": "Sie bekamen ihre Arbeitsplätze nicht zurück, weil die Firma schloss.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 75,
+    "source": "Ghandi taught his people how to protest in a non-violent way.",
+    "target": "Gandhi lehrte seine Leute, wie man gewaltfrei protestiert.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 76,
+    "source": "A rich local businessman gave the school some money.",
+    "target": "Ein reicher Geschäftsmann aus der Gegend gab der Schule etwas Geld.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 77,
+    "source": "Each group plans its argument in support of their concerns.",
+    "target": "Jede Gruppe plant ihre Argumentation, um ihre Anliegen zu unterstützen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 78,
+    "source": "All social groups should be part of the debate.",
+    "target": "Alle gesellschaftlichen Gruppen sollten Teil der Debatte sein.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 79,
+    "source": "The headteacher could make the decision.",
+    "target": "Der Schulleiter könnte die Entscheidung treffen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 80,
+    "source": "We want to involve children, teachers and parents in the decision.",
+    "target": "Wir möchten Kinder, Lehrer und Eltern in die Entscheidung einbeziehen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 81,
+    "source": "The school council is an organisation for the students.",
+    "target": "Die Schülervertretung ist eine Organisation für die Schüler.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  }
+]

@@ -1,0 +1,478 @@
+[
+  {
+    "id": 1,
+    "source": "stadium",
+    "target": "Stadion",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 2,
+    "source": "to burn down",
+    "target": "niederbrennen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 3,
+    "source": "collection",
+    "target": "Sammlung",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 4,
+    "source": "government",
+    "target": "Regierung",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 5,
+    "source": "the Houses of Parliament",
+    "target": "das Parlament (von Großbritannien)",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 6,
+    "source": "in advance",
+    "target": "im Voraus",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 7,
+    "source": "to photograph",
+    "target": "fotografieren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 8,
+    "source": "play",
+    "target": "Theaterstück",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 9,
+    "source": "prison",
+    "target": "Gefängnis",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 10,
+    "source": "to raise",
+    "target": "anheben, erhöhen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 11,
+    "source": "raven",
+    "target": "Rabe",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 12,
+    "source": "to take a walk",
+    "target": "einen Spaziergang machen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 13,
+    "source": "theatre",
+    "target": "Theater",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 14,
+    "source": "view",
+    "target": "Ausblick, Aussicht",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 15,
+    "source": "visitor",
+    "target": "Besucher/Besucherin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 16,
+    "source": "thrilling",
+    "target": "aufregend",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 17,
+    "source": "approximately",
+    "target": "ungefähr",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 18,
+    "source": "to cough (up)",
+    "target": "(aus-)husten",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 19,
+    "source": "cruel",
+    "target": "grausam",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 20,
+    "source": "empty",
+    "target": "leer",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 21,
+    "source": "fever",
+    "target": "Fieber",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 22,
+    "source": "to report",
+    "target": "berichten, melden",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 23,
+    "source": "path",
+    "target": "Weg",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 24,
+    "source": "spectacular",
+    "target": "spektakulär",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 25,
+    "source": "tourist attraction",
+    "target": "Sehenswürdigkeit",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 26,
+    "source": "to experience",
+    "target": "erleben, erfahren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 27,
+    "source": "traffic",
+    "target": "Verkehr",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 28,
+    "source": "multicultural",
+    "target": "multikulturell",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 29,
+    "source": "contract",
+    "target": "Vertrag",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 30,
+    "source": "to lead",
+    "target": "führen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 31,
+    "source": "sugar",
+    "target": "Zucker",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 32,
+    "source": "to earn (money)",
+    "target": "(Geld) verdienen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 33,
+    "source": "to save up for",
+    "target": "ansparen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 34,
+    "source": "to sign",
+    "target": "unterschreiben",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 35,
+    "source": "This stadium is home to the England national football team.",
+    "target": "Dieses Stadion ist die Heimstätte der englischen Fußballnationalmannschaft.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 36,
+    "source": "The old Globe Theatre burnt down, but there’s a new one.",
+    "target": "Das alte Globe Theatre brannte nieder, aber es gibt ein neues.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 37,
+    "source": "This is an art gallery whose collection of modern art is one of the best in the world.",
+    "target": "Dies ist eine Kunstgalerie, deren Sammlung moderner Kunst zu den besten der Welt gehört.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 38,
+    "source": "It is where the British government meets.",
+    "target": "Dort trifft sich die britische Regierung.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 39,
+    "source": "The government meets at the Houses of Parliament.",
+    "target": "Die Regierung trifft sich im britischen Parlament.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 40,
+    "source": "If you want to avoid the long queues – book in advance.",
+    "target": "Wenn du die langen Warteschlangen vermeiden möchtest, buche im Voraus.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 41,
+    "source": "A lot of people photograph these places in London.",
+    "target": "Viele Menschen fotografieren diese Orte in London.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 42,
+    "source": "You can watch a Shakespeare play at the Globe.",
+    "target": "Du kannst dir im Globe ein Theaterstück von Shakespeare ansehen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 43,
+    "source": "It was built in 1078 as a castle, later it was a prison.",
+    "target": "Es wurde 1078 als Burg erbaut, später war es ein Gefängnis.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 44,
+    "source": "They can raise the bridge for big ships.",
+    "target": "Sie können die Brücke für große Schiffe anheben.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 45,
+    "source": "The ravens should never leave the Tower of London.",
+    "target": "Die Raben sollten den Tower of London niemals verlassen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 46,
+    "source": "Take a walk along the banks of the river.",
+    "target": "Mach einen Spaziergang entlang der Flussufer.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 47,
+    "source": "There was a round theatre here, where Shakespeare acted.",
+    "target": "Hier gab es ein rundes Theater, in dem Shakespeare als Schauspieler auftrat.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 48,
+    "source": "The 25-minute ride on the wheel gives you some of the best views of London.",
+    "target": "Die 25-minütige Fahrt mit dem Riesenrad bietet dir einige der besten Ausblicke auf London.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 49,
+    "source": "More than 3.5 million visitors take a ride on the wheel each year.",
+    "target": "Mehr als 3,5 Millionen Besucher fahren jedes Jahr mit dem Riesenrad.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 50,
+    "source": "Let’s throw a thrilling party on Thursday.",
+    "target": "Lass uns am Donnerstag eine aufregende Party veranstalten.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 51,
+    "source": "The Great Plague killed approximately 100,000 people in London.",
+    "target": "Die Große Pest tötete ungefähr 100.000 Menschen in London.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 52,
+    "source": "Usual symptoms were fever and coughing up blood.",
+    "target": "Typische Symptome waren Fieber und das Aushusten von Blut.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 53,
+    "source": "The Great Plague was a cruel killer.",
+    "target": "Die Große Pest war ein grausamer Killer.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 54,
+    "source": "The streets were empty. There were no people.",
+    "target": "Die Straßen waren leer. Es waren keine Menschen da.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 55,
+    "source": "If you had the Plague, you also had fever.",
+    "target": "Wenn du die Pest hattest, hattest du auch Fieber.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 56,
+    "source": "Many people didn’t report their symptoms.",
+    "target": "Viele Menschen meldeten ihre Symptome nicht.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 57,
+    "source": "There’s a long path, a lake and lots of trees.",
+    "target": "Es gibt einen langen Weg, einen See und viele Bäume.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 58,
+    "source": "What I loved most was the spectacular light show.",
+    "target": "Was mir am besten gefiel, war die spektakuläre Lichtshow.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 59,
+    "source": "Madame Tussauds has been a popular tourist attraction for many years.",
+    "target": "Madame Tussauds ist seit vielen Jahren eine beliebte Sehenswürdigkeit.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 60,
+    "source": "You can experience one of the many interactive attractions.",
+    "target": "Du kannst eine der vielen interaktiven Attraktionen erleben.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 61,
+    "source": "There’s a lot of traffic on the street. It’s very noisy.",
+    "target": "Auf der Straße ist viel Verkehr. Es ist sehr laut.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 62,
+    "source": "London is very multicultural.",
+    "target": "London ist sehr multikulturell.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 63,
+    "source": "We signed a contract.",
+    "target": "Wir unterschrieben einen Vertrag.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 64,
+    "source": "I should be helping Dad to lead a healthier lifestyle.",
+    "target": "Ich sollte Papa dabei helfen, einen gesünderen Lebensstil zu führen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 65,
+    "source": "I want to eat less sugar.",
+    "target": "Ich möchte weniger Zucker essen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 66,
+    "source": "My other job earns me £10 a week.",
+    "target": "Mit meinem anderen Job verdiene ich 10 Pfund pro Woche.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 67,
+    "source": "I need to save up money for our new project.",
+    "target": "Ich muss Geld für unser neues Projekt ansparen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 68,
+    "source": "He agreed and signed the contract.",
+    "target": "Er stimmte zu und unterschrieb den Vertrag.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  }
+]

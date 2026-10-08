@@ -1,0 +1,506 @@
+[
+  {
+    "id": 1,
+    "source": "cub",
+    "target": "(Bären-)Junges",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 2,
+    "source": "Good luck!",
+    "target": "Viel Glück!",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 3,
+    "source": "polar bear",
+    "target": "Eisbär",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 4,
+    "source": "adorable",
+    "target": "bezaubernd, liebenswert",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 5,
+    "source": "bite",
+    "target": "Biss",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 6,
+    "source": "to cause",
+    "target": "verursachen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 7,
+    "source": "poison",
+    "target": "Gift",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 8,
+    "source": "rabies",
+    "target": "Tollwut",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 9,
+    "source": "seal",
+    "target": "Robbe",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 10,
+    "source": "swan",
+    "target": "Schwan",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 11,
+    "source": "to bite (off)",
+    "target": "(ab-)beißen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 12,
+    "source": "lizard",
+    "target": "Eidechse",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 13,
+    "source": "to chase away",
+    "target": "verjagen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 14,
+    "source": "to complain",
+    "target": "sich beschweren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 15,
+    "source": "injury",
+    "target": "Verletzung",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 16,
+    "source": "to lift",
+    "target": "aufheben",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 17,
+    "source": "to pull down",
+    "target": "hinunterziehen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 18,
+    "source": "to accept",
+    "target": "akzeptieren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 19,
+    "source": "immediately",
+    "target": "sofort",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 20,
+    "source": "to advise (sb.) against sth.",
+    "target": "(jdm.) von etw. abraten, (jdn.) vor etw. warnen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 21,
+    "source": "to bleed",
+    "target": "bluten",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 22,
+    "source": "death",
+    "target": "Tod",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 23,
+    "source": "to defend",
+    "target": "verteidigen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 24,
+    "source": "to mistake sth. for sth.",
+    "target": "etw. mit etw. verwechseln",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 25,
+    "source": "on average",
+    "target": "durchschnittlich, im Durchschnitt",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 26,
+    "source": "scuba diver",
+    "target": "Sporttaucher/Sporttaucherin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 27,
+    "source": "shape",
+    "target": "Form",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 28,
+    "source": "to suppose",
+    "target": "vermuten, annehmen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 29,
+    "source": "to take care",
+    "target": "aufpassen, sich hüten",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 30,
+    "source": "victim",
+    "target": "Opfer",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 31,
+    "source": "to communicate",
+    "target": "kommunizieren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 32,
+    "source": "audience",
+    "target": "Publikum",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 33,
+    "source": "environment",
+    "target": "Umwelt",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 34,
+    "source": "Hands off!",
+    "target": "Finger weg!",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 35,
+    "source": "to inform",
+    "target": "informieren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 36,
+    "source": "to lock sb. up",
+    "target": "jdn. einsperren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 37,
+    "source": "politician",
+    "target": "Politiker/Politikerin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 38,
+    "source": "A baby bear is called a ‘cub’.",
+    "target": "Ein Bärenbaby wird „cub“ genannt.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 39,
+    "source": "There are 3,000 polar bears on the Svalbard Islands in Norway.",
+    "target": "Auf den Svalbard-Inseln in Norwegen gibt es 3.000 Eisbären.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 40,
+    "source": "The baby seal’s parents are not as adorable.",
+    "target": "Die Eltern der Babyrobbe sind nicht so bezaubernd.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 41,
+    "source": "A bite from a slow loris can be deadly.",
+    "target": "Ein Biss von einem Plumplori kann tödlich sein.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 42,
+    "source": "One bite can cause a lot of pain and could even kill you.",
+    "target": "Ein Biss kann starke Schmerzen verursachen und dich sogar töten.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 43,
+    "source": "The slow loris produces a poison to protect its young.",
+    "target": "Der Plumplori produziert ein Gift, um seine Jungen zu schützen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 44,
+    "source": "Chipmunks can spread diseases like rabies.",
+    "target": "Streifenhörnchen können Krankheiten wie Tollwut verbreiten.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 45,
+    "source": "Everyone loves a baby leopard seal.",
+    "target": "Jeder liebt ein Seeleopardenbaby.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 46,
+    "source": "Swans are commonly found on lakes and rivers.",
+    "target": "Schwäne sind häufig auf Seen und Flüssen zu finden.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 47,
+    "source": "His lizard tried to bite my finger off.",
+    "target": "Seine Eidechse versuchte, mir den Finger abzubeißen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 48,
+    "source": "Dave’s got a new lizard as a pet.",
+    "target": "Dave hat eine neue Eidechse als Haustier.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 49,
+    "source": "He managed to chase the big fish away.",
+    "target": "Es gelang ihm, den großen Fisch zu verjagen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 50,
+    "source": "She smiles a lot and never complains.",
+    "target": "Sie lächelt viel und beschwert sich nie.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 51,
+    "source": "Charlie saw that his daughter had terrible injuries.",
+    "target": "Charlie sah, dass seine Tochter schreckliche Verletzungen hatte.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 52,
+    "source": "He dived into the water, and tried to lift the girl out.",
+    "target": "Er tauchte ins Wasser und versuchte, das Mädchen herauszuheben.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 53,
+    "source": "There was a big bull shark, and it was pulling Paige down into the water.",
+    "target": "Da war ein großer Bullenhai, der Paige ins Wasser hinunterzog.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 54,
+    "source": "Paige tries to accept her situation.",
+    "target": "Paige versucht, ihre Situation zu akzeptieren.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 55,
+    "source": "Why didn’t they go back to the café immediately?",
+    "target": "Warum gingen sie nicht sofort ins Café zurück?",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 56,
+    "source": "I would advise against surfing or swimming out too far.",
+    "target": "Ich würde davon abraten, zu weit hinauszusurfen oder hinauszuschwimmen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 57,
+    "source": "The great white shark lets people bleed to death.",
+    "target": "Der Weiße Hai lässt Menschen verbluten.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 58,
+    "source": "Great white sharks watch their victims bleed to death.",
+    "target": "Weiße Haie sehen zu, wie ihre Opfer verbluten.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 59,
+    "source": "Sharks attack to defend their territory.",
+    "target": "Haie greifen an, um ihr Revier zu verteidigen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 60,
+    "source": "They attack humans because they mistake them for seals or sea lions.",
+    "target": "Sie greifen Menschen an, weil sie sie mit Robben oder Seelöwen verwechseln.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 61,
+    "source": "They only kill one person every eight years on average.",
+    "target": "Sie töten im Durchschnitt nur alle acht Jahre einen Menschen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 62,
+    "source": "Swimmers are in more danger than a scuba diver.",
+    "target": "Schwimmer sind stärker gefährdet als ein Sporttaucher.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 63,
+    "source": "From below, the shape of a swimmer can look like a seal to a shark.",
+    "target": "Von unten kann die Form eines Schwimmers für einen Hai wie eine Robbe aussehen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 64,
+    "source": "I suppose so.",
+    "target": "Ich nehme an, dass es so ist.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 65,
+    "source": "People should take care when they go swimming.",
+    "target": "Menschen sollten aufpassen, wenn sie schwimmen gehen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 66,
+    "source": "Sharks watch their victims bleed before returning to eat.",
+    "target": "Haie sehen zu, wie ihre Opfer bluten, bevor sie zurückkommen, um zu fressen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 67,
+    "source": "Soon they find out that Troodons can communicate.",
+    "target": "Bald finden sie heraus, dass Troodons kommunizieren können.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 68,
+    "source": "There are different ways to reach an audience.",
+    "target": "Es gibt verschiedene Möglichkeiten, ein Publikum zu erreichen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 69,
+    "source": "Foxes are a part of our environment.",
+    "target": "Füchse sind ein Teil unserer Umwelt.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 70,
+    "source": "You need to inform the public about changes to the voting system.",
+    "target": "Du musst die Öffentlichkeit über Änderungen am Wahlsystem informieren.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 71,
+    "source": "You should lock up the chickens at night.",
+    "target": "Du solltest die Hühner nachts einsperren.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 72,
+    "source": "They’re asking for the local politicians to get the foxes off our streets.",
+    "target": "Sie fordern die örtlichen Politiker auf, die Füchse von unseren Straßen zu entfernen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  }
+]

@@ -1,0 +1,478 @@
+[
+  {
+    "id": 1,
+    "source": "research",
+    "target": "Forschung, Recherche",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 2,
+    "source": "to be trapped",
+    "target": "gefangen sein, festsitzen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 3,
+    "source": "pressure",
+    "target": "Druck",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 4,
+    "source": "surface",
+    "target": "Oberfläche",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 5,
+    "source": "undersea",
+    "target": "unter Wasser",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 6,
+    "source": "border",
+    "target": "Grenze",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 7,
+    "source": "damage",
+    "target": "Schaden",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 8,
+    "source": "to evacuate",
+    "target": "evakuieren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 9,
+    "source": "to measure",
+    "target": "messen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 10,
+    "source": "region",
+    "target": "Region, Gebiet",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 11,
+    "source": "violent",
+    "target": "gewalttätig",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 12,
+    "source": "to keep away from",
+    "target": "fernbleiben von",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 13,
+    "source": "to fall down",
+    "target": "hinunterfallen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 14,
+    "source": "to realise",
+    "target": "realisieren, erkennen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 15,
+    "source": "survival",
+    "target": "Überleben",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 16,
+    "source": "underneath",
+    "target": "unter",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 17,
+    "source": "ash",
+    "target": "Asche",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 18,
+    "source": "castaway",
+    "target": "Schiffsbrüchiger/Schiffsbrüchige",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 19,
+    "source": "to deliver",
+    "target": "zustellen, liefern",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 20,
+    "source": "delivery company",
+    "target": "Zustelldienst",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 21,
+    "source": "flame",
+    "target": "Flamme",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 22,
+    "source": "to get used to",
+    "target": "sich an etw. gewöhnen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 23,
+    "source": "hometown",
+    "target": "Heimatstadt",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 24,
+    "source": "joy",
+    "target": "Freude",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 25,
+    "source": "parcel",
+    "target": "Paket",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 26,
+    "source": "raft",
+    "target": "Floß",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 27,
+    "source": "shelter",
+    "target": "Unterschlupf, Unterkunft",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 28,
+    "source": "to turn into",
+    "target": "verwandeln, hier: zu etw. werden",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 29,
+    "source": "miracle",
+    "target": "Wunder",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 30,
+    "source": "desert island",
+    "target": "einsame Insel",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 31,
+    "source": "pleasure (no pl)",
+    "target": "Freude, Vergnügen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 32,
+    "source": "in case of",
+    "target": "im Falle von",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 33,
+    "source": "lighter",
+    "target": "Feuerzeug",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 34,
+    "source": "to collapse",
+    "target": "zusammenbrechen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 35,
+    "source": "A lot of money is spent on the research of avalanches.",
+    "target": "Für die Erforschung von Lawinen wird viel Geld ausgegeben.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 36,
+    "source": "If you are trapped in an avalanche, no one can hear you.",
+    "target": "Wenn du in einer Lawine gefangen bist, kann dich niemand hören.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 37,
+    "source": "The gas inside a volcano creates a lot of pressure.",
+    "target": "Das Gas im Inneren eines Vulkans erzeugt viel Druck.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 38,
+    "source": "There’s a pool of magma under the surface of the Earth.",
+    "target": "Unter der Erdoberfläche befindet sich eine Ansammlung von Magma.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 39,
+    "source": "There are also undersea volcanoes that can erupt.",
+    "target": "Es gibt auch Vulkane unter Wasser, die ausbrechen können.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 40,
+    "source": "There were fights at the Mexican border with North America.",
+    "target": "An der mexikanischen Grenze zu Nordamerika gab es Kämpfe.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 41,
+    "source": "The damage caused by the earthquake was bad.",
+    "target": "Der durch das Erdbeben verursachte Schaden war groß.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 42,
+    "source": "Hundreds of people were evacuated by air.",
+    "target": "Hunderte Menschen wurden auf dem Luftweg evakuiert.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 43,
+    "source": "The earthquake measured 7.0 on the Richter scale.",
+    "target": "Das Erdbeben hatte eine Stärke von 7,0 auf der Richterskala.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 44,
+    "source": "The region was hit by long periods without rain.",
+    "target": "Die Region war von langen Zeiten ohne Regen betroffen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 45,
+    "source": "Droughts have led to violent conflicts between the regions.",
+    "target": "Dürren haben zu gewalttätigen Konflikten zwischen den Regionen geführt.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 46,
+    "source": "Keep away from heavy furniture that might fall over.",
+    "target": "Halte dich von schweren Möbeln fern, die umfallen könnten.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 47,
+    "source": "A few trees fell down because of the earthquake.",
+    "target": "Ein paar Bäume fielen wegen des Erdbebens um.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 48,
+    "source": "I realised it was serious when I saw people running away.",
+    "target": "Ich erkannte, dass es ernst war, als ich Menschen weglaufen sah.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 49,
+    "source": "We are looking for people with amazing survival stories.",
+    "target": "Wir suchen Menschen mit erstaunlichen Überlebensgeschichten.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 50,
+    "source": "I just got underneath the kitchen table.",
+    "target": "Ich kroch einfach unter den Küchentisch.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 51,
+    "source": "He used ash from the fire to draw a face on the ball.",
+    "target": "Er benutzte Asche aus dem Feuer, um ein Gesicht auf den Ball zu zeichnen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 52,
+    "source": "How would you spend your time if you were a castaway?",
+    "target": "Wie würdest du deine Zeit verbringen, wenn du ein Schiffsbrüchiger wärst?",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 53,
+    "source": "He still hoped to deliver the parcels unopened one day.",
+    "target": "Er hoffte immer noch, die Pakete eines Tages ungeöffnet zuzustellen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 54,
+    "source": "Chuck worked for a worldwide delivery company.",
+    "target": "Chuck arbeitete für einen weltweit tätigen Zustelldienst.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 55,
+    "source": "He was trying to make fire and finally he saw a flame.",
+    "target": "Er versuchte, Feuer zu machen, und sah schließlich eine Flamme.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 56,
+    "source": "As the years went by, Chuck got used to the island.",
+    "target": "Im Laufe der Jahre gewöhnte sich Chuck an die Insel.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 57,
+    "source": "Chuck knew the island as well as his hometown.",
+    "target": "Chuck kannte die Insel so gut wie seine Heimatstadt.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 58,
+    "source": "He laughed with joy.",
+    "target": "Er lachte vor Freude.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 59,
+    "source": "He put the unopened parcel next to him.",
+    "target": "Er legte das ungeöffnete Paket neben sich.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 60,
+    "source": "Chuck built a raft to escape the island.",
+    "target": "Chuck baute ein Floß, um von der Insel zu entkommen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 61,
+    "source": "He built himself a shelter from the rain.",
+    "target": "Er baute sich einen Unterschlupf zum Schutz vor dem Regen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 62,
+    "source": "The rainfall quickly turned into heavy snowfall.",
+    "target": "Der Regen ging schnell in starken Schneefall über.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 63,
+    "source": "It’s a miracle that we survived the earthquake.",
+    "target": "Es ist ein Wunder, dass wir das Erdbeben überlebt haben.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 64,
+    "source": "What would you take on a desert island?",
+    "target": "Was würdest du auf eine einsame Insel mitnehmen?",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 65,
+    "source": "It’s a pleasure to be here.",
+    "target": "Es ist eine Freude, hier zu sein.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 66,
+    "source": "In case of fire go outside!",
+    "target": "Geh im Falle eines Feuers nach draußen!",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 67,
+    "source": "Don’t play with lighters.",
+    "target": "Spiel nicht mit Feuerzeugen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 68,
+    "source": "The house could collapse during an earthquake.",
+    "target": "Das Haus könnte während eines Erdbebens zusammenbrechen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  }
+]

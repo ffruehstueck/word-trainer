@@ -1,0 +1,548 @@
+[
+  {
+    "id": 1,
+    "source": "bacon",
+    "target": "Speck",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 2,
+    "source": "to decorate",
+    "target": "dekorieren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 3,
+    "source": "dish",
+    "target": "Gericht",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 4,
+    "source": "fat",
+    "target": "Fett",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 5,
+    "source": "invention",
+    "target": "Erfindung",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 6,
+    "source": "crowd",
+    "target": "Publikum, Menschenmenge",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 7,
+    "source": "current",
+    "target": "(elektrischer) Strom",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 8,
+    "source": "to develop",
+    "target": "entwickeln",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 9,
+    "source": "electric (motor)",
+    "target": "elektrisch; (Elektromotor)",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 10,
+    "source": "energy",
+    "target": "Energie; Strom",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 11,
+    "source": "influence",
+    "target": "Einfluss",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 12,
+    "source": "inventor",
+    "target": "Erfinder/Erfinderin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 13,
+    "source": "to invest",
+    "target": "investieren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 14,
+    "source": "perhaps",
+    "target": "vielleicht, eventuell",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 15,
+    "source": "to be responsible for",
+    "target": "für etw. verantwortlich sein",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 16,
+    "source": "to shoot",
+    "target": "schießen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 17,
+    "source": "confident",
+    "target": "(selbst-)sicher; zuversichtlich",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 18,
+    "source": "to impress",
+    "target": "beeindrucken",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 19,
+    "source": "soap",
+    "target": "Seife",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 20,
+    "source": "device",
+    "target": "Gerät",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 21,
+    "source": "product",
+    "target": "Produkt",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 22,
+    "source": "remarkable",
+    "target": "bemerkenswert",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 23,
+    "source": "to research",
+    "target": "erforschen, recherchieren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 24,
+    "source": "wrist",
+    "target": "Handgelenk",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 25,
+    "source": "crutches",
+    "target": "Krücken",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 26,
+    "source": "illness",
+    "target": "Krankheit",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 27,
+    "source": "ramp",
+    "target": "Rampe",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 28,
+    "source": "wheelchair",
+    "target": "Rollstuhl",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 29,
+    "source": "to adapt",
+    "target": "anpassen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 30,
+    "source": "to attach",
+    "target": "anfügen, anhängen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 31,
+    "source": "glove",
+    "target": "Handschuh",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 32,
+    "source": "housework",
+    "target": "Hausarbeit",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 33,
+    "source": "automatically",
+    "target": "automatisch",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 34,
+    "source": "collar",
+    "target": "Kragen; hier: Halsband",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 35,
+    "source": "computer science",
+    "target": "Informatik",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 36,
+    "source": "engineer",
+    "target": "Techniker/Technikerin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 37,
+    "source": "inspiration",
+    "target": "Inspiration",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 38,
+    "source": "to repair",
+    "target": "reparieren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 39,
+    "source": "to support",
+    "target": "unterstützen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 40,
+    "source": "Lots of people love bacon and egg for breakfast.",
+    "target": "Viele Menschen lieben Speck und Ei zum Frühstück.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 41,
+    "source": "Then someone invented electric lights to decorate houses.",
+    "target": "Dann erfand jemand elektrische Lichter, um Häuser zu dekorieren.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 42,
+    "source": "I invented a new dish with the cook of the restaurant.",
+    "target": "Ich erfand mit dem Koch des Restaurants ein neues Gericht.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 43,
+    "source": "I like bacon with less fat.",
+    "target": "Ich mag Speck mit weniger Fett.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 44,
+    "source": "He worked on his invention for a number of years.",
+    "target": "Er arbeitete mehrere Jahre an seiner Erfindung.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 45,
+    "source": "He can make a huge crowd laugh.",
+    "target": "Er kann eine riesige Menschenmenge zum Lachen bringen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 46,
+    "source": "He passed current through his body.",
+    "target": "Er ließ Strom durch seinen Körper fließen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 47,
+    "source": "In the late 1880s, Tesla developed a new kind of electricity.",
+    "target": "In den späten 1880er-Jahren entwickelte Tesla eine neue Art von Elektrizität.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 48,
+    "source": "Tesla invented the electric motor.",
+    "target": "Tesla erfand den Elektromotor.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 49,
+    "source": "He said he could send energy waves through water.",
+    "target": "Er sagte, er könne Energiewellen durch Wasser schicken.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 50,
+    "source": "Edison used his influence to tell people that AC was too dangerous.",
+    "target": "Edison nutzte seinen Einfluss, um den Menschen zu sagen, dass Wechselstrom zu gefährlich sei.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 51,
+    "source": "Thomas Edison was perhaps the most famous inventor of his time.",
+    "target": "Thomas Edison war vielleicht der berühmteste Erfinder seiner Zeit.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 52,
+    "source": "Edison invested all his money in DC.",
+    "target": "Edison investierte sein ganzes Geld in Gleichstrom.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 53,
+    "source": "Perhaps it was his most important invention.",
+    "target": "Vielleicht war es seine wichtigste Erfindung.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 54,
+    "source": "The invention was also responsible for his bad luck.",
+    "target": "Die Erfindung war auch für sein Pech verantwortlich.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 55,
+    "source": "He used the Tesla coil to shoot large electric lightning bolts into the crowd.",
+    "target": "Er benutzte die Tesla-Spule, um große elektrische Blitze in die Menschenmenge zu schießen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 56,
+    "source": "I’m quite confident it will work.",
+    "target": "Ich bin ziemlich zuversichtlich, dass es funktionieren wird.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 57,
+    "source": "I’ve invented something that I think might impress my teacher.",
+    "target": "Ich habe etwas erfunden, von dem ich glaube, dass es meinen Lehrer beeindrucken könnte.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 58,
+    "source": "Use soap to wash your hands.",
+    "target": "Benutze Seife, um deine Hände zu waschen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 59,
+    "source": "This device allows people to talk under water.",
+    "target": "Dieses Gerät ermöglicht es Menschen, unter Wasser zu sprechen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 60,
+    "source": "He started a company to produce his product.",
+    "target": "Er gründete eine Firma, um sein Produkt herzustellen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 61,
+    "source": "Kids can sometimes produce something quite remarkable.",
+    "target": "Kinder können manchmal etwas ziemlich Bemerkenswertes hervorbringen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 62,
+    "source": "He decided to research underwater acoustics.",
+    "target": "Er beschloss, Unterwasserakustik zu erforschen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 63,
+    "source": "Her wrist was hurting from the cold.",
+    "target": "Ihr Handgelenk tat wegen der Kälte weh.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 64,
+    "source": "She uses a walker or crutches to move about.",
+    "target": "Sie benutzt eine Gehhilfe oder Krücken, um sich fortzubewegen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 65,
+    "source": "Her illness had stopped Sadie from entering the competition.",
+    "target": "Ihre Krankheit hatte Sadie daran gehindert, am Wettbewerb teilzunehmen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 66,
+    "source": "She needs to look for ramps to get up and down steps.",
+    "target": "Sie muss nach Rampen suchen, um Stufen hinauf- und hinunterzukommen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 67,
+    "source": "A wheelchair helps her get around.",
+    "target": "Ein Rollstuhl hilft ihr, sich fortzubewegen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 68,
+    "source": "She is able to adapt easily to different situations.",
+    "target": "Sie kann sich leicht an verschiedene Situationen anpassen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 69,
+    "source": "I’ll attach a picture to my email.",
+    "target": "Ich werde ein Bild an meine E-Mail anhängen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 70,
+    "source": "Wear some gloves to keep your hands warm in winter.",
+    "target": "Trage Handschuhe, um deine Hände im Winter warm zu halten.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 71,
+    "source": "Busy parents don’t have enough time for housework.",
+    "target": "Viel beschäftigte Eltern haben nicht genug Zeit für die Hausarbeit.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 72,
+    "source": "When the cat wants to go inside, the flap opens automatically.",
+    "target": "Wenn die Katze hineingehen möchte, öffnet sich die Klappe automatisch.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 73,
+    "source": "I’ve created a collar for our cat.",
+    "target": "Ich habe ein Halsband für unsere Katze entworfen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 74,
+    "source": "His best subject at school is computer science.",
+    "target": "Sein bestes Schulfach ist Informatik.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 75,
+    "source": "What subjects do you need to study to be an engineer?",
+    "target": "Welche Fächer musst du studieren, um Techniker zu werden?",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 76,
+    "source": "This is not the kind of inspiration I’m looking for right now.",
+    "target": "Das ist nicht die Art von Inspiration, die ich gerade suche.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 77,
+    "source": "I love repairing things and playing around with new ideas.",
+    "target": "Ich liebe es, Dinge zu reparieren und mit neuen Ideen herumzuexperimentieren.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 78,
+    "source": "I want to do things that will support my dream for the future.",
+    "target": "Ich möchte Dinge tun, die meinen Traum für die Zukunft unterstützen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  }
+]

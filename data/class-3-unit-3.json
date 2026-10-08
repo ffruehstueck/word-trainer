@@ -1,0 +1,492 @@
+[
+  {
+    "id": 1,
+    "source": "to become",
+    "target": "werden",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 2,
+    "source": "curious",
+    "target": "neugierig",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 3,
+    "source": "decision",
+    "target": "Entscheidung",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 4,
+    "source": "experience",
+    "target": "Erfahrung",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 5,
+    "source": "to explore",
+    "target": "erkunden, erforschen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 6,
+    "source": "journey",
+    "target": "Reise",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 7,
+    "source": "on foot",
+    "target": "zu Fuß",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 8,
+    "source": "painful",
+    "target": "schmerzhaft",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 9,
+    "source": "to reach",
+    "target": "(er-)reichen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 10,
+    "source": "to sail",
+    "target": "segeln",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 11,
+    "source": "traveller",
+    "target": "Reisender/Reisende",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 12,
+    "source": "lonely",
+    "target": "einsam",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 13,
+    "source": "to criticise",
+    "target": "kritisieren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 14,
+    "source": "explorer",
+    "target": "Entdecker/Entdeckerin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 15,
+    "source": "even though",
+    "target": "obwohl",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 16,
+    "source": "hut",
+    "target": "Hütte",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 17,
+    "source": "to turn out",
+    "target": "sich herausstellen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 18,
+    "source": "wilderness",
+    "target": "Wildnis",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 19,
+    "source": "to behave",
+    "target": "verhalten",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 20,
+    "source": "all in all",
+    "target": "alles in allem",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 21,
+    "source": "awake",
+    "target": "wach",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 22,
+    "source": "pretty",
+    "target": "hier: ziemlich",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 23,
+    "source": "unfortunately",
+    "target": "leider",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 24,
+    "source": "departure",
+    "target": "Abflug; Abfahrt",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 25,
+    "source": "flight",
+    "target": "Flug",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 26,
+    "source": "to make a reservation",
+    "target": "eine Reservierung vornehmen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 27,
+    "source": "to note",
+    "target": "beachten, feststellen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 28,
+    "source": "to fix sth.",
+    "target": "etw. beheben, reparieren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 29,
+    "source": "thirsty",
+    "target": "durstig",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 30,
+    "source": "impossible",
+    "target": "unmöglich",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 31,
+    "source": "recently",
+    "target": "vor Kurzem, letztens",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 32,
+    "source": "to get lost",
+    "target": "sich verirren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 33,
+    "source": "to get to know sb./sth.",
+    "target": "jdn./etw. näher kennenlernen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 34,
+    "source": "to promise",
+    "target": "versprechen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 35,
+    "source": "to recommend",
+    "target": "empfehlen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 36,
+    "source": "His feet hurt so badly that walking became difficult.",
+    "target": "Seine Füße taten so weh, dass das Gehen schwierig wurde.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 37,
+    "source": "Reading about all these places makes me curious.",
+    "target": "Über all diese Orte zu lesen macht mich neugierig.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 38,
+    "source": "Starting to travel was the best decision in his life.",
+    "target": "Anzufangen zu reisen war die beste Entscheidung seines Lebens.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 39,
+    "source": "And in China he had a very painful experience.",
+    "target": "Und in China machte er eine sehr schmerzhafte Erfahrung.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 40,
+    "source": "He started to explore the streets of London.",
+    "target": "Er begann, die Straßen von London zu erkunden.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 41,
+    "source": "His first journey took him to France.",
+    "target": "Seine erste Reise führte ihn nach Frankreich.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 42,
+    "source": "He crossed Zanzibar and Tasmania on foot.",
+    "target": "Er durchquerte Sansibar und Tasmanien zu Fuß.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 43,
+    "source": "Getting attacked by wasps can be very painful.",
+    "target": "Von Wespen angegriffen zu werden kann sehr schmerzhaft sein.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 44,
+    "source": "He became the first blind person to reach the top of Mount Vesuvius.",
+    "target": "Er wurde der erste blinde Mensch, der den Gipfel des Vesuvs erreichte.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 45,
+    "source": "He got on board of a ship to sail across the Atlantic.",
+    "target": "Er ging an Bord eines Schiffes, um über den Atlantik zu segeln.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 46,
+    "source": "James Holman was a record traveller.",
+    "target": "James Holman war ein Reisender, der Rekorde aufstellte.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 47,
+    "source": "Holman found his first journey to France lonely.",
+    "target": "Holman empfand seine erste Reise nach Frankreich als einsam.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 48,
+    "source": "She criticised the Europeans.",
+    "target": "Sie kritisierte die Europäer.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 49,
+    "source": "She was a great female explorer in the 19th century.",
+    "target": "Sie war eine großartige Entdeckerin im 19. Jahrhundert.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 50,
+    "source": "Even though my bike is old, I still like it.",
+    "target": "Obwohl mein Fahrrad alt ist, mag ich es immer noch.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 51,
+    "source": "She lived with the people in their huts.",
+    "target": "Sie lebte mit den Menschen in ihren Hütten.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 52,
+    "source": "The Fang turned out to be quite friendly.",
+    "target": "Die Fang erwiesen sich als ziemlich freundlich.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 53,
+    "source": "In the wilderness she looked like a lady.",
+    "target": "In der Wildnis sah sie wie eine Dame aus.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 54,
+    "source": "You should behave well in other countries.",
+    "target": "Du solltest dich in anderen Ländern gut benehmen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 55,
+    "source": "All in all, we had a great time.",
+    "target": "Alles in allem hatten wir eine tolle Zeit.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 56,
+    "source": "By the time we got back, we felt really awake.",
+    "target": "Als wir zurückkamen, fühlten wir uns richtig wach.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 57,
+    "source": "The lake was pretty cold.",
+    "target": "Der See war ziemlich kalt.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 58,
+    "source": "Unfortunately, all good things come to an end.",
+    "target": "Leider gehen alle schönen Dinge einmal zu Ende.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 59,
+    "source": "The check-in is two hours before departure.",
+    "target": "Der Check-in ist zwei Stunden vor dem Abflug.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 60,
+    "source": "There’s another flight to London at 3 p.m.",
+    "target": "Um 15 Uhr gibt es einen weiteren Flug nach London.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 61,
+    "source": "I want to make a reservation for dinner tonight.",
+    "target": "Ich möchte für das Abendessen heute Abend eine Reservierung vornehmen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 62,
+    "source": "Please note that you have to check in early.",
+    "target": "Bitte beachte, dass du früh einchecken musst.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 63,
+    "source": "It took him exactly one minute to fix the problem.",
+    "target": "Er brauchte genau eine Minute, um das Problem zu beheben.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 64,
+    "source": "I felt really thirsty so I asked for a glass of water.",
+    "target": "Ich war sehr durstig, also bat ich um ein Glas Wasser.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 65,
+    "source": "It was impossible to get some sleep.",
+    "target": "Es war unmöglich, etwas Schlaf zu bekommen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 66,
+    "source": "Your family went for a short holiday recently.",
+    "target": "Deine Familie hat vor Kurzem einen Kurzurlaub gemacht.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 67,
+    "source": "We got lost on the way.",
+    "target": "Wir haben uns unterwegs verirrt.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 68,
+    "source": "I want to get to know the countryside.",
+    "target": "Ich möchte die ländliche Gegend kennenlernen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 69,
+    "source": "I’ll call you tomorrow, I promise.",
+    "target": "Ich rufe dich morgen an, versprochen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 70,
+    "source": "I can recommend some very interesting books.",
+    "target": "Ich kann einige sehr interessante Bücher empfehlen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  }
+]

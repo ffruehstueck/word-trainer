@@ -1,0 +1,380 @@
+[
+  {
+    "id": 1,
+    "source": "bug",
+    "target": "Insekt",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 2,
+    "source": "to prefer",
+    "target": "bevorzugen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 3,
+    "source": "official language",
+    "target": "Amtssprache",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 4,
+    "source": "balcony",
+    "target": "Balkon",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 5,
+    "source": "crime",
+    "target": "Verbrechen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 6,
+    "source": "to dig",
+    "target": "graben",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 7,
+    "source": "shocked",
+    "target": "schockiert",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 8,
+    "source": "wild animal",
+    "target": "Wildtier",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 9,
+    "source": "wetland",
+    "target": "Sumpfgebiet",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 10,
+    "source": "otherwise",
+    "target": "andernfalls, sonst",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 11,
+    "source": "stuffed",
+    "target": "ausgestopft",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 12,
+    "source": "wildlife",
+    "target": "wilde Tierwelt",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 13,
+    "source": "at once",
+    "target": "sofort",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 14,
+    "source": "branch",
+    "target": "Ast",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 15,
+    "source": "by the way",
+    "target": "übrigens",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 16,
+    "source": "impolite",
+    "target": "unhöflich",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 17,
+    "source": "round a bend",
+    "target": "um eine Ecke, um eine Kurve",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 18,
+    "source": "bush",
+    "target": "Busch",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 19,
+    "source": "cut",
+    "target": "Schnitt(-wunde)",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 20,
+    "source": "to drive off",
+    "target": "wegfahren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 21,
+    "source": "engine",
+    "target": "Motor",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 22,
+    "source": "front seat",
+    "target": "Vordersitz",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 23,
+    "source": "park ranger",
+    "target": "Parkwächter/Parkwächterin",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 24,
+    "source": "sunburn",
+    "target": "Sonnenbrand",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 25,
+    "source": "to turn over",
+    "target": "(sich) überschlagen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 26,
+    "source": "to whisper",
+    "target": "flüstern",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 27,
+    "source": "crash",
+    "target": "Unfall, Zusammenstoß",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 28,
+    "source": "We built a hotel for all kinds of bugs.",
+    "target": "Wir bauten ein Hotel für alle Arten von Insekten.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 29,
+    "source": "I like bananas, but I prefer apples.",
+    "target": "Ich mag Bananen, aber ich bevorzuge Äpfel.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 30,
+    "source": "The official language in Botswana is English.",
+    "target": "Die Amtssprache in Botswana ist Englisch.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 31,
+    "source": "I saw a man on the balcony next to our room.",
+    "target": "Ich sah einen Mann auf dem Balkon neben unserem Zimmer.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 32,
+    "source": "Killing leopards is a crime.",
+    "target": "Leoparden zu töten ist ein Verbrechen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 33,
+    "source": "I’m going to dig for diamonds tomorrow.",
+    "target": "Ich werde morgen nach Diamanten graben.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 34,
+    "source": "I was really shocked when I saw the car crash.",
+    "target": "Ich war wirklich schockiert, als ich den Autounfall sah.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 35,
+    "source": "There are lots of wild animals in Botswana.",
+    "target": "In Botswana gibt es viele Wildtiere.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 36,
+    "source": "The Okavango is a large wetland.",
+    "target": "Der Okavango ist ein großes Sumpfgebiet.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 37,
+    "source": "We need to protect the leopards. Otherwise they’ll die out.",
+    "target": "Wir müssen die Leoparden schützen. Sonst werden sie aussterben.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 38,
+    "source": "Stuffed baby crocodiles are an illegal wildlife souvenir.",
+    "target": "Ausgestopfte Babykrokodile sind ein illegales Wildtiersouvenir.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 39,
+    "source": "Tourists take about 50,000 illegal wildlife souvenirs back to Britain!",
+    "target": "Touristen bringen etwa 50.000 illegale Wildtiersouvenirs nach Großbritannien zurück!",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 40,
+    "source": "If you see him, tell me at once!",
+    "target": "Wenn du ihn siehst, sag es mir sofort!",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 41,
+    "source": "Leopards like to climb trees and sleep on the branches.",
+    "target": "Leoparden klettern gern auf Bäume und schlafen auf den Ästen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 42,
+    "source": "Oh, by the way, I was really glad to see you again.",
+    "target": "Oh, übrigens, ich habe mich wirklich gefreut, dich wiederzusehen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 43,
+    "source": "I didn’t say anything because I didn’t want to be impolite.",
+    "target": "Ich sagte nichts, weil ich nicht unhöflich sein wollte.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 44,
+    "source": "We followed the car and drove round a bend.",
+    "target": "Wir folgten dem Auto und fuhren um eine Kurve.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 45,
+    "source": "There’s a black car in the bushes over there.",
+    "target": "Dort drüben steht ein schwarzes Auto in den Büschen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 46,
+    "source": "The man had a cut on his head.",
+    "target": "Der Mann hatte eine Schnittwunde am Kopf.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 47,
+    "source": "Suddenly, the black car drove off very fast.",
+    "target": "Plötzlich fuhr das schwarze Auto sehr schnell weg.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 48,
+    "source": "He stopped the car and switched the engine off.",
+    "target": "Er hielt das Auto an und schaltete den Motor aus.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 49,
+    "source": "I was sitting in the front seat of the big Land Rover.",
+    "target": "Ich saß auf dem Vordersitz des großen Land Rovers.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 50,
+    "source": "Alex took out his walkie-talkie and called the park rangers.",
+    "target": "Alex holte sein Walkie-Talkie heraus und rief die Parkwächter.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 51,
+    "source": "Hippos stay under water because they’re afraid of getting a sunburn.",
+    "target": "Flusspferde bleiben unter Wasser, weil sie Angst haben, einen Sonnenbrand zu bekommen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 52,
+    "source": "The Land Rover turned over and landed on its roof.",
+    "target": "Der Land Rover überschlug sich und landete auf dem Dach.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 53,
+    "source": "He whispered the secret in my ear.",
+    "target": "Er flüsterte mir das Geheimnis ins Ohr.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 54,
+    "source": "There was a car crash on May Street.",
+    "target": "Auf der May Street gab es einen Autounfall.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  }
+]

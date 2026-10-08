@@ -1,0 +1,387 @@
+[
+  {
+    "id": 1,
+    "source": "It’s none of my business.",
+    "target": "Das geht mich nichts an.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 2,
+    "source": "to laugh at sb.",
+    "target": "jdn. auslachen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 3,
+    "source": "to make up one’s mind",
+    "target": "einen Entschluss fassen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 4,
+    "source": "to make fun of sb.",
+    "target": "sich über jdn. lustig machen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 5,
+    "source": "to move",
+    "target": "umziehen, übersiedeln",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 6,
+    "source": "soft toy",
+    "target": "Stofftier",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 7,
+    "source": "to step in",
+    "target": "hier: eingreifen, dazwischen gehen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 8,
+    "source": "relationship",
+    "target": "Beziehung",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 9,
+    "source": "to own",
+    "target": "besitzen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 10,
+    "source": "childhood (no pl)",
+    "target": "Kindheit",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 11,
+    "source": "earring",
+    "target": "Ohrring",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 12,
+    "source": "jealous",
+    "target": "eifersüchtig",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 13,
+    "source": "to keep (a) secret",
+    "target": "ein Geheimnis für sich behalten",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 14,
+    "source": "questionnaire",
+    "target": "Fragebogen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 15,
+    "source": "to tell sb. off",
+    "target": "mit jdm. schimpfen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 16,
+    "source": "to solve",
+    "target": "lösen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 17,
+    "source": "beloved",
+    "target": "geliebt",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 18,
+    "source": "nowhere",
+    "target": "nirgends",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 19,
+    "source": "script",
+    "target": "Drehbuch",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 20,
+    "source": "to struggle",
+    "target": "kämpfen, sich abmühen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 21,
+    "source": "to lie to sb.",
+    "target": "jdn. anlügen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 22,
+    "source": "to admit",
+    "target": "zugeben",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 23,
+    "source": "to blackmail",
+    "target": "erpressen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 24,
+    "source": "clumsy",
+    "target": "ungeschickt",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 25,
+    "source": "honest",
+    "target": "ehrlich",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 26,
+    "source": "a pile of",
+    "target": "ein Stapel an",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 27,
+    "source": "rash",
+    "target": "Hautausschlag",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 28,
+    "source": "unwell",
+    "target": "unwohl, krank",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 29,
+    "source": "Some of the kids laughed at me at school.",
+    "target": "Einige der Kinder lachten mich in der Schule aus.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 30,
+    "source": "Once she has made up her mind about something, she doesn’t let go.",
+    "target": "Wenn sie sich einmal zu etwas entschlossen hat, lässt sie nicht mehr davon ab.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 31,
+    "source": "Then one day, a kid was making fun of her at school.",
+    "target": "Dann machte sich eines Tages ein Kind in der Schule über sie lustig.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 32,
+    "source": "My parents want to move to California.",
+    "target": "Meine Eltern möchten nach Kalifornien umziehen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 33,
+    "source": "I’ve had these soft toys since I was a baby.",
+    "target": "Ich habe diese Stofftiere, seit ich ein Baby war.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 34,
+    "source": "If a kid makes fun of your friend, you should step in.",
+    "target": "Wenn ein Kind sich über deinen Freund lustig macht, solltest du eingreifen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 35,
+    "source": "George’s relationship with Alessia changes over time.",
+    "target": "Georges Beziehung zu Alessia verändert sich mit der Zeit.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 36,
+    "source": "Which of the things you own do you like a lot?",
+    "target": "Welche der Dinge, die du besitzt, magst du besonders?",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 37,
+    "source": "I have lived in this house since my childhood.",
+    "target": "Ich wohne seit meiner Kindheit in diesem Haus.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 38,
+    "source": "I lost my earring in the sea.",
+    "target": "Ich habe meinen Ohrring im Meer verloren.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 39,
+    "source": "Your best friend has a new friend and you are feeling a bit jealous.",
+    "target": "Dein bester Freund hat einen neuen Freund und du bist ein bisschen eifersüchtig.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 40,
+    "source": "My best friend can keep a secret.",
+    "target": "Mein bester Freund kann ein Geheimnis für sich behalten.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 41,
+    "source": "Do the questionnaire to find out if you’re a good friend.",
+    "target": "Fülle den Fragebogen aus, um herauszufinden, ob du ein guter Freund bist.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 42,
+    "source": "Your teacher tells you off in front of the class for not doing your homework.",
+    "target": "Dein Lehrer schimpft vor der Klasse mit dir, weil du deine Hausaufgaben nicht gemacht hast.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 43,
+    "source": "This solves all our problems.",
+    "target": "Das löst alle unsere Probleme.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 44,
+    "source": "With a broken heart Stallone sold his beloved dog.",
+    "target": "Mit gebrochenem Herzen verkaufte Stallone seinen geliebten Hund.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 45,
+    "source": "Stallone had no money left and nowhere to sleep.",
+    "target": "Stallone hatte kein Geld mehr und keinen Schlafplatz.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 46,
+    "source": "Stallone was trying to sell his script.",
+    "target": "Stallone versuchte, sein Drehbuch zu verkaufen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 47,
+    "source": "As an actor he struggled a lot.",
+    "target": "Als Schauspieler hatte er sehr zu kämpfen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 48,
+    "source": "A good friend never lies to you.",
+    "target": "Ein guter Freund lügt dich niemals an.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 49,
+    "source": "I told Tom to admit what happened.",
+    "target": "Ich sagte Tom, er solle zugeben, was passiert war.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 50,
+    "source": "Ollie saw me and then he tried to blackmail me.",
+    "target": "Ollie sah mich und versuchte dann, mich zu erpressen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 51,
+    "source": "He knocked the books into the sink because he is so clumsy.",
+    "target": "Er stieß die Bücher ins Waschbecken, weil er so ungeschickt ist.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 52,
+    "source": "She lies a lot and is never honest.",
+    "target": "Sie lügt viel und ist nie ehrlich.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 53,
+    "source": "I put my homework on the pile of books.",
+    "target": "Ich legte meine Hausaufgaben auf den Bücherstapel.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 54,
+    "source": "My skin’s a bit red – I think it’s a rash.",
+    "target": "Meine Haut ist etwas rot – ich glaube, es ist ein Hautausschlag.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 55,
+    "source": "She looks a bit unwell.",
+    "target": "Sie sieht etwas krank aus.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  }
+]

@@ -1,0 +1,387 @@
+[
+  {
+    "id": 1,
+    "source": "dilemma",
+    "target": "Dilemma, Zwangslage",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 2,
+    "source": "to reach a decision",
+    "target": "eine Entscheidung treffen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 3,
+    "source": "to cancel",
+    "target": "absagen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 4,
+    "source": "disappointment",
+    "target": "Enttäuschung",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 5,
+    "source": "granddad",
+    "target": "Opa",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 6,
+    "source": "to kick sb. off",
+    "target": "rausschmeißen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 7,
+    "source": "to move",
+    "target": "(sich) bewegen; umziehen; hier: verschieben",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 8,
+    "source": "to rethink",
+    "target": "überdenken",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 9,
+    "source": "to deserve",
+    "target": "verdienen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 10,
+    "source": "except",
+    "target": "außer",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 11,
+    "source": "It’s a shame.",
+    "target": "Das ist schade.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 12,
+    "source": "lift",
+    "target": "hier: Mitfahrgelegenheit",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 13,
+    "source": "alibi",
+    "target": "Alibi",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 14,
+    "source": "ID (=identification)",
+    "target": "Personalausweis",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 15,
+    "source": "to keep quiet",
+    "target": "still sein, schweigen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 16,
+    "source": "to tell on sb.",
+    "target": "jdn. verpetzen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 17,
+    "source": "detention",
+    "target": "Nachsitzen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 18,
+    "source": "to put up",
+    "target": "aufhängen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 19,
+    "source": "to ask sb. out",
+    "target": "jdn. nach einem Date fragen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 20,
+    "source": "accidentally",
+    "target": "versehentlich",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 21,
+    "source": "to argue",
+    "target": "streiten, diskutieren",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 22,
+    "source": "to look the other way",
+    "target": "wegschauen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 23,
+    "source": "to pretend",
+    "target": "vortäuschen, so tun, als ob",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 24,
+    "source": "to reject",
+    "target": "ablehnen, zurückweisen",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 25,
+    "source": "homemade",
+    "target": "hausgemacht",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 26,
+    "source": "neither of",
+    "target": "keiner von",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 27,
+    "source": "voucher",
+    "target": "Gutschein",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 28,
+    "source": "to wrap",
+    "target": "verpacken",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 29,
+    "source": "I’m sure we’ll find a way out of this dilemma.",
+    "target": "Ich bin sicher, dass wir einen Ausweg aus diesem Dilemma finden werden.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 30,
+    "source": "I’m happy we could reach a decision.",
+    "target": "Ich bin froh, dass wir eine Entscheidung treffen konnten.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 31,
+    "source": "You can’t just cancel because you want to play football.",
+    "target": "Du kannst nicht einfach absagen, weil du Fußball spielen möchtest.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 32,
+    "source": "It’s a big disappointment that you can’t play on Saturday.",
+    "target": "Es ist eine große Enttäuschung, dass du am Samstag nicht spielen kannst.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 33,
+    "source": "We are going to visit granddad in the afternoon.",
+    "target": "Wir werden am Nachmittag Opa besuchen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 34,
+    "source": "My coach is going to kick me off the team.",
+    "target": "Mein Trainer wird mich aus der Mannschaft rausschmeißen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 35,
+    "source": "They have asked to move the game to Saturday.",
+    "target": "Sie haben darum gebeten, das Spiel auf Samstag zu verschieben.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 36,
+    "source": "I’ll have to rethink my decision.",
+    "target": "Ich werde meine Entscheidung überdenken müssen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 37,
+    "source": "You deserve to feel special on your birthday.",
+    "target": "Du verdienst es, dich an deinem Geburtstag besonders zu fühlen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 38,
+    "source": "Everyone knew – except you.",
+    "target": "Alle wussten es – außer dir.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 39,
+    "source": "Can you give me a lift home?",
+    "target": "Kannst du mich nach Hause mitnehmen?",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 40,
+    "source": "Your brother asked you to give him an alibi for last night.",
+    "target": "Dein Bruder bat dich, ihm ein Alibi für letzte Nacht zu geben.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 41,
+    "source": "Can I see your ID?",
+    "target": "Kann ich deinen Personalausweis sehen?",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 42,
+    "source": "I’d keep quiet if the teacher asked me what happened.",
+    "target": "Ich würde schweigen, wenn der Lehrer mich fragen würde, was passiert ist.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 43,
+    "source": "I’m not going to tell on my friend.",
+    "target": "Ich werde meinen Freund nicht verpetzen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 44,
+    "source": "If you didn’t say anything, you’d probably get detention.",
+    "target": "Wenn du nichts sagen würdest, müsstest du wahrscheinlich nachsitzen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 45,
+    "source": "I put up a note on the fridge.",
+    "target": "Ich hängte einen Zettel am Kühlschrank auf.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 46,
+    "source": "Jim has asked me out, but I don’t want to go out with him.",
+    "target": "Jim hat mich nach einem Date gefragt, aber ich möchte nicht mit ihm ausgehen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 47,
+    "source": "When running down the stairs, you accidentally broke a vase.",
+    "target": "Als du die Treppe hinunterliefst, hast du versehentlich eine Vase zerbrochen.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 48,
+    "source": "I don’t like to argue with my parents.",
+    "target": "Ich streite nicht gern mit meinen Eltern.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 49,
+    "source": "If someone needs help, don’t look the other way.",
+    "target": "Wenn jemand Hilfe braucht, schau nicht weg.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 50,
+    "source": "Would you pretend you weren’t my friend?",
+    "target": "Würdest du so tun, als wärst du nicht mein Freund?",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 51,
+    "source": "Tanja just rejected my advice.",
+    "target": "Tanja hat meinen Rat gerade abgelehnt.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 52,
+    "source": "I could give him some homemade vouchers.",
+    "target": "Ich könnte ihm ein paar selbstgemachte Gutscheine geben.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 53,
+    "source": "Neither of us has any money.",
+    "target": "Keiner von uns hat Geld.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 54,
+    "source": "I make a voucher that says: maths homework.",
+    "target": "Ich mache einen Gutschein, auf dem steht: Mathematik-Hausaufgaben.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  },
+  {
+    "id": 55,
+    "source": "I’ll wrap the present and give it to him.",
+    "target": "Ich werde das Geschenk verpacken und es ihm geben.",
+    "sourceLanguage": "English",
+    "targetLanguage": "German"
+  }
+]

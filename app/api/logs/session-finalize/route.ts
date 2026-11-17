@@ -47,6 +47,13 @@ function isValidSessionFinalizePayload(payload: unknown): payload is TrainingSes
     return false;
   }
 
+  if (
+    candidate.sharedSession !== undefined &&
+    typeof candidate.sharedSession !== "boolean"
+  ) {
+    return false;
+  }
+
   return true;
 }
 
@@ -79,6 +86,7 @@ export async function POST(request: NextRequest) {
       suspiciousFastWords: body.suspiciousFastWords,
       systemFingerprintHash: body.systemFingerprintHash,
       anonymousClientId: body.anonymousClientId,
+      sharedSession: body.sharedSession === true,
     });
 
     if (!sessionResponse.ok) {

@@ -23,6 +23,7 @@ type StrapiSession = {
   totalWords?: number;
   progressPercent?: number;
   suspiciousFastWords?: number;
+  sharedSession?: boolean;
 };
 
 type StrapiAnswerEvent = {
@@ -62,6 +63,7 @@ type OverviewSession = {
   totalWords?: number;
   progressPercent?: number;
   suspiciousFastWords?: number;
+  sharedSession?: boolean;
   knownWords: WordItem[];
   unknownWords: WordItem[];
 };
@@ -310,6 +312,7 @@ export default async function AdminOverviewPage({
       totalWords: session?.totalWords,
       progressPercent: session?.progressPercent,
       suspiciousFastWords: session?.suspiciousFastWords,
+      sharedSession: session?.sharedSession === true,
       knownWords,
       unknownWords,
     });
@@ -465,11 +468,18 @@ export default async function AdminOverviewPage({
                       <div>
                         <div className="text-sm text-slate-500">{shortDateFormatter.format(new Date(row.startedAt || Date.now()))}</div>
                         <h2 className="text-lg md:text-xl font-bold text-slate-900 mt-1">Session {row.sessionId.slice(0, 8)}...</h2>
-                        <div className="mt-2 inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">
-                          Datei: {row.selectedFile}
-                        </div>
-                        <div className="mt-2 inline-flex items-center rounded-full bg-indigo-100 px-3 py-1 text-xs font-medium text-indigo-700">
-                          Modus: {row.mode}
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          <div className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">
+                            Datei: {row.selectedFile}
+                          </div>
+                          <div className="inline-flex items-center rounded-full bg-indigo-100 px-3 py-1 text-xs font-medium text-indigo-700">
+                            Modus: {row.mode}
+                          </div>
+                          {row.sharedSession && (
+                            <div className="inline-flex items-center rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-800">
+                              Shared
+                            </div>
+                          )}
                         </div>
                       </div>
 

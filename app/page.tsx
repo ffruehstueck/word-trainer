@@ -1,9 +1,27 @@
 import { getAvailableFiles } from "@/lib/data";
+import { parseShareParams } from "@/lib/shareLink";
 import TrainingSession from "@/components/TrainingSession";
 
-export default async function Home() {
-  // Load available files on the server
-  const availableFiles = await getAvailableFiles();
+type HomeSearchParams = Record<string, string | string[] | undefined>;
 
-  return <TrainingSession initialAvailableFiles={availableFiles} />;
+export default async function Home({
+  searchParams,
+}: {
+  searchParams?: Promise<HomeSearchParams> | HomeSearchParams;
+}) {
+  const availableFiles = await getAvailableFiles();
+  const resolvedSearchParams = searchParams
+    ? await Promise.resolve(searchParams)
+    : {};
+  const initialShareConfig = parseShareParams(
+    resolvedSearchParams,
+    availableFiles.map((file) => file.value),
+  );
+
+  return (
+    <TrainingSession
+      initialAvailableFiles={availableFiles}
+      initialShareConfig={initialShareConfig}
+    />
+  );
 }

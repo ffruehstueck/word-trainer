@@ -18,9 +18,11 @@ import {
 import { FileOption } from "@/lib/data";
 import { effectiveReverse, resolveDisplaySides } from "@/lib/cardSides";
 import { readReviewHistory, REVIEW_HISTORY_KEY, selectReviewWords, wordKey } from "@/lib/examReview";
+import { buildShareUrl, type ShareConfig } from "@/lib/shareLink";
 
 interface TrainingSessionProps {
   initialAvailableFiles: FileOption[];
+  initialShareConfig?: ShareConfig | null;
 }
 
 interface PersistedProgress {
@@ -44,7 +46,11 @@ const formatTime = (seconds: number): string => {
   return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
 };
 
-export default function TrainingSession({ initialAvailableFiles }: TrainingSessionProps) {
+export default function TrainingSession({
+  initialAvailableFiles,
+  initialShareConfig = null,
+}: TrainingSessionProps) {
+  const sharedLock = Boolean(initialShareConfig);
   const [words, setWords] = useState<Word[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isRevealed, setIsRevealed] = useState(false);
@@ -54,14 +60,17 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
   const [allProgress, setAllProgress] = useState<Map<number, WordProgress>>(new Map());
   const [showStats, setShowStats] = useState(false);
   const [selectedFile, setSelectedFile] = useState<string>(
-    initialAvailableFiles.find(file => file.value !== 'test.json')?.value ?? ''
+    initialShareConfig?.file
+      ?? initialAvailableFiles.find(file => file.value !== 'test.json')?.value
+      ?? ''
   );
   const [isLoading, setIsLoading] = useState(false);
   const [availableFiles] = useState<FileOption[]>(initialAvailableFiles);
-  const [reverseDirection, setReverseDirection] = useState(false);
-  const [mixPrompts, setMixPrompts] = useState(false);
+  const [reverseDirection, setReverseDirection] = useState(initialShareConfig?.reverse ?? false);
+  const [mixPrompts, setMixPrompts] = useState(initialShareConfig?.mix ?? false);
   const [mode, setMode] = useState<"exam" | "training" | null>(null);
   const [sessionStarted, setSessionStarted] = useState(false);
+  const [shareCopied, setShareCopied] = useState(false);
   
   // Timer state
   const [sessionStartTime, setSessionStartTime] = useState<number | null>(null);
@@ -85,6 +94,9 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     selectedFile: string;
   } | null>(null);
   const finalizedSessionIdsRef = useRef<Set<string>>(new Set());
+  const didAutostartShareRef = useRef(false);
+  const sharedLockRef = useRef(sharedLock);
+  sharedLockRef.current = sharedLock;
   const sessionAnalyticsRef = useRef<{
     knownCount: number;
     unknownCount: number;
@@ -284,6 +296,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
       recordTrainingWordDuration(now);
     }
 
+    const sharedSession = sharedLockRef.current || undefined;
     const payload: TrainingSessionFinalizePayload =
       activeSession.mode === "exam"
         ? {
@@ -296,6 +309,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
             unknownCount: sessionAnalyticsRef.current.unknownCount,
             totalAnswers: sessionAnalyticsRef.current.totalAnswers,
             unknownByWord: Array.from(sessionAnalyticsRef.current.unknownByWord.values()),
+            sharedSession,
             ...loggingIdentity,
           }
         : {
@@ -326,6 +340,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
                 durations.length > 0 &&
                 durations.reduce((sum, duration) => sum + duration, 0) / durations.length < 1000,
             ).length,
+            sharedSession,
             ...loggingIdentity,
           };
 
@@ -642,7 +657,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
       setCurrentIndex(modeToUse === "training" && saved
         ? Math.min(saved.currentIndex, wordsToShow.length - 1) : 0);
       setIsRevealed(false);
-      if (saved) {
+      if (saved && !sharedLockRef.current) {
         setReverseDirection(saved.reverseDirection);
         setMixPrompts(saved.mixPrompts ?? false);
       }
@@ -752,7 +767,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     return allCompleted;
   }, [words]);
 
-  const handleStartSession = (selectedMode: "exam" | "training") => {
+  const handleStartSession = useCallback((selectedMode: "exam" | "training") => {
     setMode(selectedMode);
     setSessionStarted(true);
     const now = Date.now();
@@ -765,6 +780,31 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     if (selectedFile && availableFiles.length > 0) {
       const shouldReset = selectedMode === "training"; // Always reset for training mode
       loadWords(selectedFile, shouldReset, selectedMode);
+    }
+  }, [availableFiles.length, loadWords, selectedFile]);
+
+  useEffect(() => {
+    if (!initialShareConfig || didAutostartShareRef.current) return;
+    if (availableFiles.length === 0 || !selectedFile) return;
+    didAutostartShareRef.current = true;
+    handleStartSession(initialShareConfig.mode);
+  }, [availableFiles.length, handleStartSession, initialShareConfig, selectedFile]);
+
+  const handleCopyShareLink = async () => {
+    if (!mode || typeof window === "undefined") return;
+    const url = buildShareUrl(window.location.origin, {
+      file: selectedFile,
+      mode,
+      reverse: reverseDirection,
+      mix: mixPrompts,
+    });
+    try {
+      await navigator.clipboard.writeText(url);
+      setShareCopied(true);
+      window.setTimeout(() => setShareCopied(false), 2000);
+      handleInteraction();
+    } catch (err) {
+      console.error("Failed to copy share link:", err);
     }
   };
 
@@ -1105,8 +1145,8 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
               <select
                 value={selectedFile}
                 onChange={(e) => setSelectedFile(e.target.value)}
-                className="bg-white border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer"
-                disabled={isLoading || availableFiles.length === 0}
+                className="bg-white border border-gray-300 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                disabled={isLoading || availableFiles.length === 0 || sharedLock}
               >
                 {availableFiles.map((file) => (
                   <option key={file.value} value={file.value}>
@@ -1116,9 +1156,15 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
                 <option value="all">All Files</option>
               </select>
             </div>
+            {sharedLock && (
+              <p className="text-sm text-indigo-700 mb-4">
+                Shared link — file and settings are locked.
+              </p>
+            )}
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {(!sharedLock || initialShareConfig?.mode === "exam") && (
             <div className="relative">
               <button
                 onClick={() => handleStartSession("exam")}
@@ -1151,7 +1197,9 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
                 </button>
               )}
             </div>
+            )}
 
+            {(!sharedLock || initialShareConfig?.mode === "training") && (
             <div className="relative">
             <button
               onClick={() => handleStartSession("training")}
@@ -1183,6 +1231,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
                 </button>
               )}
             </div>
+            )}
           </div>
         </div>
       </div>
@@ -1280,18 +1329,20 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
                     setReverseDirection(!reverseDirection);
                     handleInteraction();
                   }}
-                  disabled={(mode === "exam" && !isRevealed) || mixPrompts}
+                  disabled={sharedLock || (mode === "exam" && !isRevealed) || mixPrompts}
                   className={`font-semibold py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2 shadow-md disabled:opacity-50 disabled:cursor-not-allowed ${
                     reverseDirection
                       ? "bg-indigo-500 hover:bg-indigo-600 text-white disabled:hover:bg-indigo-500"
                       : "bg-gray-200 hover:bg-gray-300 text-gray-700 disabled:hover:bg-gray-200"
                   }`}
                   title={
-                    mixPrompts
-                      ? "Turn off Mix to set a fixed direction"
-                      : mode === "exam" && !isRevealed
-                        ? "Reveal translation first"
-                        : "Reverse translation direction"
+                    sharedLock
+                      ? "Settings locked by shared link"
+                      : mixPrompts
+                        ? "Turn off Mix to set a fixed direction"
+                        : mode === "exam" && !isRevealed
+                          ? "Reveal translation first"
+                          : "Reverse translation direction"
                   }
                 >
                   <span className="text-lg transform rotate-90">⇄</span>
@@ -1303,18 +1354,38 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
                       setMixPrompts(!mixPrompts);
                       handleInteraction();
                     }}
-                    disabled={!isRevealed}
+                    disabled={sharedLock || !isRevealed}
                     className={`font-semibold py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2 shadow-md disabled:opacity-50 disabled:cursor-not-allowed ${
                       mixPrompts
                         ? "bg-indigo-500 hover:bg-indigo-600 text-white disabled:hover:bg-indigo-500"
                         : "bg-gray-200 hover:bg-gray-300 text-gray-700 disabled:hover:bg-gray-200"
                     }`}
-                    title={!isRevealed ? "Reveal translation first" : "Mix prompt direction per card"}
+                    title={
+                      sharedLock
+                        ? "Settings locked by shared link"
+                        : !isRevealed
+                          ? "Reveal translation first"
+                          : "Mix prompt direction per card"
+                    }
                   >
                     <span className="text-lg">🎲</span>
                     <span className="hidden sm:inline">Mix</span>
                   </button>
                 )}
+                <button
+                  onClick={() => {
+                    void handleCopyShareLink();
+                  }}
+                  className={`font-semibold py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2 shadow-md ${
+                    shareCopied
+                      ? "bg-emerald-500 text-white"
+                      : "bg-gray-200 hover:bg-gray-300 text-gray-700"
+                  }`}
+                  title="Copy share link for this file and settings"
+                >
+                  <span className="text-lg">🔗</span>
+                  <span className="hidden sm:inline">{shareCopied ? "Copied" : "Share"}</span>
+                </button>
                 <button
                   onClick={handleStop}
                   className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2 shadow-md"

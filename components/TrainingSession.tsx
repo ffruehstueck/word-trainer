@@ -16,6 +16,7 @@ import {
   SessionStats,
 } from "@/types";
 import { FileOption } from "@/lib/data";
+import { effectiveReverse, resolveDisplaySides } from "@/lib/cardSides";
 import { readReviewHistory, REVIEW_HISTORY_KEY, selectReviewWords, wordKey } from "@/lib/examReview";
 
 interface TrainingSessionProps {
@@ -28,6 +29,7 @@ interface PersistedProgress {
   selectedFile: string;
   mode: "exam" | "training";
   reverseDirection: boolean;
+  mixPrompts?: boolean;
   timestamp: number;
   examDeck?: Word[];
 }
@@ -57,6 +59,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
   const [isLoading, setIsLoading] = useState(false);
   const [availableFiles] = useState<FileOption[]>(initialAvailableFiles);
   const [reverseDirection, setReverseDirection] = useState(false);
+  const [mixPrompts, setMixPrompts] = useState(false);
   const [mode, setMode] = useState<"exam" | "training" | null>(null);
   const [sessionStarted, setSessionStarted] = useState(false);
   
@@ -70,7 +73,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
   const [showInactivityModal, setShowInactivityModal] = useState(false);
   const [loggingIdentity, setLoggingIdentity] = useState<LoggingIdentity>({});
   
-  // Store all transformed words (for reference when loading saved progress)
+  // Full exam deck for resume (same IDs / review mix)
   const allWordsRef = useRef<Word[]>([]);
   const loadingWordsRef = useRef(false);
   const pendingEventsRef = useRef<TrainingAnswerEventPayload[]>([]);
@@ -395,6 +398,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
         selectedFile: file,
         mode: currentMode,
         reverseDirection,
+        mixPrompts,
         timestamp: Date.now(),
         examDeck: currentMode === "exam" ? allWordsRef.current : undefined,
       };
@@ -402,7 +406,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     } catch (err) {
       console.error("Error saving progress to localStorage:", err);
     }
-  }, [allProgress, currentIndex, reverseDirection]);
+  }, [allProgress, currentIndex, reverseDirection, mixPrompts]);
 
   // Clear progress for a specific file/mode
   const clearProgress = (file: string, currentMode: "exam" | "training") => {
@@ -524,7 +528,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
     if (mode) {
       saveProgress(selectedFile, mode);
     }
-  }, [allProgress, currentIndex, selectedFile, mode, reverseDirection, words.length, saveProgress]);
+  }, [allProgress, currentIndex, selectedFile, mode, reverseDirection, mixPrompts, words.length, saveProgress]);
 
   // Fisher-Yates shuffle algorithm
   const shuffleArray = useCallback(<T,>(array: T[]): T[] => {
@@ -579,22 +583,6 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
         }
       }
 
-      // Transform words for exam mode: if source has 3 parts separated by " - ", split them
-      if (modeToUse === "exam") {
-        allWords = allWords.map((word) => {
-          const sourceParts = word.source.split(' - ').map(part => part.trim());
-          if (sourceParts.length === 3) {
-            // Keep first part as source, combine last two parts with target
-            return {
-              ...word,
-              source: sourceParts[0],
-              target: `${sourceParts[1]} - ${sourceParts[2]} / ${word.target}`
-            };
-          }
-          return word;
-        });
-      }
-      
       // Ensure unique IDs
       allWords = allWords.map((word, index) => ({
         ...word,
@@ -640,7 +628,7 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
 
       setWords(wordsToShow);
       
-      // Store all transformed words for reference when loading saved progress
+      // Store full exam deck for resume (same IDs / review mix)
       allWordsRef.current = allWords;
       
       const savedMap = new Map(saved?.allProgress ?? []);
@@ -654,7 +642,10 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
       setCurrentIndex(modeToUse === "training" && saved
         ? Math.min(saved.currentIndex, wordsToShow.length - 1) : 0);
       setIsRevealed(false);
-      if (saved) setReverseDirection(saved.reverseDirection);
+      if (saved) {
+        setReverseDirection(saved.reverseDirection);
+        setMixPrompts(saved.mixPrompts ?? false);
+      }
     } catch (err) {
       console.error("Error loading words:", err);
       setWords([]);
@@ -877,18 +868,20 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
       };
       analytics.unknownByWord.set(currentWord.id, updatedAggregate);
 
+      const shownReverse = effectiveReverse(currentWord.id, reverseDirection, mixPrompts);
+      const sides = resolveDisplaySides(currentWord, shownReverse, { splitIrregularExam: true });
       const payload: TrainingAnswerEventPayload = {
         sessionId: activeSession.sessionId,
         timestamp: new Date(now).toISOString(),
         mode: "exam",
         selectedFile: activeSession.selectedFile,
         wordId: currentWord.id,
-        source: currentWord.source,
-        target: currentWord.target,
+        source: sides.displaySource,
+        target: sides.displayTarget,
         isCorrect,
         attemptNumber,
         durationMs: duration,
-        reverseDirection,
+        reverseDirection: shownReverse,
         ...loggingIdentity,
       };
 
@@ -1287,17 +1280,41 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
                     setReverseDirection(!reverseDirection);
                     handleInteraction();
                   }}
-                  disabled={mode === "exam" && !isRevealed}
+                  disabled={(mode === "exam" && !isRevealed) || mixPrompts}
                   className={`font-semibold py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2 shadow-md disabled:opacity-50 disabled:cursor-not-allowed ${
                     reverseDirection
                       ? "bg-indigo-500 hover:bg-indigo-600 text-white disabled:hover:bg-indigo-500"
                       : "bg-gray-200 hover:bg-gray-300 text-gray-700 disabled:hover:bg-gray-200"
                   }`}
-                  title={mode === "exam" && !isRevealed ? "Reveal translation first" : "Reverse translation direction"}
+                  title={
+                    mixPrompts
+                      ? "Turn off Mix to set a fixed direction"
+                      : mode === "exam" && !isRevealed
+                        ? "Reveal translation first"
+                        : "Reverse translation direction"
+                  }
                 >
                   <span className="text-lg transform rotate-90">⇄</span>
                   <span className="hidden sm:inline">Reverse</span>
                 </button>
+                {mode === "exam" && (
+                  <button
+                    onClick={() => {
+                      setMixPrompts(!mixPrompts);
+                      handleInteraction();
+                    }}
+                    disabled={!isRevealed}
+                    className={`font-semibold py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2 shadow-md disabled:opacity-50 disabled:cursor-not-allowed ${
+                      mixPrompts
+                        ? "bg-indigo-500 hover:bg-indigo-600 text-white disabled:hover:bg-indigo-500"
+                        : "bg-gray-200 hover:bg-gray-300 text-gray-700 disabled:hover:bg-gray-200"
+                    }`}
+                    title={!isRevealed ? "Reveal translation first" : "Mix prompt direction per card"}
+                  >
+                    <span className="text-lg">🎲</span>
+                    <span className="hidden sm:inline">Mix</span>
+                  </button>
+                )}
                 <button
                   onClick={handleStop}
                   className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2 shadow-md"
@@ -1343,12 +1360,13 @@ export default function TrainingSession({ initialAvailableFiles }: TrainingSessi
 
           {mode === "exam" && currentWordProgress ? (
             <WordCard
-              key={`${currentWordProgress.word.id}-${reverseDirection}`}
+              key={`${currentWordProgress.word.id}-${reverseDirection}-${mixPrompts}`}
               word={currentWordProgress.word}
               isRevealed={isRevealed}
               onReveal={handleReveal}
               onAnswer={handleAnswer}
               reverseDirection={reverseDirection}
+              mixPrompts={mixPrompts}
             />
           ) : words.length > 0 && words[currentIndex] ? (
             <TrainingCard

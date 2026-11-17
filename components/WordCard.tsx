@@ -1,6 +1,7 @@
 "use client";
 
 import { Word } from "@/types";
+import { effectiveReverse, resolveDisplaySides } from "@/lib/cardSides";
 import { useMemo } from "react";
 
 interface WordCardProps {
@@ -9,6 +10,7 @@ interface WordCardProps {
   onReveal: () => void;
   onAnswer: (isCorrect: boolean) => void;
   reverseDirection?: boolean;
+  mixPrompts?: boolean;
 }
 
 // Scramble letters in a string (deterministic based on word id for consistency)
@@ -38,11 +40,21 @@ const scrambleText = (text: string, seed: number): string => {
     .join('');
 };
 
-export default function WordCard({ word, isRevealed, onReveal, onAnswer, reverseDirection = false }: WordCardProps) {
-  const displaySource = reverseDirection ? word.target : word.source;
-  const displayTarget = reverseDirection ? word.source : word.target;
-  const displaySourceLanguage = reverseDirection ? word.targetLanguage : word.sourceLanguage;
-  const displayTargetLanguage = reverseDirection ? word.sourceLanguage : word.targetLanguage;
+export default function WordCard({
+  word,
+  isRevealed,
+  onReveal,
+  onAnswer,
+  reverseDirection = false,
+  mixPrompts = false,
+}: WordCardProps) {
+  const reverse = effectiveReverse(word.id, reverseDirection, mixPrompts);
+  const {
+    displaySource,
+    displayTarget,
+    displaySourceLanguage,
+    displayTargetLanguage,
+  } = resolveDisplaySides(word, reverse, { splitIrregularExam: true });
   
   // Scramble the target text when not revealed (memoized for consistency)
   const scrambledTarget = useMemo(() => {
